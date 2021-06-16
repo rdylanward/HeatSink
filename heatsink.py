@@ -19,9 +19,9 @@ mongodb = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_base")
-def get_base():
-    return render_template("templates/base.html")
+@app.route("/get_home")
+def get_home():
+    return render_template("templates/index.html")
 
 
 if __name__ == "__main__":
