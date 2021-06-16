@@ -5,64 +5,37 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <link rel="icon" type="image/png" href="assets/img/android-chrome-512x512.png" sizes="512x512">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
               integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
         <title>HeatSink</title>
     </head>
 
     <body>
         <!--  NAVBAR  -->
-        <nav class="container-navbar light-yellow" id="navbar">
-            <div class="navbar-brand">
-                <a class="navbar-brand-icon light-yellow" href="index.html"><i class="fas fa-fire"></i></a>
-            </div>
-            <div class="navbar-title light-yellow">
-                <span>&nbsp;HeatSink</span>
-            </div>
-            <div class="navbar-menu light-yellow">
-                <ul class="navbar-menu-list">
-                    <li class="hide-menu navbar-menu-item active">
-                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Home</a>
-                    </li>
-                    <li class="hide-menu navbar-menu-item">
-                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Heaters</a>
-                    </li>
-                    <li class="hide-menu navbar-menu-item">
-                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Admin</a>
-                    </li>
-                    <li class="hide-menu navbar-menu-item">
-                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Support</a>
-                    </li>
-                    <li class="hide-toggler navbar-menu-item">
-                        <a class="navbar-toggler navbar-menu-link no-decoration light-yellow" href="javascript:void(0);" onclick="mobileMenu()"><i class="fas fa-bars"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <!--  /NAVBAR  -->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper blue-grey darken-4 white-text">
+                    <a href="#" class="brand-logo"><i class="fas fa-fire"></i>&nbsp;HeatSink</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="{{ url_for('index') }}">HOME</a></li>
+                        <li><a href="{{ url_for('index') }}">HEATERS</a></li>
+                        <li><a href="{{ url_for('index') }}">ADMIN</a></li>
+                        <li><a href="{{ url_for('index') }}">SUPPORT</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
-        <!--  MOBILE NAVBAR  -->
-        <nav class="container-navbar-mobile light-yellow" id="navbar-mobile">
-            <div class="navbar-mobile">
-                <ul class="navbar-mobile-list">
-                    <li class="navbar-mobile-item active">
-                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Home</a>
-                    </li>
-                    <li class="navbar-mobile-item">
-                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Heaters</a>
-                    </li>
-                    <li class="navbar-mobile-item">
-                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Admin</a>
-                    </li>
-                    <li class="navbar-mobile-item">
-                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Support</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <!--  /MOBILE NAVBAR  -->
+        <ul class="sidenav" id="mobile-demo">
+          <li><a href="{{ url_for('index') }}">HOME</a></li>
+          <li><a href="{{ url_for('index') }}">HEATERS</a></li>
+          <li><a href="{{ url_for('index') }}">ADMIN</a></li>
+          <li><a href="{{ url_for('index') }}">SUPPORT</a></li>
+        </ul>
+        <!--  /NAVBAR  -->
 
         <!--  GRID CONTAINER  -->
         <div class="container-main">
