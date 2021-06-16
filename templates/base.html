@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link rel="icon" type="image/png" href="assets/img/android-chrome-512x512.png" sizes="512x512">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+        <title>HeatSink</title>
+    </head>
+
+    <body>
+        <!--  NAVBAR  -->
+        <nav class="container-navbar light-yellow" id="navbar">
+            <div class="navbar-brand">
+                <a class="navbar-brand-icon light-yellow" href="index.html"><i class="fas fa-map-pin fa-4x"></i></a>
+            </div>
+            <div class="navbar-title light-yellow">
+                <span>&nbsp;HeatSink</span>
+            </div>
+            <div class="navbar-menu light-yellow">
+                <ul class="navbar-menu-list">
+                    <li class="hide-menu navbar-menu-item active">
+                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="hide-menu navbar-menu-item">
+                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Data</a>
+                    </li>
+                    <li class="hide-menu navbar-menu-item">
+                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Settings</a>
+                    </li>
+                    <li class="hide-toggler navbar-menu-item">
+                        <a class="navbar-toggler navbar-menu-link no-decoration light-yellow" href="javascript:void(0);" onclick="mobileMenu()"><i class="fas fa-bars"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--  /NAVBAR  -->
+
+        <!--  MOBILE NAVBAR  -->
+        <nav class="container-navbar-mobile light-yellow" id="navbar-mobile">
+            <div class="navbar-mobile">
+                <ul class="navbar-mobile-list">
+                    <li class="navbar-mobile-item active">
+                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="navbar-mobile-item">
+                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Data</a>
+                    </li>
+                    <li class="navbar-mobile-item">
+                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--  /MOBILE NAVBAR  -->
+
+        <!--  GRID CONTAINER  -->
+        <div class="container-main">
+
+            {% block content %}
+            {% endblock %}
+
+            <!--  FOOTER  -->
+            <footer class="container-footer">
+                <div class="footer-start">
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item">
+                            <a class="footer-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Home</a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="footer-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Data</a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="footer-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-middle light-yellow">
+                    <div class="footer-social">
+                        <ul class="footer-social-list">
+                            <li class="footer-social-items">
+                                <a href="https://www.facebook.com" class="footer-social-icon no-decoration light-yellow" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                            </li>
+                            <li class="footer-social-items">
+                                <a href="https://www.twitter.com" class="footer-social-icon no-decoration light-yellow" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                            </li>
+                            <li class="footer-social-items">
+                                <a href="https://www.instagram.com" class="footer-social-icon no-decoration light-yellow" target="_blank"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-newsletter">
+                        <p class="footer-newsletter-label">Sign up for our newsletter!</p>
+                    </div>
+                    <div class="footer-input">
+                        <form class="footer-input-form" id="modal-email-form" method="get">
+                            <input class="footer-input-email font-light" id="modal-email-input" type="email" placeholder="Enter email...">
+                            <input class="btn btn-flat-light footer-input-btn" id="modal-email-submit" type="Button" value="Sign Up!">
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-end light-yellow">
+                    <ul class="footer-end-list">
+                        <li class="footer-end-items">HeatSink Inc.</li>
+                        <li class="footer-end-items">Main Street</li>
+                        <li class="footer-end-items">Scotstown</li>
+                        <li class="footer-end-items">Co. Monaghan</li>
+                        <li class="footer-end-items">H18 TP21</li>
+                        <li class="footer-end-items">Ireland</li>
+                        <li class="footer-end-items footer-contact-phone">(0)47 55512</li>
+                        <li class="footer-end-items footer-contact-email">info@heaqtsinkink.com</li>
+                    </ul>
+                </div>
+                <div class="footer-copyright light-yellow">
+                    <p class="footer-copyright-text">Copyright&copy; 2021 by Chew The Rag Designs. All rights reserved.</p>
+                </div>
+            </footer>
+            <!-- /FOOTER  -->
+
+        </div>
+        <!--  /GRID CONTAINER  -->
+
+        <!--  JSCRIPT & JQUERY  -->
+        <script>
+            /**********************************************************************/
+            /***                     Initialise Parameters                      ***/
+            /**********************************-***********************************/
+
+            window.onscroll = function() {stickyNavbar()};
+
+            const navbar = document.getElementById("navbar");
+            let navbarMobile = document.getElementById("navbar-mobile");
+            let sticky = navbar.offsetHeight;
+
+
+            /**********************************************************************/
+            /***                         STICKY NAVBAR                          ***/
+            /**********************************-***********************************/
+
+            /* The following Javascript was originally written by W3Schools (https://www.w3schools.com/howto/howto_js_navbar_sticky.asp)
+               and repurposed to aid in the function of the sticky menu */
+            function stickyNavbar() {
+                if (window.pageYOffset >= sticky) {
+                    navbar.classList.add("sticky-navbar");
+                    navbarMobile.classList.add("sticky-navbar-mobile");
+                } else {
+                    navbar.classList.remove("sticky-navbar");
+                    navbarMobile.classList.remove("sticky-navbar-mobile");
+                }
+            }
+
+
+            /**********************************************************************/
+            /***                          MOBILE MENU                           ***/
+            /**********************************-***********************************/
+
+
+            /* This function was originally written by W3Schools (https://www.w3schools.com/howto/howto_js_mobile_navbar.asp) and
+               repurposed to aid in the function of the mobile menu */
+            function mobileMenu() {
+                if (navbarMobile.style.display === "none") {
+                    navbarMobile.style.display = "grid";
+                } else {
+                    navbarMobile.style.display = "none";
+                }
+            }
+        </script>
+        <script src="{{ url_for('static', filename='assets/js/script.js') }}"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <!--  /JSCRIPT & JQUERY  -->
+
+    </body>
+</html>
