@@ -13,10 +13,60 @@
     </head>
 
     <body>
+        <!--  NAVBAR  -->
+        <nav class="container-navbar light-yellow" id="navbar">
+            <div class="navbar-brand">
+                <a class="navbar-brand-icon light-yellow" href="index.html"><i class="fas fa-fire"></i></a>
+            </div>
+            <div class="navbar-title light-yellow">
+                <span>&nbsp;HeatSink</span>
+            </div>
+            <div class="navbar-menu light-yellow">
+                <ul class="navbar-menu-list">
+                    <li class="hide-menu navbar-menu-item active">
+                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="hide-menu navbar-menu-item">
+                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Heaters</a>
+                    </li>
+                    <li class="hide-menu navbar-menu-item">
+                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Admin</a>
+                    </li>
+                    <li class="hide-menu navbar-menu-item">
+                        <a class="navbar-menu-link no-decoration light-yellow" href="{{ url_for('index') }}">Support</a>
+                    </li>
+                    <li class="hide-toggler navbar-menu-item">
+                        <a class="navbar-toggler navbar-menu-link no-decoration light-yellow" href="javascript:void(0);" onclick="mobileMenu()"><i class="fas fa-bars"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--  /NAVBAR  -->
+
+        <!--  MOBILE NAVBAR  -->
+        <nav class="container-navbar-mobile light-yellow" id="navbar-mobile">
+            <div class="navbar-mobile">
+                <ul class="navbar-mobile-list">
+                    <li class="navbar-mobile-item active">
+                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="navbar-mobile-item">
+                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Heaters</a>
+                    </li>
+                    <li class="navbar-mobile-item">
+                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Admin</a>
+                    </li>
+                    <li class="navbar-mobile-item">
+                        <a class="navbar-mobile-link no-decoration light-yellow" href="{{ url_for('index') }}">Support</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--  /MOBILE NAVBAR  -->
+
         <!--  GRID CONTAINER  -->
         <div class="container-main">
 
-            <h1>I'm the base!</h1>
             {% block grid %}
             {% endblock %}
 

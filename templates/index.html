@@ -1,6 +1,30 @@
 {% extends "base.html" %}
 {% block grid %}
 
-    <h2>I'm the treble!</h2>
+<!--  HEADER  -->
+<header class="container-header">
+    <div class="header-hero">
+        <div class="header-hero-heading medium-light-yellow">
+            <h1>Got the travel bug? Time to scratch that itch!</h1>
+        </div>
+        <div class="header-hero-inspiration medium-light-yellow">
+           <figure>
+                <blockquote>
+                    <p><sup><i class="fas fa-quote-left"></i></sup>&nbsp;We travel not to escape life, but for life not to escape us.&nbsp;<sub><i class="fas fa-quote-right"></i></sub></p>
+                </blockquote>
+                <figcaption>&ndash;&nbsp;<cite>Robyn Yong</cite></figcaption>
+            </figure>
+        </div>
+
+        <!-- The HTML for the click function of the button was acquired from Grepper (https://www.codegrepper.com/code-examples/html/html+button+with+link),
+             html by PR.Gaultier (01/10/2020), and repurposed to aid in the click function of the button. -->
+        <div class="header-hero-buttons">
+            <button class="btn btn-flat-orange btn-1 header-hero-btn" onclick="window.location.href='destinations.html'">Destinations</button>
+            <button class="btn btn-flat-orange btn-2 header-hero-btn" onclick="window.location.href='bookings.html'">Bookings</button>
+            <button class="btn btn-flat-orange btn-3 header-hero-btn" onclick="window.location.href='contact.html'">Contact</button>
+        </div>
+    </div>
+</header>
+<!--  /HEADER  -->
 
 {% endblock %}
