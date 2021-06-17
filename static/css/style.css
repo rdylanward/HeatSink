@@ -54,10 +54,6 @@ body {
     text-decoration: none;
 }
 
-.font-white {
-    color: #fff;
-}
-
 .container-main {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../img/gas-fire-pit-at-night.jpg");
     background-size: cover;
@@ -73,11 +69,6 @@ body {
 /***                             Navbar                             ***/
 /**********************************-***********************************/
 
-
-nav,
-.sidenav {
-    z-index: 15;
-}
 
 .navbar-brand {
     font-size: 10rem;

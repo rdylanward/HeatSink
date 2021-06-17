@@ -13,87 +13,50 @@
     </head>
 
     <body>
-        <!--  NAVBAR  -->
-        <nav class="nav-extended transparent white-text">
-            <div class="nav-wrapper">
-                <a href="{{ url_for('index') }}" class="brand-logo navbar-brand"><i class="fas fa-fire fa-2x valign-wrapper"></i>HeatSink</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars fa-3x"></i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('index') }}" class="nav-menu-items">HOME</a></li>
-                    <li><a href="{{ url_for('index') }}" class="nav-menu-items">HEATERS</a></li>
-                    <li><a href="{{ url_for('index') }}" class="nav-menu-items">ADMIN</a></li>
-                    <li><a href="{{ url_for('index') }}" class="nav-menu-items">SUPPORT</a></li>
-                    <li><a href="{{ url_for('index') }}" class="nav-menu-items">LOGOUT</a></li>
-                </ul>
-            </div>
-        </nav>
-        <!--  /NAVBAR  -->
 
-        <!--  MOBILE SIDENAV  -->
-        <ul class="sidenav" id="mobile-demo">
-            <li><h4 class="center-align blue-grey-text text-darken-4">HeatSink</h4></li>
-            <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-home blue-grey-text text-darken-4"></i>HOME</a></li>
-            <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-fire blue-grey-text text-darken-4"></i>HEATERS</a></li>
-            <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-tools blue-grey-text text-darken-4"></i>ADMIN</a></li>
-            <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-life-ring blue-grey-text text-darken-4"></i>SUPPORT</a></li>
-            <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-sign-out-alt blue-grey-text text-darken-4"></i>LOGOUT</a></li>
-        </ul>
-        <!--  /MOBILE SIDENAV  -->
+        <!--  HEADER  -->
+        <header>
 
-        <!--  GRID CONTAINER  -->
-        <div class="valign-wrapper container-main">
+            <!--  NAVBAR  -->
+            <nav class="nav-extended transparent white-text">
+                <div class="nav-wrapper">
+                    <a href="{{ url_for('index') }}" class="brand-logo navbar-brand"><i class="fas fa-fire fa-2x valign-wrapper"></i>HeatSink</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars fa-3x"></i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="{{ url_for('index') }}" class="nav-menu-items">HOME</a></li>
+                        <li><a href="{{ url_for('index') }}" class="nav-menu-items">HEATERS</a></li>
+                        <li><a href="{{ url_for('index') }}" class="nav-menu-items">ADMIN</a></li>
+                        <li><a href="{{ url_for('index') }}" class="nav-menu-items">SUPPORT</a></li>
+                        <li><a href="{{ url_for('index') }}" class="nav-menu-items">LOGOUT</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <!--  /NAVBAR  -->
+
+            <!--  MOBILE SIDENAV  -->
+            <ul class="sidenav" id="mobile-demo">
+                <li><h4 class="center-align blue-grey-text text-darken-4">HeatSink</h4></li>
+                <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-home blue-grey-text text-darken-4"></i>HOME</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-fire blue-grey-text text-darken-4"></i>HEATERS</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-tools blue-grey-text text-darken-4"></i>ADMIN</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-life-ring blue-grey-text text-darken-4"></i>SUPPORT</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-sign-out-alt blue-grey-text text-darken-4"></i>LOGOUT</a></li>
+            </ul>
+            <!--  /MOBILE SIDENAV  -->
+        
+        </header>
+        <!--  /HEADER  -->
+
+        <!--  CONTENT CONTAINER  -->
+        <div class="container-main">
 
             {% block container %}
             {% endblock %}
 
         </div>
-        <!--  /GRID CONTAINER  -->
+        <!--  /CONTENT CONTAINER  -->
 
         <!--  JSCRIPT & JQUERY  -->
-        <script>
-            /**********************************************************************/
-            /***                     Initialise Parameters                      ***/
-            /**********************************-***********************************/
-
-            window.onscroll = function() {stickyNavbar()};
-
-            const navbar = document.getElementById("navbar");
-            let navbarMobile = document.getElementById("navbar-mobile");
-            let sticky = navbar.offsetHeight;
-
-
-            /**********************************************************************/
-            /***                         STICKY NAVBAR                          ***/
-            /**********************************-***********************************/
-
-            /* The following Javascript was originally written by W3Schools (https://www.w3schools.com/howto/howto_js_navbar_sticky.asp)
-               and repurposed to aid in the function of the sticky menu */
-            function stickyNavbar() {
-                if (window.pageYOffset >= sticky) {
-                    navbar.classList.add("sticky-navbar");
-                    navbarMobile.classList.add("sticky-navbar-mobile");
-                } else {
-                    navbar.classList.remove("sticky-navbar");
-                    navbarMobile.classList.remove("sticky-navbar-mobile");
-                }
-            }
-
-
-            /**********************************************************************/
-            /***                          MOBILE MENU                           ***/
-            /**********************************-***********************************/
-
-
-            /* This function was originally written by W3Schools (https://www.w3schools.com/howto/howto_js_mobile_navbar.asp) and
-               repurposed to aid in the function of the mobile menu */
-            function mobileMenu() {
-                if (navbarMobile.style.display === "none") {
-                    navbarMobile.style.display = "grid";
-                } else {
-                    navbarMobile.style.display = "none";
-                }
-            }
-        </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="{{ url_for('static', filename='js/script.js') }}"></script>
