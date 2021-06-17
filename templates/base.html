@@ -23,11 +23,12 @@
                     <a href="{{ url_for('index') }}" class="brand-logo navbar-brand"><i class="fas fa-fire fa-2x valign-wrapper"></i>HeatSink</a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars fa-3x"></i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="{{ url_for('index') }}" class="nav-menu-items">HOME</a></li>
-                        <li><a href="{{ url_for('index') }}" class="nav-menu-items">HEATERS</a></li>
-                        <li><a href="{{ url_for('index') }}" class="nav-menu-items">ADMIN</a></li>
-                        <li><a href="{{ url_for('index') }}" class="nav-menu-items">SUPPORT</a></li>
-                        <li><a href="{{ url_for('index') }}" class="nav-menu-items valign-wrapper"><i class="fas fa-sign-out-alt logout-icon"></i>LOGOUT</a></li>
+                        <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light">HOME</a></li>
+                        <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light">HEATERS</a></li>
+                        <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light">ADMIN</a></li>
+                        <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light">SUPPORT</a></li>
+                        <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light valign-wrapper">
+                            <i class="fas fa-sign-out-alt logout-icon"></i></a></li>
                     </ul>
                 </div>
             </nav>
@@ -36,11 +37,16 @@
             <!--  MOBILE SIDENAV  -->
             <ul class="sidenav amber lighten-5" id="mobile-demo">
                 <li><h4 class="center-align blue-grey-text text-darken-4">HeatSink</h4></li>
-                <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-home blue-grey-text text-darken-4"></i>HOME</a></li>
-                <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-fire blue-grey-text text-darken-4"></i>HEATERS</a></li>
-                <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-tools blue-grey-text text-darken-4"></i>ADMIN</a></li>
-                <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-life-ring blue-grey-text text-darken-4"></i>SUPPORT</a></li>
-                <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-sign-out-alt blue-grey-text text-darken-4"></i>LOGOUT</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
+                    <i class="fas fa-home blue-grey-text text-darken-4"></i>HOME</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
+                    <i class="fas fa-fire blue-grey-text text-darken-4"></i>HEATERS</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
+                    <i class="fas fa-tools blue-grey-text text-darken-4"></i>ADMIN</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
+                    <i class="fas fa-life-ring blue-grey-text text-darken-4"></i>SUPPORT</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
+                    <i class="fas fa-sign-out-alt blue-grey-text text-darken-4"></i>LOGOUT</a></li>
             </ul>
             <!--  /MOBILE SIDENAV  -->
         
