@@ -88,6 +88,9 @@ body {
 .sidenav li > a > i {
     margin-right: 0.3rem;
 }
+.sidenav-trigger i {
+    color: transparent;
+}
 
 
 /**********************************************************************/
@@ -97,7 +100,7 @@ body {
 
 .container-home {
     height: 100%;
-    margin: 15rem 0rem;
+    margin: 12rem 0rem;
 }
 
 .title-home h2 {
@@ -105,19 +108,69 @@ body {
     letter-spacing: 0.04rem;
 }
 
+.card .card-action:last-child {
+    border-radius: 0rem 0rem 0.5rem 0.5rem;
+}
+
 .card-home {
     border-radius: 0.5rem;
     margin: 1.2rem;
 }
 
-.card .card-action:last-child {
-    border-radius: 0rem 0rem 0.5rem 0.5rem;
+.card .card-content {
+    padding: 1.2rem 1.5rem;
+}
+
+.card .card-content .card-title {
+    margin: 1.2rem 0rem 0.9rem 0rem;
+}
+
+.card-home-username {
+    margin-bottom: 0rem;
+}
+
+.card-home-password {
+    margin-bottom: 0rem;
+}
+
+.card .card-action {
+    border-top: 0rem;
+    padding: 0rem 2.4rem 1.6rem 2.4rem;
+}
+
+.card-home-btn {
+    margin-bottom: 1rem;
+}
+
+.card-home-btn button {
+    font-weight: 500;
+    font-size: 1.8rem;
+    letter-spacing: 0.1rem;
+    border-radius: 0.5rem;
 }
 
 
 /**********************************************************************/
 /***                         Media Queries                          ***/
 /**********************************-***********************************/
+
+
+/****  screen and (max-height: 568px) and (max-width: 355px)  ****/
+
+@media only screen and (max-height: 568px) and (max-width: 355px) {
+
+    /**************/
+    /***  HOME  ***/
+    /**************/
+
+
+    .container-home {
+        margin: 7rem 0rem;
+    }
+
+}
+
+/****  /screen and (max-height: 568px) and (max-width: 355px)  ****/
 
 
 /****  /screen and (min-width: 1024px)  ****/
