@@ -81,7 +81,7 @@ body {
 }
 
 .logout-icon {
-    margin-right: 0.4rem;
+    margin-right: 0.3rem;
 }
 
 .sidenav li > h4 {
@@ -144,6 +144,11 @@ body {
 
 .card-home-btn {
     margin-bottom: 1rem;
+}
+
+.btn-flat i {
+    font-size: 1.8rem;
+    margin-right: 0.4rem;
 }
 
 .card-home-btn button {
