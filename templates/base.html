@@ -5,42 +5,45 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <link rel="icon" type="image/png" href="assets/img/android-chrome-512x512.png" sizes="512x512">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" 
+            integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
-              integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
         <title>HeatSink</title>
     </head>
 
     <body>
         <!--  NAVBAR  -->
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper blue-grey darken-4 white-text">
-                    <a href="#" class="brand-logo"><i class="fas fa-fire"></i>&nbsp;HeatSink</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="{{ url_for('index') }}">HOME</a></li>
-                        <li><a href="{{ url_for('index') }}">HEATERS</a></li>
-                        <li><a href="{{ url_for('index') }}">ADMIN</a></li>
-                        <li><a href="{{ url_for('index') }}">SUPPORT</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-
-        <ul class="sidenav" id="mobile-demo">
-          <li><a href="{{ url_for('index') }}">HOME</a></li>
-          <li><a href="{{ url_for('index') }}">HEATERS</a></li>
-          <li><a href="{{ url_for('index') }}">ADMIN</a></li>
-          <li><a href="{{ url_for('index') }}">SUPPORT</a></li>
-        </ul>
+        <nav class="nav-extended transparent white-text">
+            <div class="nav-wrapper">
+                <a href="{{ url_for('index') }}" class="brand-logo navbar-brand"><i class="fas fa-fire fa-2x valign-wrapper"></i>HeatSink</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars fa-3x"></i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('index') }}" class="nav-menu-items">HOME</a></li>
+                    <li><a href="{{ url_for('index') }}" class="nav-menu-items">HEATERS</a></li>
+                    <li><a href="{{ url_for('index') }}" class="nav-menu-items">ADMIN</a></li>
+                    <li><a href="{{ url_for('index') }}" class="nav-menu-items">SUPPORT</a></li>
+                    <li><a href="{{ url_for('index') }}" class="nav-menu-items">LOGOUT</a></li>
+                </ul>
+            </div>
+        </nav>
         <!--  /NAVBAR  -->
 
-        <!--  GRID CONTAINER  -->
-        <div class="container-main">
+        <!--  MOBILE SIDENAV  -->
+        <ul class="sidenav" id="mobile-demo">
+            <li><h4 class="center-align blue-grey-text text-darken-4">HeatSink</h4></li>
+            <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-home blue-grey-text text-darken-4"></i>HOME</a></li>
+            <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-fire blue-grey-text text-darken-4"></i>HEATERS</a></li>
+            <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-tools blue-grey-text text-darken-4"></i>ADMIN</a></li>
+            <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-life-ring blue-grey-text text-darken-4"></i>SUPPORT</a></li>
+            <li><a href="{{ url_for('index') }}" class="nav-menu-items"><i class="fas fa-sign-out-alt blue-grey-text text-darken-4"></i>LOGOUT</a></li>
+        </ul>
+        <!--  /MOBILE SIDENAV  -->
 
-            {% block grid %}
+        <!--  GRID CONTAINER  -->
+        <div class="valign-wrapper container-main">
+
+            {% block container %}
             {% endblock %}
 
         </div>
