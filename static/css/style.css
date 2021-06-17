@@ -80,6 +80,10 @@ body {
     font-weight: 500;
 }
 
+.logout-icon {
+    margin-right: 0.4rem;
+}
+
 .sidenav li > h4 {
     font-size: 3rem;
     font-weight: 500;
