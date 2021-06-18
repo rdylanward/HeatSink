@@ -1,8 +1,18 @@
-<h1 align="center">MS2 Project - Put a Pin In It</h1>
+<h1 align="center">MS3 Project - HeatSink</h1>
 
-[View the live project here.](https://rdylanward.github.io/putapininit.com/index.html)
+[View the live project here.](https://heatsink-flask-project.herokuapp.com/)
 
-The scope of the project was to design a fictional travel website that calls on the Google Maps API and/or the Google Places API (or similar) to allow users to search for their next holiday destination using HTML5, CSS3 and JScript (JQuery optional) technologies. To be included in the site would be interactive features and relevant images.
+Based on an actual requirement, a company has a series of electric heaters installed in various offices and their canteen. During the colder months, the electric heaters would be left on constantly (in some cases, overnight.), even when they were not needed or the room was too hot. When turning them on in the morning to warm up the area, employees would tend to turn the thermostats to the highest setting and leave them there for the duration. On top of that, when a room would get too hot, rather than turn the thermostat down, employees would tend to open a window and let the cool air in, leaving the heater running at full tilt the entire time. As you may have guessed, this used caused the company to consume unnecessary amounts of electricity.
+
+Being part of the Origin Green initiative coupled with a strong desire to reduce their carbon footprint to zero, the company tasked me to install a system to both control and lessen the usage of the electric heaters. As a cost-saving exercise (translation: being given a minute budget to work with), I elected to install a series of [Raspberry PI Zeros](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) coupled with [Pimoroni Automation Hats](https://shop.pimoroni.com/products/automation-hat) to achieve this goal. As the electric heaters were strategically grouped with multiple heaters wired to the same electrical panels, this allowed me to group multiple heaters on one controller and save 60% on costs compared to commercial HVAC solutions.
+
+At the start, with a bit of education on turning the thermostats down and logically programmed scheduled tasks, all was working well and the heaters were being controlled. However, manipulating the controllers had to be carried out via a series of commands executed via batch files, using command lines. This left the usage of the system awkward, cumbersome, leaving the employees less likely to use the system and reverting to their old ways. A more user-friendly front-end was required to engage the end-user to get the full benefit of the design. This project is the answer to that need. Utilising Python, the Flask Framework, Materialize CSS, HTML5, CSS3 and JQuery, this application gives the end-user an easy to use, easy to access application to control the heaters when desired.
+
+In our modern world, we tend to use our mobile phones for everything. I have designed this application targeting mobile phones. However, with the use of Materialize CSS, the application scales to larger devices (i.e. Tablets, Desktops, etc…) if a mobile phone is not available.
+
+When testing this application, you are controlling actual mock devices (Video proof [here](https://github.com/rdylanward/HeatSink/blob/master/static/docs/video/live test.mp4)...). I have set up a controller (using DDNS) that is being accessed remotely by the application. I have set up three mock devices, the first two of which I would like to keep intact. When testing the admin functionality, I kindly request you only make changes to the third device named “demo”. The remaining two were set up solely to test the user functionality.
+
+
 
 -   ### Responsive Screenshots
 
@@ -96,20 +106,30 @@ The scope of the project was to design a fictional travel website that calls on 
 
 ### Frameworks, Libraries & Programs Used
 
-1. [CSS Grid:](https://www.w3schools.com/css/css_grid.asp)
-    - CSS Grid was chosen over Bootstrap for its ability to provide more precise control over responsive design.
+1. [Python v3.8:](https://www.python.org/)
+    - Python v3.8 was used to code both the application and the physical controller.
+1. [Flask:](https://https://materializecss.com/)
+    - The Flask Framework was used as the bridge to utilising Python with HTML5.
+1. [Jinja:](https://jinja.palletsprojects.com/en/3.0.x/)
+    - Included with the Flask Framework, Jinja allows Python commands to be executed within the HTML5 code.
+1. [Materialize CSS:](https://https://materializecss.com/)
+    - Materialize CSS was chosen for its ability to provide more precise control over responsive design.
+1. [CSS3:](https://en.wikipedia.org/wiki/CSS)
+    - CSS3 was used to aid in the aesthetic presentation of the project.
+1. [jQuery:](https://jquery.com/)
+    - jQuery was essential for enabling the interactive elements like the sticky menu and hiding/unhiding the modals.
+1. [Heroku:](https://heroku.com/)
+    - Heroku is utilised to host the project.
+1. [Gitpod:](http://gitpod.io/)
+    - GitPod was chosen for the coding of the site. Gitpod has a great set of features for programming multiple languages and connects directly to GitHub.
+1. [Git](https://git-scm.com/)
+    - Git was used in conjunction with Gitpod for version control to commit to Git and Push to GitHub.
+1. [GitHub:](https://github.com/)
+    - GitHub utilised as a repository for the code.
 1. [Google Fonts:](https://fonts.google.com/)
     - Google fonts were used to import the 'Montserrat' and 'IM Fell English' font into the style.css file which is used on all pages throughout the project.
 1. [Font Awesome:](https://fontawesome.com/)
     - Font Awesome was used for the brand. the bullet points on the membership page and for the quotes used throughout.
-1. [jQuery:](https://jquery.com/)
-    - jQuery was essential for enabling the interactive elements like the sticky menu and hiding/unhiding the modals.
-1. [Brackets:](http://brackets.io/)
-    - Brackets was chosen over GitPod for the coding of the site. Brackets has a great set of features for programming multiple languages and connects directly to GitHub.
-1. [Git](https://git-scm.com/)
-    - Git was used in conjunction with Brackets for version control to commit to Git and Push to GitHub.
-1. [GitHub:](https://github.com/)
-    - GitHub utilised as a repository for the code.
 1. [GIMP:](https://www.gimp.org/)
     - Gimp (Graphic Image Manipulation Program) was used for resizing cropping and editing images for the website.
 1. [Autoprefixer:](http://autoprefixer.github.io/)
@@ -118,12 +138,6 @@ The scope of the project was to design a fictional travel website that calls on 
     - Tiny PNG was used to reduce the file size of the images to aid in faster loading times.
 1. [Burst:](https://burst.shopify.com/)
     - Burst was used to obtain royalty free images for the site.
-1. [Flat UI Colors 2:](https://flatuicolors.com/)
-    - Flat UI was used to choose the base color for the palette.
-1. [Paletton:](https://paletton.com/)
-    - Paletton was used to create the colour palette for the site.
-1. [0to255.com:](https://www.0to255.com/)
-    - 0to255 was used to determine certain shades of the colours while maintaining the palette.
 1. [Devoth‘s HEX 2 RGBA Color Calculator:](http://hex2rgba.devoth.com/)
     - Devoth‘s HEX 2 RGBA Color Calculator was used to aid in converting hex colurs to rgb and rgba.
 1. [Responsively:](https://responsively.app/)
