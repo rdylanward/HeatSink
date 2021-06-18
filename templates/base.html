@@ -1,72 +1,86 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <link rel="icon" type="image/png" href="assets/img/android-chrome-512x512.png" sizes="512x512">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" 
-            integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-        <title>HeatSink</title>
-    </head>
 
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/img/android-chrome-512x512.png" sizes="512x512">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <title>HeatSink</title>
+</head>
 
-        <!--  HEADER  -->
-        <header>
+<body>
 
-            <!--  NAVBAR  -->
-            <nav class="nav-extended transparent white-text">
-                <div class="nav-wrapper">
-                    <a href="{{ url_for('index') }}" class="brand-logo navbar-brand"><i class="fas fa-fire fa-2x valign-wrapper"></i>HeatSink</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars fa-3x"></i></a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light">HOME</a></li>
-                        <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light">HEATERS</a></li>
-                        <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light">ADMIN</a></li>
-                        <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light">SUPPORT</a></li>
-                        <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light valign-wrapper">
+    <!--  HEADER  -->
+    <header>
+
+        <!--  NAVBAR  -->
+        <nav class="nav-extended transparent white-text">
+            <div class="nav-wrapper">
+                <a href="{{ url_for('index') }}" class="brand-logo navbar-brand"><i
+                        class="fas fa-fire fa-2x valign-wrapper"></i>HeatSink</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
+                        class="fas fa-bars fa-3x"></i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    {% if session["member"] %}
+                    <li><a href="{{ url_for('heaters', member=session["member"], type=session["type"]) }}"
+                            class="nav-menu-items waves-effect waves-light">HEATERS</a></li>
+                    <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light">SUPPORT</a>
+                    </li>
+                    <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light valign-wrapper">
                             <i class="fas fa-sign-out-alt logout-icon"></i></a></li>
-                    </ul>
-                </div>
-            </nav>
-            <!--  /NAVBAR  -->
+                    {% elif session["type"] == "admin" %}
+                    <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-light">
+                            <i class="fas fa-cog white-text"></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <!--  /NAVBAR  -->
 
-            <!--  MOBILE SIDENAV  -->
-            <ul class="sidenav amber lighten-5" id="mobile-demo">
-                <li><h4 class="center-align blue-grey-text text-darken-4">HeatSink</h4></li>
-                <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
-                    <i class="fas fa-home blue-grey-text text-darken-4"></i>HOME</a></li>
-                <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
-                    <i class="fas fa-fire blue-grey-text text-darken-4"></i>HEATERS</a></li>
-                <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
-                    <i class="fas fa-tools blue-grey-text text-darken-4"></i>ADMIN</a></li>
-                <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
+        <!--  MOBILE SIDENAV  -->
+        <ul class="sidenav amber lighten-5" id="mobile-demo">
+            <li>
+                <h4 class="center-align blue-grey-text text-darken-4">HeatSink</h4>
+            </li>
+            {% if session["member"] %}
+            <li><a href="{{ url_for('heaters', member=session["member"], type=session["type"]) }}"
+                    class="nav-menu-items waves-effect waves-red"><i class="fas fa-fire blue-grey-text text-darken-4">
+                    </i>HEATERS</a></li>
+            <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
                     <i class="fas fa-life-ring blue-grey-text text-darken-4"></i>SUPPORT</a></li>
-                <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
+            <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
                     <i class="fas fa-sign-out-alt blue-grey-text text-darken-4"></i>LOGOUT</a></li>
-            </ul>
-            <!--  /MOBILE SIDENAV  -->
-        
-        </header>
-        <!--  /HEADER  -->
+            {% elif session["type"] == "admin" %}
+            <li><a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
+                    <i class="fas fa-cog blue-grey-text text-darken-4"></i>SETTINGS</a></li>
+            {% endif %}
+        </ul>
+        <!--  /MOBILE SIDENAV  -->
 
-        <!--  CONTENT CONTAINER  -->
-        <div class="container-main">
+    </header>
+    <!--  /HEADER  -->
 
-            {% block container %}
-            {% endblock %}
+    <!--  CONTENT CONTAINER  -->
+    <div class="container-main">
 
-        </div>
-        <!--  /CONTENT CONTAINER  -->
+        {% block container %}
+        {% endblock %}
 
-        <!--  JSCRIPT & JQUERY  -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-        <!--  /JSCRIPT & JQUERY  -->
+    </div>
+    <!--  /CONTENT CONTAINER  -->
 
-    </body>
+    <!--  JSCRIPT & JQUERY  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!--  /JSCRIPT & JQUERY  -->
+
+</body>
+
 </html>

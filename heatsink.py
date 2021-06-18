@@ -36,15 +36,17 @@ def index():
                 return redirect(url_for("index"))
         else:
             # Incorrect username
-            flash("User does not exist!")
+            flash("Incorrect username!")
             return redirect(url_for("index"))
 
     return render_template("index.html")
 
 
 @app.route("/heaters", methods=["GET", "POST"])
-def heaters():
-    return render_template("heaters.html")
+def heaters(member, type):
+    member = session["member"]
+    type = session["type"]
+    return render_template("heaters.html", member=member, type=type)
 
 
 if __name__ == "__main__":
