@@ -108,8 +108,12 @@ When testing this application, you are controlling actual mock devices (Video pr
 
 1. [Python v3.8:](https://www.python.org/)
     - Python v3.8 was used to code both the application and the physical controller.
-1. [Flask:](https://https://materializecss.com/)
-    - The Flask Framework was used as the bridge to utilising Python with HTML5.
+1. [Paramiko:](https://www.python.org/)
+    - Paramiko implementation of the SSHv2 protocol [1], providing both client and server functionality.
+1. [pgpio:](http://abyz.me.uk/rpi/pigpio/)
+    - Pigpio is a library for the Raspberry PI which allows the control of the General Purpose Input Outputs (GPIO).
+1. [Raspbian:](https://www.raspberrypi.org/software/)
+    - The Raspberry PI OS based on Debian Linux. The light or headless version was used for the controller.
 1. [Jinja:](https://jinja.palletsprojects.com/en/3.0.x/)
     - Included with the Flask Framework, Jinja allows Python commands to be executed within the HTML5 code.
 1. [Materialize CSS:](https://https://materializecss.com/)
