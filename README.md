@@ -106,8 +106,12 @@ When testing this application, you are controlling actual mock devices (Video pr
     - Pigpio is a library for the Raspberry PI which allows the control of the General Purpose Input Outputs (GPIO).
 1. [Raspbian:](https://www.raspberrypi.org/software/)
     - The Raspberry PI OS based on Debian Linux. The light or headless version was used for the controller.
+1. [Flask:](https://flask.palletsprojects.com/en/2.0.x/)
+    - A framework that allows the utilisation of Python in your web-based projects.
 1. [Jinja:](https://jinja.palletsprojects.com/en/3.0.x/)
-    - Included with the Flask Framework, Jinja allows Python commands to be executed within the HTML5 code.
+    - Included with the Flask Framework, Jinja is a fast, expressive, extensible templating engine. Special placeholders in the template allow writing code similar to Python syntax.
+1. [Werkzeug:](https://www.palletsprojects.com/p/werkzeug/)
+    - Included with the Flask Framework, Werkzeug is a comprehensive WSGI web application library.
 1. [Materialize CSS:](https://https://materializecss.com/)
     - Materialize CSS was chosen for its ability to provide more precise control over responsive design.
 1. [CSS3:](https://en.wikipedia.org/wiki/CSS)
