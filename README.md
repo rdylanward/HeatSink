@@ -6,7 +6,7 @@ Based on an actual requirement, a company has a series of electric heaters insta
 
 Being part of the Origin Green initiative coupled with a strong desire to reduce their carbon footprint to zero, the company tasked me to install a system to both control and lessen the usage of the electric heaters. As a cost-saving exercise (translation: being given a minute budget to work with), I elected to install a series of [Raspberry PI Zeros](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) coupled with [Pimoroni Automation Hats](https://shop.pimoroni.com/products/automation-hat) to achieve this goal. As the electric heaters were strategically grouped with multiple heaters wired to the same electrical panels, this allowed me to group multiple heaters on one controller and save 60% on costs compared to commercial HVAC solutions.
 
-At the start, with a bit of education on turning the thermostats down and logically programmed scheduled tasks, all was working well and the heaters were being controlled. However, manipulating the controllers had to be carried out via a series of commands executed via batch files, using command lines. This left the usage of the system awkward, cumbersome, leaving the employees less likely to use the system and reverting to their old ways. A more user-friendly front-end was required to engage the end-user to get the full benefit of the design. This project is the answer to that need. Utilising Python, the Flask Framework, Materialize CSS, HTML5, CSS3 and JQuery, this application gives the end-user an easy to use, easy to access application to control the heaters when desired.
+At the start, with a bit of education on turning the thermostats down and logically programmed scheduled tasks, all was working well and the heaters were being controlled. However, manipulating the controllers had to be carried out via a series of commands executed via batch files, using command lines. This left the usage of the system awkward, cumbersome, leaving the employees less likely to use the system and reverting to their old ways. A more user-friendly front-end was required to engage the end-user to get the full benefit of the design. This project is the answer to that need. Utilising Python, the Flask Framework, MongoDB, Materialize CSS, HTML5, CSS3 and JQuery, this application gives the end-user an easy to use, easy to access application to control the heaters when desired, as well as administration functionality for the manipulation of devices.
 
 In our modern world, we tend to use our mobile phones for everything. I have designed this application targeting mobile phones. However, with the use of Materialize CSS, the application scales to larger devices (i.e. Tablets, Desktops, etc…) if a mobile phone is not available.
 
@@ -112,6 +112,8 @@ When testing this application, you are controlling actual mock devices (Video pr
     - Included with the Flask Framework, Jinja is a fast, expressive, extensible templating engine. Special placeholders in the template allow writing code similar to Python syntax.
 1. [Werkzeug:](https://www.palletsprojects.com/p/werkzeug/)
     - Included with the Flask Framework, Werkzeug is a comprehensive WSGI web application library.
+1. [MongoDB:](https://www.mongodb.com/)
+    - MongoDB is a general purpose, document-based (or NoSQL), distributed database.
 1. [Materialize CSS:](https://https://materializecss.com/)
     - Materialize CSS was chosen for its ability to provide more precise control over responsive design.
 1. [CSS3:](https://en.wikipedia.org/wiki/CSS)
