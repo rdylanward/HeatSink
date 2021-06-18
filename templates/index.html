@@ -12,18 +12,26 @@
                 <form class="col s12 m8 offset-m2 l4 offset-l4" method="POST" action="{{ url_for('index') }}">
                     <div class="card hoverable blue-grey darken-4 card-home">
                         <div class="card-content white-text card-home-content">
+                            <!--  Display flash error messages  -->
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <p class="center-align red-text flash-messages">{{ messages }}</p>
+                                {% endif %}
+                            {% endwith %}
                             <span class="card-title center-align">Please log in...</span>
                             <div class="row card-home-username">
                                 <div class="input-field col s12">
                                     <i class="fas fa-user prefix"></i>
-                                    <input id="username" name="username" type="text" class="validate">
+                                    <input id="username" name="username" type="text" minlength="2" 
+                                    pattern="[a-zA-Z0-9.-_]" class="validate" required>
                                     <label for="username">USERNAME</label>
                                 </div>
                             </div>
                             <div class="row card-home-password">
                                 <div class="input-field col s12">
                                     <i class="fas fa-key prefix"></i>
-                                    <input id="password" name="password" type="password" class="validate">
+                                    <input id="password" name="password" type="password" minlength="9" 
+                                    pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate" required>
                                     <label for="password">PASSWORD</label>
                                 </div>
                             </div>
