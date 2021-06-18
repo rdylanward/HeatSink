@@ -18,32 +18,23 @@ When testing this application, you are controlling actual mock devices (Video pr
 
     -   #### iPhone 6-7-8 (375 x 677)
 
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPhone_6-7-8_Header.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPhone_6-7-8_About.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPhone_6-7-8_Destinations.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPhone_6-7-8_Footer.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPhone_6-7-8_Map.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPhone_6-7-8_Bookings.png"></h2>
+    <h2 align="center"><img src="#"></h2>
 
     -   #### iPhone X (375 x 812)
 
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPhone-X_Destinations_Header.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPhone-X_Bookings.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPhone-X_Contact.png"></h2>
+    <h2 align="center"><img src="#"></h2>
 
     -   #### iPad (768 x 1024)
 
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPad_Header.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/iPad_Map.png"></h2>
+    <h2 align="center"><img src="#"></h2>
 
     -   #### MacBook Air (1440 x 990)
 
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/MacBook_Air_Map.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/MacBook_Air_Bookings.png"></h2>
+    <h2 align="center"><img src="#"></h2>
 
     -   #### 24" Monitor (1920 x 1080)
 
-    <h2 align="center"><img src="https://github.com/rdylanward/putapininit.com/blob/master/assets/docs/screenshots/24-inch_Header.png"></h2>
+    <h2 align="center"><img src="#"></h2>
 
 ## User Experience (UX)
 
@@ -78,7 +69,7 @@ When testing this application, you are controlling actual mock devices (Video pr
 
 *   ### Wireframes
 
-    -   Wireframes PDF File - [View](https://github.com/rdylanward/thegym.com/blob/master/assets/docs/wireframes/MS2 Wireframes.pdf)
+    -   Wireframes PDF File - [View](https://github.com/rdylanward/HeatSink/blob/master/static/docs/wireframes/MS3_Wireframes.pdf)
 
 ## Features
 
@@ -102,14 +93,15 @@ When testing this application, you are controlling actual mock devices (Video pr
 
 -   [HTML5](https://en.wikipedia.org/wiki/HTML5)
 -   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
--   [JScript](https://en.wikipedia.org/wiki/JScript)
+-   [JQuery](https://jquery.com/)
+-   [Python](https://www.python.org/)
 
 ### Frameworks, Libraries & Programs Used
 
 1. [Python v3.8:](https://www.python.org/)
     - Python v3.8 was used to code both the application and the physical controller.
 1. [Paramiko:](https://www.python.org/)
-    - Paramiko implementation of the SSHv2 protocol [1], providing both client and server functionality.
+    - Paramiko implementation of the SSHv2 protocol, providing both client and server functionality.
 1. [pgpio:](http://abyz.me.uk/rpi/pigpio/)
     - Pigpio is a library for the Raspberry PI which allows the control of the General Purpose Input Outputs (GPIO).
 1. [Raspbian:](https://www.raspberrypi.org/software/)
@@ -151,9 +143,9 @@ When testing this application, you are controlling actual mock devices (Video pr
 
 The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
 
--   [W3C Markup Validator](https://validator.w3.org/) - [Results](https://github.com/rdylanward/putapininit.com/tree/master/assets/docs/validation/html5)
--   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/rdylanward/putapininit.com/tree/master/assets/docs/validation/css3)
--   [BeautifyTools JavaScript Validator](https://beautifytools.com/javascript-validator.php) - [Results](https://github.com/rdylanward/putapininit.com/tree/master/assets/docs/validation/jscript)
+-   [W3C Markup Validator](https://validator.w3.org/) - [Results](https://github.com/rdylanward/HeatSink/tree/master/static/docs/validation/html5)
+-   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/rdylanward/HeatSink/tree/master/static/docs/validation/css3)
+-   [BeautifyTools JavaScript Validator](https://beautifytools.com/javascript-validator.php) - [Results](https://github.com/rdylanward/HeatSink/tree/master/static/docs/validation/jscript)
 
 ### Testing User Stories from User Experience (UX) Section
 
@@ -231,25 +223,25 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 The project was deployed to GitHub Pages using the following steps...
 
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/rdylanward/thegym.com)
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/rdylanward/HeatSink)
 2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
     - Alternatively Click [Here](https://guides.github.com/features/pages/) for a tutorial on the process starting from Step 2.
 3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
 4. Under "Source", click the dropdown called "None" and select "Master Branch".
 5. The page will automatically refresh.
-6. Scroll back down through the page to locate the now published site [link](https://rdylanward.github.io/thegym.com/index.html) in the "GitHub Pages" section.
+6. Scroll back down through the page to locate the now published site [link](https://github.com/rdylanward/HeatSink/heatsink.py) in the "GitHub Pages" section.
 
 ### Forking the GitHub Repository
 
 By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
 
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/rdylanward/thegym.com)
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/rdylanward/HeatSink)
 2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
 3. You should now have a copy of the original repository in your GitHub account.
 
 ### Making a Local Clone
 
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/rdylanward/thegym.com)
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/rdylanward/HeatSink)
 2. Under the repository name, click "Clone or download".
 3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
 4. Open Git Bash
