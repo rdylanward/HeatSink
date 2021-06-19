@@ -4,7 +4,7 @@
         <!--  SETTINGS CONTENT  -->
         <div class="row container-settings">
             <div class="row">
-                <div class="col s12 m8 offset-m1 l6 offset-l2 white-text">
+                <div class="col s12 m8 offset-m2 l4 offset-l2 white-text">
                         <p class="settings-greeting">Hello, {{ member }}. Here are you heaters:</p>
                 </div>
             </div>
@@ -17,12 +17,41 @@
                     </div>
                 </div>
 
-                <!--  UPDATE MEMBER  -->
+                <!--  UPDATE PASSWORD  -->
                 <div class="row">
-                    <div class="col s12 m8 offset-m1 l6 offset-l2 white-text">
-
+                    <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="update-member">
+                        <form class="col s12 method="POST" action="{{ url_for('updateMember') }}">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="fas fa-user prefix"></i>
+                                    <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                    <label for="username">USERNAME</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="fas fa-key prefix"></i>
+                                    <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                    <label for="password">PASSWORD</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <i class="fas fa-cog white-text prefix"></i>
+                                    <div class="switch valign-wrapper">
+                                        <label for="is_admin">
+                                            <input type="checkbox" id="is_admin" name="is_admin">
+                                            <span class="lever"></span>
+                                            Admin
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
+                <!--  /UPDATE PASSWORD  -->
+
             </div>
             <!--  /ADMINISTER MEMBERS  -->
 

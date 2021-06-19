@@ -68,6 +68,13 @@ def settings(member, admin):
     return render_template("settings.html", member=member, admin=admin)
 
 
+@app.route("/settings", methods=["GET", "POST"])
+def updateMember(member, admin):
+    member = session["member"]
+    admin = session["admin"]
+    return render_template("settings.html", member=member, admin=admin)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
