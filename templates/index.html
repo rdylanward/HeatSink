@@ -1,51 +1,53 @@
 {% extends "base.html" %}
 {% block container %}
 
-        <!--  HOME CONTENT  -->
-        <div class="row container-home">
-            <div class="row s10 offset-s1">
-                <div class="col s10 offset-s1 center-align amber-text text-lighten-2 title-home">
-                    <h2>Remote Heater Control</h2>
-                </div>
-            </div>
-            <div class="row">
-                <form class="col s12 m8 offset-m2 l4 offset-l4" method="POST" action="{{ url_for('index') }}">
-                    <div class="card hoverable blue-grey darken-4 card-home">
-                        <div class="card-content white-text card-home-content">
-                            <!--  Display flash error messages  -->
-                            {% with messages = get_flashed_messages() %}
-                                {% if messages %}
-                                    <p class="center-align red-text flash-messages">{{ messages }}</p>
-                                {% endif %}
-                            {% endwith %}
-                            <span class="card-title center-align">Please log in...</span>
-                            <div class="row card-home-username">
-                                <div class="input-field col s12">
-                                    <i class="fas fa-user prefix"></i>
-                                    <input id="username" name="username" type="text" minlength="2" 
-                                    pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
-                                    <label for="username">USERNAME</label>
-                                </div>
-                            </div>
-                            <div class="row card-home-password">
-                                <div class="input-field col s12">
-                                    <i class="fas fa-key prefix"></i>
-                                    <input id="password" name="password" type="password" minlength="9" 
-                                    pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                    <label for="password">PASSWORD</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-action white-text">
-                            <div class="row card-home-btn">
-                                <button type="submit" class="col s6 offset-s3 waves-effect waves-red 
-                                center-align btn-flat white-text"><i class="fas fa-sign-in-alt prefix login-icon"></i>LOGIN</button>
-                            </div>
+<!--  HOME CONTENT  -->
+<div class="row container-home">
+    <div class="row s10 offset-s1">
+        <div class="col s10 offset-s1 center-align amber-text text-lighten-2 title-home">
+            <h2>Remote Heater Control</h2>
+        </div>
+    </div>
+    <div class="row">
+        <form class="col s12 m8 offset-m2 l4 offset-l4" method="POST" action="{{ url_for('index') }}">
+            <div class="card hoverable blue-grey darken-4 card-home">
+                <div class="card-content white-text card-home-content">
+                    <!--  Display flash error messages  -->
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% message = messages%}
+                    <p class="center-align red-text flash-messages">{{ message }}</p>
+                    {% endif %}
+                    {% endwith %}
+                    <span class="card-title center-align">Please log in...</span>
+                    <div class="row card-home-username">
+                        <div class="input-field col s12">
+                            <i class="fas fa-user prefix"></i>
+                            <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}"
+                                class="validate white-text" required>
+                            <label for="username">USERNAME</label>
                         </div>
                     </div>
-                </form>
+                    <div class="row card-home-password">
+                        <div class="input-field col s12">
+                            <i class="fas fa-key prefix"></i>
+                            <input id="password" name="password" type="password" minlength="9"
+                                pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                            <label for="password">PASSWORD</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action white-text">
+                    <div class="row card-home-btn">
+                        <button type="submit" class="col s6 offset-s3 waves-effect waves-red 
+                                center-align btn-flat white-text"><i
+                                class="fas fa-sign-in-alt prefix login-icon"></i>LOGIN</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!--  /HOME CONTENT  -->
+        </form>
+    </div>
+</div>
+<!--  /HOME CONTENT  -->
 
 {% endblock %}
