@@ -12,36 +12,36 @@
         <form class="col s12 m8 offset-m2 l4 offset-l4" method="POST" action="{{ url_for('index') }}">
             <div class="card hoverable blue-grey darken-4 card-home">
                 <div class="card-content white-text card-home-content">
-                    <!--  Display flash error messages  -->
+                    <!--  Display flash messages  -->
                     {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                    {% message = messages%}
-                    <p class="center-align red-text flash-messages">{{ message }}</p>
-                    {% endif %}
+                        {% if messages %}
+                            {% for message in messages %}
+                            <p class="center-align red-text flash-messages">{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
                     {% endwith %}
                     <span class="card-title center-align">Please log in...</span>
                     <div class="row card-home-username">
                         <div class="input-field col s12">
                             <i class="fas fa-user prefix"></i>
-                            <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}"
-                                class="validate white-text" required>
+                            <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
                             <label for="username">USERNAME</label>
                         </div>
                     </div>
                     <div class="row card-home-password">
                         <div class="input-field col s12">
                             <i class="fas fa-key prefix"></i>
-                            <input id="password" name="password" type="password" minlength="9"
-                                pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                            <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
                             <label for="password">PASSWORD</label>
                         </div>
                     </div>
                 </div>
                 <div class="card-action white-text">
                     <div class="row card-home-btn">
-                        <button type="submit" class="col s6 offset-s3 waves-effect waves-red 
-                                center-align btn-flat white-text"><i
-                                class="fas fa-sign-in-alt prefix login-icon"></i>LOGIN</button>
+                        <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
+                            <iclass="fas fa-sign-in-alt prefix login-icon"></i>
+                            LOGIN
+                        </button>
                     </div>
                 </div>
             </div>
