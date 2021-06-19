@@ -43,6 +43,14 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/")
+def logout():
+    session.pop("member")
+    session.pop("type")
+    flash("You have been logged out...")
+    return render_template("index.html")
+
+
 @app.route("/heaters", methods=["GET", "POST"])
 def heaters(member, type):
     member = session["member"]
@@ -51,17 +59,10 @@ def heaters(member, type):
 
 
 @app.route("/settings", methods=["GET", "POST"])
-def heaters(member, type):
+def settings(member, type):
     member = session["member"]
     type = session["type"]
     return render_template("settings.html", member=member, type=type)
-
-
-@app.route("/")
-def logout():
-    session["member"] = None
-    session["type"] = None
-    return render_template("index.html")
 
 
 if __name__ == "__main__":
