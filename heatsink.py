@@ -50,6 +50,20 @@ def heaters(member, type):
     return render_template("heaters.html", member=member, type=type)
 
 
+@app.route("/settings", methods=["GET", "POST"])
+def heaters(member, type):
+    member = session["member"]
+    type = session["type"]
+    return render_template("settings.html", member=member, type=type)
+
+
+@app.route("/")
+def logout():
+    session["member"] = None
+    session["type"] = None
+    return render_template("index.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
