@@ -33,11 +33,11 @@ def index():
                 return redirect(url_for("heaters.html", member=session[
                     "member"], type=session["type"]))
             else:
-                flash("Invalid password!")
+                flash("Invalid username and/or password!")
                 return redirect(url_for("index"))
         else:
             # Incorrect username
-            flash("Incorrect username!")
+            flash("Incorrect username and/or password!")
             return redirect(url_for("index"))
 
     return render_template("index.html")
