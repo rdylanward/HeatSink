@@ -17,9 +17,12 @@
                     </div>
                 </div>
 
-                <!--  UPDATE PASSWORD  -->
+                <!--  UPDATE MEMBER  -->
                 <div class="row">
                     <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="update-member">
+                        <div class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text">
+                            <h2 class="update-member-title">Update Member Data</h2>
+                        </div>
                         <form class="col s12 method="POST" action="{{ url_for('updateMember') }}">
 
                             <!--  ENTER USERNAME  -->
@@ -57,14 +60,14 @@
                             <!--  SUBMIT UPDATED MEMBER DATA  -->
                             <div class="row">
                                 <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
-                                    <i class="fas fa-user-plus"></i>
+                                    <i class="fas fa-user-plus prefix"></i>
                                     UPDATE MEMBER
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <!--  /UPDATE PASSWORD  -->
+                <!--  /UPDATE MEMBER  -->
 
             </div>
             <!--  /ADMINISTER MEMBERS  -->
