@@ -29,9 +29,12 @@ def index():
             if check_password_hash(
               is_member["password"], request.form.get("password)")):
                 session["member"] = request.form.get("username").lower()
-                session["type"] = is_member["type"].lower()
+                if is_member["type"].lower() == "admin":
+                    session["admin"] = True
+                else:
+                    session["admin"] = False
                 return redirect(url_for("heaters.html", member=session[
-                    "member"], type=session["type"]))
+                    "member"], admin=session["admin"]))
             else:
                 flash("Invalid username and/or password!")
                 return redirect(url_for("index"))
@@ -52,17 +55,17 @@ def logout():
 
 
 @app.route("/heaters", methods=["GET", "POST"])
-def heaters(member, type):
+def heaters(member, admin):
     member = session["member"]
-    type = session["type"]
-    return render_template("heaters.html", member=member, type=type)
+    admin = session["admin"]
+    return render_template("heaters.html", member=member, admin=admin)
 
 
 @app.route("/settings", methods=["GET", "POST"])
-def settings(member, type):
+def settings(member, admin):
     member = session["member"]
-    type = session["type"]
-    return render_template("settings.html", member=member, type=type)
+    admin = session["admin"]
+    return render_template("settings.html", member=member, admin=admin)
 
 
 if __name__ == "__main__":

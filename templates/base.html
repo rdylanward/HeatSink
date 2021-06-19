@@ -31,7 +31,7 @@
                     <!--  Hide the menu if not logged in  -->
                     {% if session.member %}
                         <li>
-                            <a href="{{ url_for('support', member=session["member"], type=session["type"]) }}" class="nav-menu-items waves-effect waves-light">
+                            <a href="{{ url_for('support', member=session["member"], admin=session["admin"]) }}" class="nav-menu-items waves-effect waves-light">
                                 HEATERS
                             </a>
                         </li>
@@ -46,9 +46,9 @@
                             </a>
                         </li>
                         <!--  Unhide the settings menu item if user is admin  -->
-                        {% if session.type == "admin" %}
+                        {% if session.admin %}
                             <li>
-                                <a href="{{ url_for('settings') }}" class="nav-menu-items waves-effect waves-light">
+                                <a href="{{ url_for('settings') }}" class="nav-menu-items waves-effect waves-light valign-wrapper">
                                     <i class="fas fa-cog white-text">
                                 </a>
                             </li>
@@ -67,13 +67,13 @@
             <!--  Hide the menu if not logged in  -->
             {% if session.member %}
                 <li>
-                    <a href="{{ url_for('heaters', member=session["member"], type=session["type"]) }}" class="nav-menu-items waves-effect waves-red">
+                    <a href="{{ url_for('heaters', member=session["member"], admin=session["admin"]) }}" class="nav-menu-items waves-effect waves-red">
                         <i class="fas fa-fire blue-grey-text text-darken-4"></i>
                         HEATERS
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url_for('index') }}" class="nav-menu-items waves-effect waves-red">
+                    <a href="#" class="nav-menu-items waves-effect waves-red">
                         <i class="fas fa-life-ring blue-grey-text text-darken-4"></i>
                         SUPPORT
                     </a>
@@ -85,9 +85,9 @@
                     </a>
                 </li>
                 <!--  Unhide the settings menu item if user is admin  -->
-                {% if session.type == "admin" %}
+                {% if session.admin %}
                     <li>
-                        <a href="{{ url_for('settings', member=session["member"], type=session["type"]) }}" class="nav-menu-items waves-effect waves-red">
+                        <a href="{{ url_for('settings', member=session["member"], admin=session["admin"]) }}" class="nav-menu-items waves-effect waves-red">
                             <i class="fas fa-cog blue-grey-text text-darken-4"></i>
                             SETTINGS
                         </a>
