@@ -26,8 +26,8 @@ def index():
             {"username": request.form.get("username").lower()})
         if is_member:
             member = is_member["username"].lower()
-            type = is_member["type"].lower()
-            return redirect(url_for("heaters", member=member, type=type))
+            admin = is_member["type"].lower()
+            return redirect(url_for("heaters", member=member, admin=admin))
         else:
             # Incorrect username
             flash("Incorrect username!")
