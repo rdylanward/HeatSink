@@ -67,19 +67,19 @@ def updateMember():
     if request.method == "POST":
 
         # Initialise parameters
-        updated_type = "admin" if request.form.get("is_admin") else "user"
+        updated_type = True if request.form.get("is_admin") else False
         updated_password = generate_password_hash(request.form.get("password"))
 
         # Verify the member
-        is_member = mongodb.db.members.find_one({"username": request.form.get("username").lower()})
+        is_member = mongodb.db.members.find_one(
+            {"username": request.form.get("username").lower()})
 
         if is_member:
 
             # Intialise the parameters
             member = is_member["username"].lower()
-            admin
             # Set the criteria
-            which_member = { "username": is_member["username"].lower() }
+            which_member = {"username": is_member["username"].lower()}
             update_to = {
                 "$set": {"password": updated_password, "type": updated_type}
             }
@@ -90,14 +90,17 @@ def updateMember():
             # Check to see if it worked
             specified_user = mongodb.db.members.find_one(
                 {"username": request.form.get("username").lower()})
-            if check_password_hash(specified_user["password"], request.form.get(
-                    "password")) and specified_user["type"] == updated_type:
+            if check_password_hash(
+                    specified_user["password"], request.form.get("password")
+                    ) and specified_user["is_admin"] == updated_type:
                 flash("Member update successful!")
+                session["admin"] = specified_user["is_admin"]
+                return redirect(url_for(
+                    'settings', member=member, admin=session["admin"]))
+            else:
+                flash("Member update failed!")
                 return redirect(url_for(
                     'settings', member=session.member, admin=session.admin))
-            else:
-                flash("Member updatefailed!")
-
 
     return render_template(
         "settings.html", member=session.member, admin=session.admin)
