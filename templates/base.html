@@ -32,7 +32,7 @@
                         <!--  HIDE THE MENU IF NOT LOGGED IN  -->
                         {% if session.member %}
                             <li>
-                                <a href="{{ url_for('support', member=session["member"], admin=session["admin"]) }}" class="nav-menu-items waves-effect waves-light">
+                                <a href="{{ url_for('heaters', member=session["member"], admin=session["admin"]) }}" class="nav-menu-items waves-effect waves-light">
                                     HEATERS
                                 </a>
                             </li>
@@ -50,7 +50,7 @@
                             <!--  UNHIDE THE SETTINGS MENU ITEM IF USER TYPE IS ADMIN  -->
                             {% if session.admin %}
                                 <li>
-                                    <a href="{{ url_for('settings') }}" class="nav-menu-items waves-effect waves-light valign-wrapper">
+                                    <a href="{{ url_for('settings', member=session["member"], admin=session["admin"]) }}" class="nav-menu-items waves-effect waves-light valign-wrapper">
                                         <i class="fas fa-cog white-text"></i>
                                     </a>
                                 </li>

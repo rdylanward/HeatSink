@@ -23,7 +23,7 @@
                         <div class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text">
                             <h2 class="update-member-title">Update Member Data</h2>
                         </div>
-                        <form class="col s12 method="POST" action="{{ url_for('updateMember') }}">
+                        <form class="col s12 method="POST" action="{{ url_for('updateMember', member=member, admin=admin) }}">
 
                             <!--  ENTER USERNAME  -->
                             <div class="row">

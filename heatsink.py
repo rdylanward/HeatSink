@@ -24,34 +24,40 @@ def index():
     if request.method == "POST":
         is_member = mongodb.db.members.find_one(
             {"username": request.form.get("username").lower()})
+
         if is_member:
-            member = is_member["username"].lower()
-            admin = is_member["type"].lower()
-            return redirect(url_for("heaters", member=member, admin=admin))
+            session["member"] = is_member["username"].lower()
+            session["admin"] = is_member["type"].lower()
+            return redirect(url_for(
+                "heaters", member=session["member"], admin=session["admin"]))
         else:
             # Incorrect username
             flash("Incorrect username!")
             return redirect(url_for("index"))
+
+        print(is_member["username"].lower())
 
     return render_template("index.html")
 
 
 @app.route("/")
 def logout():
-    session.pop("member")
-    session.pop("type")
+    session.pop("member", None)
+    session.pop("admin", None)
     flash("You have been logged out...")
     return render_template("index.html")
 
 
-@app.route("/heaters?<member>&<admin>", methods=["GET", "POST"])
+@app.route("/heaters/<member>&<admin>", methods=["GET", "POST"])
 def heaters(member, admin):
+
+    # Initialise parameters
     member = session["member"]
     admin = session["admin"]
     return render_template("heaters.html", member=member, admin=admin)
 
 
-@app.route("/settings", methods=["GET", "POST"])
+@app.route("/settings/<member>&<admin>", methods=["GET", "POST"])
 def settings(member, admin):
     member = session["member"]
     admin = session["admin"]
@@ -59,21 +65,21 @@ def settings(member, admin):
 
 
 @app.route("/settings", methods=["GET", "POST"])
-def updateMember(member, admin):
+def updateMember():
     if request.method == "POST":
+
         # Initialise parameters
-        member = session["member"]
-        admin = session["admin"]
-        is_admin = "admin" if request.form.get("is_admin") else "user"
+        updated_type = "admin" if request.form.get("is_admin") else "user"
+        updated_password = generate_password_hash(request.form.get("password"))
+
+        print(request.form.get("username"))
+        print(request.form.get("is_admin"))
+        print(updated_password)
 
         # Set the criteria
         which_member = {"username": request.form.get("username")}
-        update_to = { 
-            "$set": {
-                "password": generate_password_hash(
-                    request.form.get("password")),
-                "type": is_admin
-            }
+        update_to = {
+            "$set": {"password": updated_password, "type": updated_type}
         }
 
         # Update the document
@@ -83,11 +89,13 @@ def updateMember(member, admin):
         specified_user = mongodb.db.members.find_one(
             {"username": request.form.get("username").lower()})
         if check_password_hash(specified_user["password"], request.form.get(
-                "password")) and specified_user["type"] == is_admin:
+                "password")) and specified_user["type"] == updated_type:
             flash("Member update successful!")
-            return redirect(url_for('settings', member=member, type=type))
+            return redirect(url_for(
+                'settings', member=session["member"], admin=session["admin"]))
 
-    return render_template("settings.html", member=member, admin=admin)
+    return render_template(
+        "settings.html", member=session["member"], admin=session["admin"])
 
 
 if __name__ == "__main__":
