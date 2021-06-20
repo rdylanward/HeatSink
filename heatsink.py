@@ -25,22 +25,12 @@ def index():
         is_member = mongodb.db.members.find_one(
             {"username": request.form.get("username").lower()})
         if is_member:
-            # Check for the correct password
-            if check_password_hash(
-              is_member["password"], request.form.get("password)")):
-                session["member"] = request.form.get("username").lower()
-                if is_member["type"].lower() == "admin":
-                    session["admin"] = True
-                else:
-                    session["admin"] = False
-                return redirect(url_for("heaters.html", member=session[
-                    "member"], admin=session["admin"]))
-            else:
-                flash("Invalid username and/or password!")
-                return redirect(url_for("index"))
+            member = is_member["username"].lower()
+            type = is_member["type"].lower()
+            return redirect(url_for("heaters", member=member, type=type))
         else:
             # Incorrect username
-            flash("Incorrect username and/or password!")
+            flash("Incorrect username!")
             return redirect(url_for("index"))
 
     return render_template("index.html")
