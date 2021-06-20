@@ -44,7 +44,7 @@ def logout():
     return render_template("index.html")
 
 
-@app.route("/heaters", methods=["GET", "POST"])
+@app.route("/heaters?<member>&<admin>", methods=["GET", "POST"])
 def heaters(member, admin):
     member = session["member"]
     admin = session["admin"]
