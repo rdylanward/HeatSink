@@ -27,15 +27,13 @@ def index():
 
         if is_member:
             session["member"] = is_member["username"].lower()
-            session["admin"] = is_member["type"].lower()
+            session["admin"] = is_member["is_admin"]
             return redirect(url_for(
                 "heaters", member=session["member"], admin=session["admin"]))
         else:
             # Incorrect username
             flash("Incorrect username!")
             return redirect(url_for("index"))
-
-        print(is_member["username"].lower())
 
     return render_template("index.html")
 
@@ -72,30 +70,37 @@ def updateMember():
         updated_type = "admin" if request.form.get("is_admin") else "user"
         updated_password = generate_password_hash(request.form.get("password"))
 
-        print(request.form.get("username"))
-        print(request.form.get("is_admin"))
-        print(updated_password)
+        # Verify the member
+        is_member = mongodb.db.members.find_one({"username": request.form.get("username").lower()})
 
-        # Set the criteria
-        which_member = {"username": request.form.get("username")}
-        update_to = {
-            "$set": {"password": updated_password, "type": updated_type}
-        }
+        if is_member:
 
-        # Update the document
-        mongodb.db.members.update_one(which_member, update_to)
+            # Intialise the parameters
+            member = is_member["username"].lower()
+            admin
+            # Set the criteria
+            which_member = { "username": is_member["username"].lower() }
+            update_to = {
+                "$set": {"password": updated_password, "type": updated_type}
+            }
 
-        # Check to see if it worked
-        specified_user = mongodb.db.members.find_one(
-            {"username": request.form.get("username").lower()})
-        if check_password_hash(specified_user["password"], request.form.get(
-                "password")) and specified_user["type"] == updated_type:
-            flash("Member update successful!")
-            return redirect(url_for(
-                'settings', member=session["member"], admin=session["admin"]))
+            # Update the document
+            mongodb.db.members.update_one(which_member, update_to)
+
+            # Check to see if it worked
+            specified_user = mongodb.db.members.find_one(
+                {"username": request.form.get("username").lower()})
+            if check_password_hash(specified_user["password"], request.form.get(
+                    "password")) and specified_user["type"] == updated_type:
+                flash("Member update successful!")
+                return redirect(url_for(
+                    'settings', member=session.member, admin=session.admin))
+            else:
+                flash("Member updatefailed!")
+
 
     return render_template(
-        "settings.html", member=session["member"], admin=session["admin"])
+        "settings.html", member=session.member, admin=session.admin)
 
 
 if __name__ == "__main__":
