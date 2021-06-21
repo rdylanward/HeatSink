@@ -16,6 +16,15 @@ html {
 }
 
 body {
+    position: absolute;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../img/gas-fire-pit-at-night.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    background-attachment: fixed;
+    width: 100%;
+    top: 0;
     margin: 0rem;
     padding: 0rem;
     font-family: 'Montserrat', sans-serif;
@@ -28,16 +37,7 @@ body {
 }
 
 .container-main {
-    position: absolute;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../img/gas-fire-pit-at-night.jpg");
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 100vh;
-    background-attachment: fixed;
     background-color: #f2f0e5;
-    width: 100%;
-    top: 0;
 }
 
 
@@ -59,7 +59,7 @@ body {
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-attachment: fixed;
     z-index: -1;
 }
@@ -174,6 +174,22 @@ body {
 }
 
 .heaters-greeting {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+
+/**********************************************************************/
+/***                            SETTINGS                            ***/
+/**********************************-***********************************/
+
+
+.container-settings {
+    height: 100%;
+    margin: 12rem 0rem;
+}
+
+.settings-greeting {
     font-size: 1.6rem;
     font-weight: 500;
 }
