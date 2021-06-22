@@ -3,86 +3,243 @@
 
         <!--  SETTINGS CONTENT  -->
         <div class="row container-settings">
-            <div class="row">
-                <div class="col s12 m8 offset-m2 l4 offset-l4 white-text">
-                        <p class=" center-align settings-greeting">Member: {{ member }}</p>
-                </div>
-            </div>
+            <div class="col s12 m8 offset-m2 l6 offset-l2 settings-objects">
 
-            <!--  ADMINISTER MEMBERS  -->
-            <div class="row container-settings-members">
+                <!--  MEMBER ID  -->
                 <div class="row">
-                    <div class="col s12 m8 offset-m1 l6 offset-l2 left-align settings-members-title amber-text text-lighten-2" id="member-admin">
-                        <h1>Member Administration</h1>
+                    <div class="col s12 m8 offset-m2 l6 offset-l2 white-text">
+                            <h4 class="center-align">Member: {{ member }}</h4>
                     </div>
                 </div>
+                <!--  /MEMBER ID  -->
 
-                <!--  UPDATE MEMBER  -->
+                <!--  SETTINGS TITLE  -->
                 <div class="row">
-                    <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="update-member">
-                        <h2 class="left-align col s12 m8 offset-m1 l6 offset-l2 white-text update-member-title">Update Member Data</h2>
-                        <div class="col s12 m8 offset-m1 l6 offset-l2">
+                    <div class="col s12 m8 offset-m2 l6 offset-l2 amber-text text-lighten-2 id="settings-title">
+                        <h1 class="left-align">SETTINGS</h1>
+                    </div>
+                </div>
+                <!--  /SETTINGS TITLE  -->
 
-                            <!--  DISPLAY FLASHED MESSAGES  -->
-                            {% with messages = get_flashed_messages() %}
-                                {% if messages %}
-                                    {% for message in messages %}
-                                    <p class="center-align red-text flash-messages">{{ message }}</p>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endwith %}
+                <!--  SETTINGS FLASH  -->
+                <div class="col s12 m8 offset-m2 l6 offset-l2 red-text id="settings-flash"">
 
+                    <!--  DISPLAY FLASHED MESSAGES  -->
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                            <p class="center-align red-text flash-messages">{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                </div>
+                <!--  /SETTINGS FLASH  -->
+
+                <!--  ADMINISTER MEMBERS  -->
+                <div class="row container-settings-members">
+                    <div class="row">
+                        <div class="col s12 m8 offset-m1 l6 offset-l2 left-align settings-members-title orange-text text-lighten-2" id="settings-member-admin">
+                            <h2>Members</h2>
                         </div>
-                        <form class="col s12 method="POST" action="{{ url_for('updateMember') }}">
+                    </div>
 
-                            <!--  ENTER USERNAME  -->
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <i class="fas fa-user prefix"></i>
-                                    <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
-                                    <label for="username">USERNAME</label>
-                                </div>
-                            </div>
+                    <!--  NEW MEMBER  -->
+                    <div class="row">
+                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-new-member">
+                            <h3 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">New Member</h3>
+                            <form class="col s12 method="POST" action="{{ url_for('newMember') }}">
 
-                            <!--  ENTER PASSWORD  -->
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <i class="fas fa-key prefix"></i>
-                                    <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                    <label for="password">PASSWORD</label>
-                                </div>
-                            </div>
-
-                            <!--  MEMBER TYPE SELECTION  -->
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <i class="fas fa-cog white-text prefix"></i>
-                                    <div class="switch valign-wrapper">
-                                        <label for="is_admin">
-                                            <input type="checkbox" id="is_admin" name="is_admin">
-                                            <span class="lever"></span>
-                                            Admin
-                                        </label>
+                                <!--  ENTER USERNAME  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-user prefix"></i>
+                                        <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                        <label for="username">USERNAME</label>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!--  SUBMIT UPDATED MEMBER DATA  -->
-                            <div class="row">
-                                <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
-                                    <i class="fas fa-user-plus prefix"></i>
-                                    UPDATE MEMBER
-                                </button>
-                            </div>
-                        </form>
+                                <!--  ENTER PASSWORD  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-key prefix"></i>
+                                        <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                        <label for="password">PASSWORD</label>
+                                    </div>
+                                </div>
+
+                                <!--  MEMBER TYPE SELECTION  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-cog white-text prefix"></i>
+                                        <div class="switch valign-wrapper">
+                                            <label for="is_admin">
+                                                <input type="checkbox" id="is_admin" name="is_admin">
+                                                <span class="lever"></span>
+                                                Admin
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--  SUBMIT UPDATED MEMBER DATA  -->
+                                <div class="row">
+                                    <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
+                                        <i class="fas fa-user-plus prefix"></i>
+                                        ADD MEMBER
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
+                    <!--  /NEW MEMBER  -->
+
+                    <!--  UPDATE MEMBER  -->
+                    <div class="row">
+                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-member">
+                            <h3 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">Update Member</h3>
+                            <form class="col s12 method="POST" action="{{ url_for('updateMember') }}">
+
+                                <!--  ENTER USERNAME  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-user prefix"></i>
+                                        <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                        <label for="username">USERNAME</label>
+                                    </div>
+                                </div>
+
+                                <!--  ENTER PASSWORD  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-key prefix"></i>
+                                        <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                        <label for="password">PASSWORD</label>
+                                    </div>
+                                </div>
+
+                                <!--  MEMBER TYPE SELECTION  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-cog white-text prefix"></i>
+                                        <div class="switch valign-wrapper">
+                                            <label for="is_admin">
+                                                <input type="checkbox" id="is_admin" name="is_admin">
+                                                <span class="lever"></span>
+                                                Admin
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--  SUBMIT UPDATED MEMBER DATA  -->
+                                <div class="row">
+                                    <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
+                                        <i class="fas fa-user-plus prefix"></i>
+                                        UPDATE MEMBER
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--  /UPDATE MEMBER  -->
+
                 </div>
-                <!--  /UPDATE MEMBER  -->
+                <!--  /ADMINISTER MEMBERS  -->
+
+                <!--  ADMINISTER CONTROLLERS  -->                
+                <div class="row container-settings-contollers"><!--  NEW MEMBER  -->
+                    <div class="row">
+                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-new-member">
+                            <h3 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">New Member</h3>
+                            <form class="col s12 method="POST" action="{{ url_for('newMember') }}">
+
+                                <!--  ENTER USERNAME  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-user prefix"></i>
+                                        <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                        <label for="username">USERNAME</label>
+                                    </div>
+                                </div>
+
+                                <!--  ENTER PASSWORD  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-key prefix"></i>
+                                        <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                        <label for="password">PASSWORD</label>
+                                    </div>
+                                </div>
+
+                                <!--  MEMBER TYPE SELECTION  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-cog white-text prefix"></i>
+                                        <div class="switch valign-wrapper">
+                                            <label for="is_admin">
+                                                <input type="checkbox" id="is_admin" name="is_admin">
+                                                <span class="lever"></span>
+                                                Admin
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--  SUBMIT UPDATED MEMBER DATA  -->
+                                <div class="row">
+                                    <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
+                                        <i class="fas fa-user-plus prefix"></i>
+                                        ADD MEMBER
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--  /NEW MEMBER  -->
+
+                    <!--  UPDATE CONTROLLER  -->
+                    <div class="row">
+                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-contoller">
+                            <h3 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">Update Controller</h3>
+                            <form class="col s12 method="POST" action="{{ url_for('updateController') }}">
+
+                                <!--  ENTER CONTROLLER NAME  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-user prefix"></i>
+                                        <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                        <label for="name">NAME</label>
+                                    </div>
+                                </div>
+
+                                <!--  ENTER CONTROLLER ADDRESS  -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-key prefix"></i>
+                                        <input id="address" name="address" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                        <label for="address">ADDRESS</label>
+                                    </div>
+                                </div>
+
+                                <!--  SUBMIT UPDATED CONTROLLER DATA  -->
+                                <div class="row">
+                                    <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
+                                        <i class="fas fa-user-plus prefix"></i>
+                                        UPDATE CONTROLLER
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--  /UPDATE CONTROLLER  -->
+
+                </div> 
+                <!--  /ADMINISTER CONTROLLERS  -->
+            </div>
+            <div class="col hide-on-small-only m2 l4 settings-scroll-spy">
 
             </div>
-            <!--  /ADMINISTER MEMBERS  -->
-
-
         </div>
         <!--  /SETTINGS CONTENT  -->
 
