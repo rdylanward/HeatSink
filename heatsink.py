@@ -62,7 +62,13 @@ def settings(member, admin):
     return render_template("settings.html", member=member, admin=admin)
 
 
-@app.route("/settings/", methods=["GET", "POST"])
+@app.route("/newMember/", methods=["GET", "POST"])
+def newMember():
+    return render_template(
+        "settings.html", member=session["member"], admin=session["admin"])
+
+
+@app.route("/updateMember/", methods=["GET", "POST"])
 def updateMember():
     if request.method == "POST":
 
@@ -99,6 +105,18 @@ def updateMember():
             else:
                 flash("Member update failed!")
 
+    return render_template(
+        "settings.html", member=session["member"], admin=session["admin"])
+
+
+@app.route("/newController/", methods=["GET", "POST"])
+def newController():
+    return render_template(
+        "settings.html", member=session["member"], admin=session["admin"])
+
+
+@app.route("/updateController/", methods=["GET", "POST"])
+def updateController():
     return render_template(
         "settings.html", member=session["member"], admin=session["admin"])
 

@@ -148,55 +148,42 @@
                 <!--  /ADMINISTER MEMBERS  -->
 
                 <!--  ADMINISTER CONTROLLERS  -->                
-                <div class="row container-settings-contollers"><!--  NEW MEMBER  -->
+                <div class="row container-settings-contollers">
+                    <!--  NEW CONTROLLER  -->
                     <div class="row">
-                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-new-member">
-                            <h3 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">New Member</h3>
-                            <form class="col s12 method="POST" action="{{ url_for('newMember') }}">
+                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-contoller">
+                            <h3 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">New Controller</h3>
+                            <form class="col s12 method="POST" action="{{ url_for('newController') }}">
 
-                                <!--  ENTER USERNAME  -->
+                                <!--  ENTER CONTROLLER NAME  -->
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="fas fa-user prefix"></i>
-                                        <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
-                                        <label for="username">USERNAME</label>
+                                        <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                        <label for="name">NAME</label>
                                     </div>
                                 </div>
 
-                                <!--  ENTER PASSWORD  -->
+                                <!--  ENTER CONTROLLER ADDRESS  -->
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="fas fa-key prefix"></i>
-                                        <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                        <label for="password">PASSWORD</label>
+                                        <input id="address" name="address" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                        <label for="address">ADDRESS</label>
                                     </div>
                                 </div>
 
-                                <!--  MEMBER TYPE SELECTION  -->
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="fas fa-cog white-text prefix"></i>
-                                        <div class="switch valign-wrapper">
-                                            <label for="is_admin">
-                                                <input type="checkbox" id="is_admin" name="is_admin">
-                                                <span class="lever"></span>
-                                                Admin
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--  SUBMIT UPDATED MEMBER DATA  -->
+                                <!--  SUBMIT UPDATED CONTROLLER DATA  -->
                                 <div class="row">
                                     <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
                                         <i class="fas fa-user-plus prefix"></i>
-                                        ADD MEMBER
+                                        NEW CONTROLLER
                                     </button>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <!--  /NEW MEMBER  -->
+                    <!--  /NEW CONTROLLER  -->
 
                     <!--  UPDATE CONTROLLER  -->
                     <div class="row">
