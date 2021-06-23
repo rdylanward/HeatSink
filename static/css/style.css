@@ -190,7 +190,6 @@ body {
 }
 
 .settings-member-id .col {
-    font-size: 1.3rem;
     text-align: center;
     width: 100%;
 }
@@ -199,9 +198,22 @@ body {
     font-size: 1.3rem;
 }
 
+.settings-member-user,
+.settings-member-type,
+.settings-member-submit,
+.settings-controller-name,
+.settings-controller-submit {
+    margin-top: 0.9rem;
+}
+
 .member-type-selection .prefix {
     top: 0.25rem;
     vertical-align: middle;
+}
+
+.switch label {
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 .switch label .lever {
@@ -217,6 +229,15 @@ body {
     transition: background 0.3s ease;
     vertical-align: middle; */
     margin: 0rem 1.2rem;
+}
+
+.input-field>label {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.input-field>label::after {
+    margin-bottom: 0.3rem;
 }
 
 /**********************************************************************/
