@@ -3,7 +3,7 @@
 
         <!--  SETTINGS CONTENT  -->
         <div class="row container-settings">
-            <div class="col s12 m8 offset-m2 l6 offset-l2 settings-objects">
+            <div class="col s10 offset-s1 m6 offset-m1 l4 offset-l4 settings-objects">
 
                 <!--  MEMBER ID  -->
                 <div class="row settings-member-id">
@@ -39,14 +39,14 @@
                 <!--  ADMINISTER MEMBERS  -->
                 <div class="row container-settings-members">
                     <div class="row">
-                        <div class="col s12 m8 offset-m1 l6 offset-l2 left-align settings-members-title orange-text text-lighten-2" id="settings-member-admin">
+                        <div class="col s12 offset-l2 left-align settings-members-title orange-text text-lighten-2" id="settings-member-admin">
                             <h3>Members</h3>
                         </div>
                     </div>
 
                     <!--  ACTION MEMBER  -->
                     <div class="row">
-                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-member">
+                        <div class="col s12 white-text" id="settings-member">
                             <form class="col s12" method="POST" action="{{ url_for('actionMember') }}">
 
                                 <!--  NEW OR UPDATED  -->
@@ -97,7 +97,7 @@
 
                                 <!--  SUBMIT MEMBER DATA  -->
                                 <div class="row settings-member-submit">
-                                    <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
+                                    <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                         <i class="fas fa-database prefix"></i>
                                         SUBMIT
                                     </button>
@@ -113,14 +113,14 @@
                 <!--  ADMINISTER CONTROLLERS  -->                
                 <div class="row container-settings-contollers">
                     <div class="row">
-                        <div class="col s12 m8 offset-m1 l6 offset-l2 left-align settings-members-title orange-text text-lighten-2" id="settings-controller-admin">
+                        <div class="col s12 left-align settings-members-title orange-text text-lighten-2" id="settings-controller-admin">
                             <h3>Controllers</h3>
                         </div>
                     </div>
 
                     <!--  ACTION CONTROLLER  -->
                     <div class="row">
-                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-contoller">
+                        <div class="col s12 white-text" id="settings-update-contoller">
                             <form class="col s12 method="POST" action="{{ url_for('actionController') }}">
 
                                 <!--  NEW OR UPDATED  -->
@@ -157,7 +157,7 @@
 
                                 <!--  SUBMIT CONTROLLER DATA  -->
                                 <div class="row settings-controller-submit">
-                                    <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
+                                    <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                         <i class="fas fa-database prefix"></i>
                                         SUBMIT
                                     </button>
@@ -173,14 +173,14 @@
                 <!--  ADMINISTER HEATERS  -->                
                 <div class="row container-settings-heaters">
                     <div class="row">
-                        <div class="col s12 m8 offset-m1 l6 offset-l2 left-align settings-members-title orange-text text-lighten-2" id="settings-member-admin">
+                        <div class="col s12 left-align settings-members-title orange-text text-lighten-2" id="settings-member-admin">
                             <h3>Heaters</h3>
                         </div>
                     </div>
 
                     <!--  ACTION HEATER  -->
                     <div class="row">
-                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-heater">
+                        <div class="col s12 white-text" id="settings-update-heater">
                             <form class="col s12 method="POST" action="{{ url_for('actionHeater') }}">
 
                                 <!--  NEW OR UPDATED  -->
@@ -271,7 +271,7 @@
 
                                 <!--  SUBMIT HEATER DATA  -->
                                 <div class="row settings-heater-submit">
-                                    <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
+                                    <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                         <i class="fas fa-database prefix"></i>
                                         SUBMIT
                                     </button>
