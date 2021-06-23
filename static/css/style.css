@@ -206,7 +206,9 @@ body {
 .settings-member-type,
 .settings-member-submit,
 .settings-controller-name,
-.settings-controller-submit {
+.settings-controller-submit,
+.settings-heater-name,
+.settings-heater-submit {
     margin-top: 0.9rem;
 }
 
@@ -216,17 +218,7 @@ body {
 }
 
 .switch label .lever {
-    /* content: "";
-    display: inline-block;
-    position: relative;
-    width: 36px;
-    height: 14px; */
     background-color: rgba(255,255,255,0.38);
-    /* border-radius: 15px;
-    margin-right: 10px;
-    -webkit-transition: background 0.3s ease;
-    transition: background 0.3s ease;
-    vertical-align: middle; */
     margin: 0rem 1.2rem;
 }
 
@@ -237,6 +229,10 @@ body {
 
 .input-field>label::after {
     margin-bottom: 0.3rem;
+}
+
+.option:disabled {
+    color: #fff;
 }
 
 /**********************************************************************/

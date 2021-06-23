@@ -47,7 +47,7 @@
                     <!--  ACTION MEMBER  -->
                     <div class="row">
                         <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-member">
-                            <form class="col s12" method="POST" action="{{ url_for('newMember') }}">
+                            <form class="col s12" method="POST" action="{{ url_for('actionMember') }}">
 
                                 <!--  NEW OR UPDATED  -->
                                 <div class="row">
@@ -98,7 +98,7 @@
                                 <!--  SUBMIT MEMBER DATA  -->
                                 <div class="row settings-member-submit">
                                     <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
-                                        <i class="fas fa-user-plus prefix"></i>
+                                        <i class="fas fa-database prefix"></i>
                                         SUBMIT
                                     </button>
                                 </div>
@@ -121,7 +121,7 @@
                     <!--  ACTION CONTROLLER  -->
                     <div class="row">
                         <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-contoller">
-                            <form class="col s12 method="POST" action="{{ url_for('newController') }}">
+                            <form class="col s12 method="POST" action="{{ url_for('actionController') }}">
 
                                 <!--  NEW OR UPDATED  -->
                                 <div class="row">
@@ -140,7 +140,7 @@
                                 <!--  ENTER CONTROLLER NAME  -->
                                 <div class="row settings-controller-name">
                                     <div class="input-field col s12">
-                                        <i class="far fa-hdd prefix"></i>
+                                        <i class="fas fa-hdd prefix"></i>
                                         <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
                                         <label for="name">NAME</label>
                                     </div>
@@ -158,7 +158,7 @@
                                 <!--  SUBMIT CONTROLLER DATA  -->
                                 <div class="row settings-controller-submit">
                                     <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
-                                        <i class="fas fa-hdd prefix"></i>
+                                        <i class="fas fa-database prefix"></i>
                                         SUBMIT
                                     </button>
                                 </div>
@@ -180,16 +180,16 @@
 
                     <!--  ACTION HEATER  -->
                     <div class="row">
-                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-contoller">
-                            <form class="col s12 method="POST" action="{{ url_for('newController') }}">
+                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-heater">
+                            <form class="col s12 method="POST" action="{{ url_for('actionHeater') }}">
 
                                 <!--  NEW OR UPDATED  -->
                                 <div class="row">
-                                    <div class="input-field col s12 settings-controller-action">
+                                    <div class="input-field col s12 settings-heater-action">
                                         <div class="switch">
-                                            <label for="new_updated_controller">
+                                            <label for="new_updated_heater">
                                                 NEW
-                                                <input type="checkbox" id="new_updated_controller" name="new_updated_controller">
+                                                <input type="checkbox" id="new_updated_heater" name="new_updated_heater">
                                                 <span class="lever"></span>
                                                 UPDATE
                                             </label>
@@ -198,9 +198,9 @@
                                 </div>
 
                                 <!--  ENTER HEATER NAME  -->
-                                <div class="row settings-controller-name">
+                                <div class="row settings-heater-name">
                                     <div class="input-field col s12">
-                                        <i class="fas fa-burn prefix></i>
+                                        <i class="fas fa-burn prefix"></i>
                                         <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
                                         <label for="name">NAME</label>
                                     </div>
@@ -209,6 +209,7 @@
                                 <!--  SELECT CONTROLLER  -->
                                 <div class="row">
                                     <div class="input-field col s12">
+                                        <i class="fas fa-microchip prefix"></i>
                                         <select>
                                             <option value="" disabled selected>Choose the Controller</option>
                                             <option value="1">Option 1</option>
@@ -216,10 +217,11 @@
                                         <label>CONTROLLER</label>
                                     </div>
                                 </div>
-                                
+
                                 <!--  SELECT RELAY  -->
                                 <div class="row">
                                     <div class="input-field col s12">
+                                        <i class="fas fa-car-battery prefix"></i>
                                         <select>
                                             <option value="" disabled selected>Choose Relay number</option>
                                             <option value="1">1</option>
@@ -254,7 +256,7 @@
                                 </div>
 
                                 <!--  ON OR OFF  -->
-                                <div class="row settings-heater-enable">
+                                <div class="row settings-heater-on">
                                     <div class="input-field col s12 valign-wrapper">
                                         <div class="switch">
                                             <label for="is_on">
@@ -268,9 +270,9 @@
                                 </div>
 
                                 <!--  SUBMIT HEATER DATA  -->
-                                <div class="row settings-controller-submit">
+                                <div class="row settings-heater-submit">
                                     <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
-                                        <i class="fas fa-hdd prefix"></i>
+                                        <i class="fas fa-database prefix"></i>
                                         SUBMIT
                                     </button>
                                 </div>

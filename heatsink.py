@@ -62,14 +62,8 @@ def settings(member, admin):
     return render_template("settings.html", member=member, admin=admin)
 
 
-@app.route("/newMember/", methods=["GET", "POST"])
-def newMember():
-    return render_template(
-        "settings.html", member=session["member"], admin=session["admin"])
-
-
-@app.route("/updateMember/", methods=["GET", "POST"])
-def updateMember():
+@app.route("/actionMember/", methods=["GET", "POST"])
+def actionMember():
     if request.method == "POST":
 
         # Initialise parameters
@@ -109,14 +103,14 @@ def updateMember():
         "settings.html", member=session["member"], admin=session["admin"])
 
 
-@app.route("/newController/", methods=["GET", "POST"])
-def newController():
+@app.route("/actionController/", methods=["GET", "POST"])
+def actionController():
     return render_template(
         "settings.html", member=session["member"], admin=session["admin"])
 
 
-@app.route("/updateController/", methods=["GET", "POST"])
-def updateController():
+@app.route("/actionHeater/", methods=["GET", "POST"])
+def actionHeater():
     return render_template(
         "settings.html", member=session["member"], admin=session["admin"])
 
