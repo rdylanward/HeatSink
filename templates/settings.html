@@ -6,23 +6,23 @@
             <div class="col s12 m8 offset-m2 l6 offset-l2 settings-objects">
 
                 <!--  MEMBER ID  -->
-                <div class="row">
-                    <div class="col s12 m8 offset-m2 l6 offset-l2 white-text">
-                            <h4 class="center-align">Member: {{ member }}</h4>
+                <div class="row settings-member-id">
+                    <div class="col white-text">
+                            <h5 class="">Logged in as: {{ member }}</h5>
                     </div>
                 </div>
                 <!--  /MEMBER ID  -->
 
                 <!--  SETTINGS TITLE  -->
                 <div class="row">
-                    <div class="col s12 m8 offset-m2 l6 offset-l2 amber-text text-lighten-2 id="settings-title">
-                        <h1 class="left-align">SETTINGS</h1>
+                    <div class="col amber-text text-lighten-2 id="settings-title">
+                        <h2 class="left-align">SETTINGS</h2>
                     </div>
                 </div>
                 <!--  /SETTINGS TITLE  -->
 
                 <!--  SETTINGS FLASH  -->
-                <div class="col s12 m8 offset-m2 l6 offset-l2 red-text id="settings-flash"">
+                <div class="col red-text id="settings-flash"">
 
                     <!--  DISPLAY FLASHED MESSAGES  -->
                     {% with messages = get_flashed_messages() %}
@@ -40,15 +40,29 @@
                 <div class="row container-settings-members">
                     <div class="row">
                         <div class="col s12 m8 offset-m1 l6 offset-l2 left-align settings-members-title orange-text text-lighten-2" id="settings-member-admin">
-                            <h2>Members</h2>
+                            <h3>Members</h3>
                         </div>
                     </div>
 
-                    <!--  NEW MEMBER  -->
+                    <!--  ACTION MEMBER  -->
                     <div class="row">
                         <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-new-member">
-                            <h3 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">New Member</h3>
-                            <form class="col s12 method="POST" action="{{ url_for('newMember') }}">
+                            <!-- h4 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">New Member</h4 -->
+                            <form class="col s12" method="POST" action="{{ url_for('newMember') }}">
+
+                                <!--  NEW OR UPDATED  -->
+                                <div class="row">
+                                    <div class="input-field col s12 settings_member_action">
+                                        <div class="switch">
+                                            <label for="new_updated_member">
+                                                NEW
+                                                <input type="checkbox" id="new_updated_member" name="new_updated_member">
+                                                <span class="lever"></span>
+                                                UPDATE
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!--  ENTER USERNAME  -->
                                 <div class="row">
@@ -70,19 +84,19 @@
 
                                 <!--  MEMBER TYPE SELECTION  -->
                                 <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="fas fa-cog white-text prefix"></i>
-                                        <div class="switch valign-wrapper">
-                                            <label for="is_admin">
+                                    <div class="input-field col s12 valign-wrapper member-type-selection">
+                                        <div class="switch">
+                                            <label for="is_admin member-type-label">
+                                                USER
                                                 <input type="checkbox" id="is_admin" name="is_admin">
                                                 <span class="lever"></span>
-                                                Admin
+                                                ADMIN
                                             </label>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!--  SUBMIT UPDATED MEMBER DATA  -->
+                                <!--  SUBMIT MEMBER DATA  -->
                                 <div class="row">
                                     <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
                                         <i class="fas fa-user-plus prefix"></i>
@@ -92,68 +106,38 @@
                             </form>
                         </div>
                     </div>
-                    <!--  /NEW MEMBER  -->
-
-                    <!--  UPDATE MEMBER  -->
-                    <div class="row">
-                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-member">
-                            <h3 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">Update Member</h3>
-                            <form class="col s12 method="POST" action="{{ url_for('updateMember') }}">
-
-                                <!--  ENTER USERNAME  -->
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="fas fa-user prefix"></i>
-                                        <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
-                                        <label for="username">USERNAME</label>
-                                    </div>
-                                </div>
-
-                                <!--  ENTER PASSWORD  -->
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="fas fa-key prefix"></i>
-                                        <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                        <label for="password">PASSWORD</label>
-                                    </div>
-                                </div>
-
-                                <!--  MEMBER TYPE SELECTION  -->
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="fas fa-cog white-text prefix"></i>
-                                        <div class="switch valign-wrapper">
-                                            <label for="is_admin">
-                                                <input type="checkbox" id="is_admin" name="is_admin">
-                                                <span class="lever"></span>
-                                                Admin
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--  SUBMIT UPDATED MEMBER DATA  -->
-                                <div class="row">
-                                    <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
-                                        <i class="fas fa-user-plus prefix"></i>
-                                        UPDATE MEMBER
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!--  /UPDATE MEMBER  -->
+                    <!--  /ACTION MEMBER  -->
 
                 </div>
                 <!--  /ADMINISTER MEMBERS  -->
 
                 <!--  ADMINISTER CONTROLLERS  -->                
                 <div class="row container-settings-contollers">
+                    <div class="row">
+                        <div class="col s12 m8 offset-m1 l6 offset-l2 left-align settings-members-title orange-text text-lighten-2" id="settings-member-admin">
+                            <h3>Controllers</h3>
+                        </div>
+                    </div>
+
                     <!--  NEW CONTROLLER  -->
                     <div class="row">
                         <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-contoller">
-                            <h3 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">New Controller</h3>
+                            <h4 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">New Controller</h4>
                             <form class="col s12 method="POST" action="{{ url_for('newController') }}">
+
+                                <!--  NEW OR UPDATED  -->
+                                <div class="row">
+                                    <div class="input-field col s12 settings_member_action">
+                                        <div class="switch">
+                                            <label for="new_updated_controller">
+                                                NEW
+                                                <input type="checkbox" id="new_updated_controller" name="new_updated_controller">
+                                                <span class="lever"></span>
+                                                UPDATE
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!--  ENTER CONTROLLER NAME  -->
                                 <div class="row">
@@ -167,7 +151,7 @@
                                 <!--  ENTER CONTROLLER ADDRESS  -->
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <i class="fas fa-key prefix"></i>
+                                        <i class="fas fa-globe prefix"></i>
                                         <input id="address" name="address" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
                                         <label for="address">ADDRESS</label>
                                     </div>
@@ -176,7 +160,7 @@
                                 <!--  SUBMIT UPDATED CONTROLLER DATA  -->
                                 <div class="row">
                                     <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
-                                        <i class="fas fa-user-plus prefix"></i>
+                                        <i class="far fa-hdd prefix"></i>
                                         NEW CONTROLLER
                                     </button>
                                 </div>
@@ -185,44 +169,9 @@
                     </div>
                     <!--  /NEW CONTROLLER  -->
 
-                    <!--  UPDATE CONTROLLER  -->
-                    <div class="row">
-                        <div class="col s12 m8 offset-m1 l6 offset-l2 white-text" id="settings-update-contoller">
-                            <h3 class="col s12 m8 offset-m1 l6 offset-l2 left-align white-text update-member-title">Update Controller</h3>
-                            <form class="col s12 method="POST" action="{{ url_for('updateController') }}">
-
-                                <!--  ENTER CONTROLLER NAME  -->
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="fas fa-user prefix"></i>
-                                        <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
-                                        <label for="name">NAME</label>
-                                    </div>
-                                </div>
-
-                                <!--  ENTER CONTROLLER ADDRESS  -->
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <i class="fas fa-key prefix"></i>
-                                        <input id="address" name="address" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                        <label for="address">ADDRESS</label>
-                                    </div>
-                                </div>
-
-                                <!--  SUBMIT UPDATED CONTROLLER DATA  -->
-                                <div class="row">
-                                    <button type="submit" class="col s6 offset-s3 waves-effect waves-red center-align btn-flat white-text">
-                                        <i class="fas fa-user-plus prefix"></i>
-                                        UPDATE CONTROLLER
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!--  /UPDATE CONTROLLER  -->
-
                 </div> 
                 <!--  /ADMINISTER CONTROLLERS  -->
+
             </div>
             <div class="col hide-on-small-only m2 l4 settings-scroll-spy">
 

@@ -7,7 +7,7 @@ $(document).ready(function(){
     $('.sidenav').sidenav({draggable: true});
 
     /*** This function was originally written by Tim Nelson, Code Institute and
-         repurposed to aid in the function of Dropdown Selects 
+         repurposed to aid in the function of Dropdown Selects ***/
     validateMaterializeSelect();
     function validateMaterializeSelect() {
         let classValid = { "border-bottom": "1px solid #4caf50", "box-shadow": "0 1px 0 0 #4caf50" };
