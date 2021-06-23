@@ -5,6 +5,7 @@
 
 $(document).ready(function(){
     $('.sidenav').sidenav({draggable: true});
+    $('select').formSelect();
 
     /*** This function was originally written by Tim Nelson, Code Institute and
          repurposed to aid in the function of Dropdown Selects ***/

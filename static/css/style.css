@@ -198,17 +198,16 @@ body {
     font-size: 1.3rem;
 }
 
+#settings-title {
+    margin-top: 2rem;
+}
+
 .settings-member-user,
 .settings-member-type,
 .settings-member-submit,
 .settings-controller-name,
 .settings-controller-submit {
     margin-top: 0.9rem;
-}
-
-.member-type-selection .prefix {
-    top: 0.25rem;
-    vertical-align: middle;
 }
 
 .switch label {
