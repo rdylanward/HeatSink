@@ -209,17 +209,24 @@ body {
 .settings-controller-name,
 .settings-controller-submit,
 .settings-heater-name,
-.settings-heater-submit,
 .settings-heater-controller,
 .settings-heater-relay,
 .settings-heater-enable,
-settings-heater-on {
+settings-heater-on,
+.settings-heater-submit,
+.settings-group-username,
+.settings-group-submit {
     margin-top: 0.9rem;
+}
+
+.settings-group-heater {
+    margin-top: 2.2rem;
 }
 
 .settings-member-submit,
 .settings-controller-submit,
-.settings-heater-submit {
+.settings-heater-submit,
+.settings-group-submit {
     margin-bottom: 0.9rem;
 }
 

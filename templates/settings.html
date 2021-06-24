@@ -46,7 +46,7 @@
 
             <!--  ACTION MEMBER  -->
             <div class="row">
-                <div class="col s12 white-text" id="settings-member">
+                <div class="col s12 white-text" id="settings-action-member">
                     <form class="col s12" method="POST" action="{{ url_for('actionMember') }}">
 
                         <!--  NEW OR UPDATED  -->
@@ -120,7 +120,7 @@
 
             <!--  ACTION CONTROLLER  -->
             <div class="row">
-                <div class="col s12 white-text" id="settings-update-contoller">
+                <div class="col s12 white-text" id="settings-action-contoller">
                     <form class="col s12 method="POST" action="{{ url_for('actionController') }}">
 
                         <!--  NEW OR UPDATED  -->
@@ -180,7 +180,7 @@
 
             <!--  ACTION HEATER  -->
             <div class="row">
-                <div class="col s12 white-text" id="settings-update-heater">
+                <div class="col s12 white-text" id="settings-action-heater">
                     <form class="col s12 method="POST" action="{{ url_for('actionHeater') }}">
 
                         <!--  NEW OR UPDATED  -->
@@ -203,6 +203,15 @@
                                 <i class="fas fa-burn prefix"></i>
                                 <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
                                 <label for="name">NAME</label>
+                            </div>
+                        </div>
+
+                        <!--  ENTER HEATER LOCATION  -->
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="fas fa-map-marker-alt prefix"></i>
+                                <input id="location" name="location" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                <label for="location">LOCATION</label>
                             </div>
                         </div>
 
@@ -231,15 +240,6 @@
                                     <option value="3">3</option>
                                 </select>
                                 <label>RELAY</label>
-                            </div>
-                        </div>
-
-                        <!--  ENTER HEATER LOCATION  -->
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="fas fa-map-marker-alt prefix"></i>
-                                <input id="address" name="address" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                <label for="address">LOCATION</label>
                             </div>
                         </div>
 
@@ -285,6 +285,62 @@
 
         </div> 
         <!--  /ADMINISTER HEATERS  -->
+
+        <!--  ADMINISTER HEATER GROUPS  -->                
+        <div class="row container-settings-groups">
+            <div class="row">
+                <div class="col s12 left-align settings-groups-title orange-text text-lighten-2" id="settings-group-title">
+                    <h3>Heater Groups</h3>
+                </div>
+            </div>
+
+            <!--  ACTION GROUP  -->
+            <div class="row">
+                <div class="col s12 white-text" id="settings-action-group">
+                    <form class="col s12 method="POST" action="{{ url_for('actionGroup') }}">
+
+                        <!--  SELECT HEATER  -->
+                        <div class="row">
+                            <div class="input-field col s12 settings-group-heater">
+                                <i class="fas fa-burn prefix"></i>
+                                <select>
+                                    <option class="white-text" value="" disabled selected></option>
+                                    {% for heater in heaters %}
+                                        <option value="{{ heater.name }}">{{ heater.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label>HEATER</label>
+                            </div>
+                        </div>
+
+                        <!--  SELECT USERNAME  -->
+                        <div class="row">
+                            <div class="input-field col s12 settings-group-username">
+                                <i class="fas fa-user prefix"></i>
+                                <select>
+                                    <option class="white-text" value="" disabled selected></option>
+                                    {% for member in members %}
+                                        <option value="{{ member.username }}">{{ member.username }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label>USERNAME</label>
+                            </div>
+                        </div>
+
+                        <!--  SUBMIT CONTROLLER DATA  -->
+                        <div class="row settings-group-submit">
+                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                                <i class="fas fa-database prefix"></i>
+                                SUBMIT
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--  /ACTION CONTROLLER  -->
+
+        </div> 
+        <!--  /ADMINISTER HEATER GROUPS  -->
 
     </div>
 </div>

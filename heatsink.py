@@ -61,8 +61,17 @@ def settings():
     # Retrieve controllers
     controllers = mongodb.db.controllers.find().sort("name", 1)
 
+    # Retrieve heaters
+    heaters = mongodb.db.heaters.find().sort("name", 1)
+
+    # Retrieve controllers
+    members = mongodb.db.members.find().sort("username", 1)
+
     return render_template(
-        "settings.html", controllers=controllers)
+        "settings.html",
+        controllers=controllers,
+        heaters=heaters,
+        members=members)
 
 
 @app.route("/actionMember/", methods=["GET", "POST"])
@@ -112,6 +121,11 @@ def actionController():
 
 @app.route("/actionHeater/", methods=["GET", "POST"])
 def actionHeater():
+    return render_template("settings.html")
+
+
+@app.route("/actionGroup/", methods=["GET", "POST"])
+def actionGroup():
     return render_template("settings.html")
 
 
