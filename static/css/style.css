@@ -187,7 +187,7 @@ body {
 
 .container-settings {
     height: 100%;
-    margin: 1.2rem 1.5rem;
+    margin: 1.2rem 1.5rem 3.5rem 1.5rem;
 }
 
 .settings-member-id .col {
@@ -209,8 +209,22 @@ body {
 .settings-controller-name,
 .settings-controller-submit,
 .settings-heater-name,
-.settings-heater-submit {
+.settings-heater-submit,
+.settings-heater-controller,
+.settings-heater-relay,
+.settings-heater-enable,
+settings-heater-on {
     margin-top: 0.9rem;
+}
+
+.settings-member-submit,
+.settings-controller-submit,
+.settings-heater-submit {
+    margin-bottom: 0.9rem;
+}
+
+.select-wrapper .caret {
+    fill: rgba(255,255,255,0.9);
 }
 
 .switch label {
@@ -219,7 +233,7 @@ body {
 }
 
 .switch label .lever {
-    background-color: rgba(255,255,255,0.38);
+    background-color: rgba(255,255,255,0.3);
     margin: 0rem 1.2rem;
 }
 
