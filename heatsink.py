@@ -28,8 +28,7 @@ def index():
         if is_member:
             session["member"] = is_member["username"].lower()
             session["admin"] = is_member["is_admin"]
-            return redirect(url_for(
-                "heaters", member=session["member"], admin=session["admin"]))
+            return redirect(url_for("heaters"))
         else:
             # Incorrect username
             flash("Incorrect username!")
@@ -46,20 +45,24 @@ def logout():
     return render_template("index.html")
 
 
-@app.route("/heaters/<member>&<admin>", methods=["GET", "POST"])
-def heaters(member, admin):
-
-    # Initialise parameters
-    member = session["member"]
-    admin = session["admin"]
-    return render_template("heaters.html", member=member, admin=admin)
+@app.route("/heaters", methods=["GET", "POST"])
+def heaters():
+    return render_template("heaters.html")
 
 
-@app.route("/settings/<member>&<admin>", methods=["GET", "POST"])
-def settings(member, admin):
-    member = session["member"]
-    admin = session["admin"]
-    return render_template("settings.html", member=member, admin=admin)
+@app.route("/support", methods=["GET", "POST"])
+def support():
+    return render_template("support.html")
+
+
+@app.route("/settings", methods=["GET", "POST"])
+def settings():
+
+    # Retrieve controllers
+    controllers = mongodb.db.controllers.find().sort("name", 1)
+
+    return render_template(
+        "settings.html", controllers=controllers)
 
 
 @app.route("/actionMember/", methods=["GET", "POST"])
@@ -99,20 +102,17 @@ def actionMember():
             else:
                 flash("Member update failed!")
 
-    return render_template(
-        "settings.html", member=session["member"], admin=session["admin"])
+    return render_template("settings.html")
 
 
 @app.route("/actionController/", methods=["GET", "POST"])
 def actionController():
-    return render_template(
-        "settings.html", member=session["member"], admin=session["admin"])
+    return render_template("settings.html")
 
 
 @app.route("/actionHeater/", methods=["GET", "POST"])
 def actionHeater():
-    return render_template(
-        "settings.html", member=session["member"], admin=session["admin"])
+    return render_template("settings.html")
 
 
 if __name__ == "__main__":
