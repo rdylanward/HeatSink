@@ -24,14 +24,24 @@ def index():
     if request.method == "POST":
         is_member = mongodb.db.members.find_one(
             {"username": request.form.get("username").lower()})
-
         if is_member:
-            session["member"] = is_member["username"].lower()
-            session["admin"] = is_member["is_admin"]
-            return redirect(url_for("heaters"))
+
+            # Check for the correct password
+            if check_password_hash(is_member["password"], request.form.get(
+                    "password")):
+                session["member"] = is_member["username"].lower()
+                if is_member["is_admin"]:
+                    session["admin"] = True
+                else:
+                    session["admin"] = False
+
+                return redirect(url_for("heaters"))
+            else:
+                flash("Invalid username and/or password!")
+                return redirect(url_for("index"))
         else:
             # Incorrect username
-            flash("Incorrect username!")
+            flash("Invalid username and/or password!")
             return redirect(url_for("index"))
 
     return render_template("index.html")
