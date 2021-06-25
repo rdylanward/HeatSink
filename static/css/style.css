@@ -215,18 +215,24 @@ body {
 settings-heater-on,
 .settings-heater-submit,
 .settings-group-username,
-.settings-group-submit {
+.settings-group-submit,
+.settings-items-username,
+.settings-items-heater,
+.settings-items-controller,
+.settings-items-submit {
     margin-top: 0.9rem;
 }
 
-.settings-group-heater {
+.settings-group-heater,
+.settings-items-username {
     margin-top: 2.2rem;
 }
 
 .settings-member-submit,
 .settings-controller-submit,
 .settings-heater-submit,
-.settings-group-submit {
+.settings-group-submit,
+.settings-items-submit {
     margin-bottom: 0.9rem;
 }
 

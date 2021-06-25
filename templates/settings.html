@@ -327,7 +327,7 @@
                             </div>
                         </div>
 
-                        <!--  SUBMIT CONTROLLER DATA  -->
+                        <!--  SUBMIT HEATER GROUP DATA  -->
                         <div class="row settings-group-submit">
                             <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                 <i class="fas fa-database prefix"></i>
@@ -337,10 +337,80 @@
                     </form>
                 </div>
             </div>
-            <!--  /ACTION CONTROLLER  -->
+            <!--  /ACTION GROUP  -->
 
         </div> 
         <!--  /ADMINISTER HEATER GROUPS  -->
+
+        <!--  DELETE ITEMS  -->                
+        <div class="row container-settings-groups">
+            <div class="row">
+                <div class="col s12 left-align settings-groups-title orange-text text-lighten-2" id="settings-delete-items">
+                    <h3>Delete Items</h3>
+                </div>
+            </div>
+
+            <!--  ACTION ITEMS  -->
+            <div class="row">
+                <div class="col s12 white-text" id="settings-action-items">
+                    <form class="col s12 method="POST" action="{{ url_for('actionItems') }}">
+
+                        <!--  SELECT USERNAME  -->
+                        <div class="row">
+                            <div class="input-field col s12 settings-items-username">
+                                <i class="fas fa-user prefix"></i>
+                                <select>
+                                    <option class="white-text" value="" disabled selected></option>
+                                    {% for delete_member in delete_members %}
+                                        <option value="{{ delete_member.username }}">{{ delete_member.username }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label>USERNAME</label>
+                            </div>
+                        </div>
+
+                        <!--  SELECT HEATER  -->
+                        <div class="row">
+                            <div class="input-field col s12 settings-items-heater">
+                                <i class="fas fa-burn prefix"></i>
+                                <select>
+                                    <option class="white-text" value="" disabled selected></option>
+                                    {% for delete_heater in delete_heaters %}
+                                        <option value="{{ delete_heater.name }}">{{ delete_heater.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label>HEATER</label>
+                            </div>
+                        </div>
+
+                        <!--  SELECT CONTROLLER  -->
+                        <div class="row">
+                            <div class="input-field col s12 settings-items-controller">
+                                <i class="fas fa-microchip prefix"></i>
+                                <select>
+                                    <option class="white-text" value="" disabled selected></option>
+                                    {% for delete_controller in delete_controllers %}
+                                        <option value="{{ delete_controller.name }}">{{ delete_controller.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label>HEATER</label>
+                            </div>
+                        </div>
+
+                        <!--  SUBMIT ITEM DATA  -->
+                        <div class="row settings-items-submit">
+                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                                <i class="fas fa-database prefix"></i>
+                                SUBMIT
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--  /ACTION ITEMS  -->
+
+        </div> 
+        <!--  /DELETE ITEMS  -->
 
     </div>
 </div>
