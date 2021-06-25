@@ -79,37 +79,41 @@ def actionMember():
     if request.method == "POST":
 
         # Initialise parameters
-        updated_is_admin = True if request.form.get("is_admin") else False
-        updated_password = generate_password_hash(request.form.get("password"))
-        specified_member = request.form.get("username").lower()
+        is_update = True if request.form.get("new_updated_member") else False
+        username = request.form.get("username").lower()
+        password = generate_password_hash(request.form.get("password"))
+        is_admin = True if request.form.get("is_admin") else False
 
-        # Verify the member
-        is_member = mongodb.db.members.find_one({"username": specified_member})
+        # Set the criteria
+        value_dictionary = {
+            "username": username,
+            "password": password,
+            "is_admin": is_admin
+        }
 
-        if is_member:
+        if is_update:
 
-            # Set the criteria
-            # which_member = {"username": is_member.username}
-            update_to = {
-                "username": is_member.username,
-                "password": updated_password,
-                "is_admin": updated_is_admin
-            }
+            # Verify the member
+            is_member = mongodb.db.members.find_one({"username": username})
 
-            # Update the document
+            # Update existing document
             mongodb.db.members.update(
-                {"username": is_member.username}, update_to)
+                {"username": is_member.username}, value_dictionary)
+        else:
 
-            # Check to see if it worked
-            specified_user = mongodb.db.members.find_one(
-                {"_id": ObjectId(is_member._id)})
-            if check_password_hash(
-                    specified_user.password, request.form.get("password")
-                    ) and specified_user.is_admin == updated_is_admin:
-                flash("Member update successful!")
-                session["admin"] = specified_user["is_admin"]
-            else:
-                flash("Member update failed!")
+            # insert new document
+            mongodb.db.members.insert_one(value_dictionary)
+
+        # Check to see if it worked
+        specified_user = mongodb.db.members.find_one(
+            {"username": username})
+        if check_password_hash(
+            specified_user.password,
+                password) and specified_user.is_admin == is_admin:
+            flash("Member update successful!")
+            session["admin"] = is_admin
+        else:
+            flash("Member update failed!")
 
     return render_template("settings.html")
 
