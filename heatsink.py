@@ -68,23 +68,20 @@ def support():
 @app.route("/settings", methods=["GET", "POST"])
 def settings():
 
-    # Retrieve controllers
-    controllers = mongodb.db.controllers.find().sort("name", 1)
-    delete_controllers = controllers
+    # Retrieve member
+    members = mongodb.db.members.find().sort("username", 1)
 
     # Retrieve heaters
     heaters = mongodb.db.heaters.find().sort("name", 1)
-    delete_heaters = heaters
-
-    # Retrieve controllers
-    members = mongodb.db.members.find().sort("username", 1)
-    delete_members = members
+    
+    # Retrieve controller
+    controllers = mongodb.db.controllers.find().sort("name", 1)
 
     return render_template(
         "settings.html",
-        controllers=controllers,
+        members=members,
         heaters=heaters,
-        members=members)
+        controllers=controllers)
 
 
 @app.route("/actionMember/", methods=["GET", "POST"])
@@ -150,39 +147,55 @@ def actionGroup():
 def actionItems():
 
     # Initialise parameters
-    is_username = request.form.get("user")
-    is_heater = request.form.get("heater")
-    is_controller = request.form.get("controller")
+    delete_member = request.form.get("delete-user")
+    delete_heater = request.form.get("delete-heater")
+    delete_controller = request.form.get("delete-controller")
 
-    if is_username:
+    # Delete member
+    if delete_member:
+        # Find member
+        is_member = mongodb.db.find_one({"username": delete_member})
 
-        # Find the member
-        member_details = mongodb.db.members.find_one(is_username)
+        # Remove member
+        if is_member:
+            mongodb.db.delete_one({"_id": ObjectId(is_member._id)})
+            flash("Member deleted!")
+        else:
+            flash("Invalid member!")
+            return redirect(url_for("settings"))
 
-        # Remove the member
-        mongodb.db.members.delete_one({"_id": ObjectId(member_details._id)})
-
-    elif is_heater:
-
+    # Delete heater
+    elif delete_heater:
         # Find heater
-        heater_details = mongodb.db.heaters.find_one(is_heater)
+        is_heater = mongodb.db.heaters.find_one({"name": delete_heater})
 
         # Remove heater
-        mongodb.db.heaters.delete_one({"_id": ObjectId(heater_details._id)})
+        if is_heater:
+            mongodb.db.heaters.delete_one({"_id": ObjectId(is_heater._id)})
 
-        # Remove associated member group
-        for collection_name in mongodb.db.list_collection_names():
-            if (heater_details.name + "_member") in collection_name:
-                collection_to_drop = mongodb.db[collection_name]
-                collection_to_drop.drop()
+            # Remove associated member group
+            for collection_name in mongodb.db.list_collection_names():
+                if (is_heater.name + "_member") in collection_name:
+                    collection_to_drop = mongodb.db[collection_name]
+                    collection_to_drop.drop()
+            flash("Heater deleted!")
+        else:
+            flash("Invalid heater name!")
+            return redirect(url_for("settings"))
 
-    elif is_controller:
-
+    # Delete controller
+    elif delete_controller:
         # Find controller
-        controller_details = mongodb.db.controllers.find_one(is_controller)
+        is_controller = mongodb.db.controllers.find_one(
+            {"name": delete_controller})
 
         # Remove controller
-        mongodb.db.heaters.delete_one({"_id": ObjectId(controller_details._id)})
+        if is_controller:
+            mongodb.db.heaters.delete_one({"_id": ObjectId(is_controller._id)})
+            flash("Controller deleted!")
+        else:
+            flash("Invalid controller name!")
+            return redirect(url_for("settings"))
 
     return render_template("settings.html")
 
