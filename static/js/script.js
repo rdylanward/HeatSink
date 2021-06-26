@@ -4,12 +4,20 @@
 
 
 $(document).ready(function(){
+    let instance = M.ScrollSpy.getInstance(elem);
+
     $('.sidenav').sidenav({draggable: true});
     $('select').formSelect();
+    $('.scrollspy').scrollSpy();
 
-    /*** This function was originally written by Tim Nelson, Code Institute and
+    function(id) {
+        return 'a[href="#' + id + '"]';
+    }
+      
+      /*** This function was originally written by Tim Nelson, Code Institute and
          repurposed to aid in the function of Dropdown Selects ***/
     validateMaterializeSelect();
+
     function validateMaterializeSelect() {
         let classValid = { "border-bottom": "1px solid #4caf50", "box-shadow": "0 1px 0 0 #4caf50" };
         let classInvalid = { "border-bottom": "1px solid #f44336", "box-shadow": "0 1px 0 0 #f44336" };

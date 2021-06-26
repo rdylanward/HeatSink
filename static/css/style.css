@@ -263,6 +263,15 @@ settings-heater-on,
     color: #fff;
 }
 
+.settings-scrollspy {
+    margin: 6rem 1.2rem;
+}
+
+.table-of-contents a {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
 /**********************************************************************/
 /***                         Media Queries                          ***/
 /**********************************-***********************************/
