@@ -73,7 +73,7 @@ def settings():
 
     # Retrieve heaters
     heaters = mongodb.db.heaters.find().sort("name", 1)
-    
+
     # Retrieve controller
     controllers = mongodb.db.controllers.find().sort("name", 1)
 
@@ -134,7 +134,8 @@ def actionMember():
 def actionController():
     if request.method == "POST":
         # Initialise parameters
-        is_update = True if request.form.get("new_updated_member") else False
+        is_update = True if request.form.get(
+            "new_updated_controller") else False
         name = request.form.get("controller-name").lower()
         address = request.form.get("controller-address")
 
@@ -179,26 +180,34 @@ def actionController():
 def actionHeater():
     if request.method == "POST":
         # Initialise parameters
-        is_update = True if request.form.get("new_updated_member") else False
-        name = request.form.get("controller-name").lower()
-        address = request.form.get("controller-address")
+        is_update = True if request.form.get("new_updated_heater") else False
+        name = request.form.get("heater-name").lower()
+        location = request.form.get("heater-location")
+        controller = request.form.get("heater-controller")
+        relay = request.form.get("heater-relay")
+        is_enabled = True if request.form.get("is_enabled") else False
+        is_on = True if request.form.get("is_on") else False
 
         # Set the criteria
         value_dictionary = {
             "name": name,
-            "address": address
+            "location": location,
+            "controller": controller,
+            "relay": int(relay),
+            "is_enabled": is_enabled,
+            "is_on": is_on
         }
 
         if is_update:
             # Verify the controller
-            is_heater = mongodb.db.controllers.find_one({"name": name})
+            is_heater = mongodb.db.heaters.find_one({"name": name})
 
-            if is_controller:
+            if is_heater:
                 # Update existing document
                 mongodb.db.controllers.update(
                     {"_id": ObjectId(is_heater._id)}, value_dictionary)
             else:
-                flash("Invalid controller name!")
+                flash("Invalid heaters name!")
                 return redirect(url_for("settings"))
 
         else:
@@ -206,12 +215,12 @@ def actionHeater():
             mongodb.db.controllers.insert_one(value_dictionary)
 
         # Check to see if it worked
-        specified_controller = mongodb.db.controllers.find_one({"name": name})
-        if specified_controller:
-            if specified_controller.address == address:
-                flash("Controller update successful!")
+        specified_heater = mongodb.db.heaters.find_one({"name": name})
+        if specified_heater:
+            if specified_heater.location == lcoation:
+                flash("Heater update successful!")
             else:
-                flash("Controller update failed!")
+                flash("Heater update failed!")
                 return redirect(url_for("settings"))
         else:
             flash("Adding new controller failed!")

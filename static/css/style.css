@@ -236,6 +236,15 @@ settings-heater-on,
     margin-bottom: 0.9rem;
 }
 
+.dropdown-content li {
+    background-color: #f2f0e5;
+}
+
+.dropdown-content li>span {
+    font-weight: 500;
+    color: #263238;
+}
+
 .select-wrapper .caret {
     fill: rgba(255,255,255,0.9);
 }

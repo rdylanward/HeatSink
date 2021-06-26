@@ -201,8 +201,8 @@
                         <div class="row settings-heater-name">
                             <div class="input-field col s12">
                                 <i class="fas fa-burn prefix"></i>
-                                <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
-                                <label for="name">NAME</label>
+                                <input id="heater-name" name="heater-name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                <label for="heater-name">NAME</label>
                             </div>
                         </div>
 
@@ -210,8 +210,8 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="fas fa-map-marker-alt prefix"></i>
-                                <input id="location" name="location" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                <label for="location">LOCATION</label>
+                                <input id="heater-location" name="heater-location" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                <label for="heater-location">LOCATION</label>
                             </div>
                         </div>
 
@@ -219,7 +219,7 @@
                         <div class="row">
                             <div class="input-field col s12 settings-heater-controller">
                                 <i class="fas fa-microchip prefix"></i>
-                                <select>
+                                <select id="heater-controller" name="heater-controller" class="validate" required>
                                     <option class="white-text" value="" disabled selected></option>
                                     {% for controller in controllers %}
                                         <option value="{{ controller.name }}">{{ controller.name }}</option>
@@ -233,7 +233,7 @@
                         <div class="row">
                             <div class="input-field col s12 settings-heater-relay">
                                 <i class="fas fa-car-battery prefix"></i>
-                                <select>
+                                <select id="heater-relay" name="heater-relay" class="validate" required>
                                     <option value="" disabled selected></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -248,10 +248,10 @@
                             <div class="input-field col s12 valign-wrapper">
                                 <div class="switch">
                                     <label for="is_enabled">
-                                        ENABLE
+                                        DISABLE
                                         <input type="checkbox" id="is_enabled" name="is_enabled">
                                         <span class="lever"></span>
-                                        DISABLE
+                                        ENABLE
                                     </label>
                                 </div>
                             </div>
@@ -262,10 +262,10 @@
                             <div class="input-field col s12 valign-wrapper">
                                 <div class="switch">
                                     <label for="is_on">
-                                        ON
+                                        OFF
                                         <input type="checkbox" id="is_on" name="is_on">
                                         <span class="lever"></span>
-                                        OFF
+                                        ON
                                     </label>
                                 </div>
                             </div>
@@ -275,7 +275,7 @@
                         <div class="row settings-heater-submit">
                             <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                 <i class="fas fa-database prefix"></i>
-                                SUBMIT
+                                APPLY
                             </button>
                         </div>
                     </form>
@@ -303,7 +303,7 @@
                         <div class="row">
                             <div class="input-field col s12 settings-group-heater">
                                 <i class="fas fa-burn prefix"></i>
-                                <select>
+                                <select id="group-heater" name="group-heater" class="validate" required>
                                     <option class="white-text" value="" disabled selected></option>
                                     {% for heater in heaters %}
                                         <option value="{{ heater.name }}">{{ heater.name }}</option>
@@ -317,7 +317,7 @@
                         <div class="row">
                             <div class="input-field col s12 settings-group-username">
                                 <i class="fas fa-user prefix"></i>
-                                <select>
+                                <select id="group-member" name="group-member class="validate" required>
                                     <option class="white-text" value="" disabled selected></option>
                                     {% for member in members %}
                                         <option value="{{ member.username }}">{{ member.username }}</option>
@@ -331,7 +331,7 @@
                         <div class="row settings-group-submit">
                             <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                 <i class="fas fa-database prefix"></i>
-                                SUBMIT
+                                APPLY
                             </button>
                         </div>
                     </form>
@@ -391,7 +391,7 @@
                         <div class="row settings-items-submit">
                             <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                 <i class="fas fa-database prefix"></i>
-                                SUBMIT
+                                APPLY
                             </button>
                         </div>
                     </form>
