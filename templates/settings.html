@@ -14,9 +14,11 @@
         <!--  /MEMBER ID  -->
 
         <!--  SETTINGS TITLE  -->
-        <div class="row id="settings-title">
-            <div class="col amber-text text-lighten-2">
-                <h2 class="left-align">SETTINGS</h2>
+        <div class="row id="settings">
+            <div class="section scrollspy">
+                <div class="col amber-text text-lighten-2">
+                    <h2 class="left-align">SETTINGS</h2>
+                </div>
             </div>
         </div>
         <!--  /SETTINGS TITLE  -->
@@ -38,381 +40,395 @@
 
         <!--  ADMINISTER MEMBERS  -->
         <div class="row container-settings-members">
-            <div class="row">
-                <div class="col s12 left-align settings-members-title orange-text text-lighten-2" id="settings-member-admin">
-                    <h3>Members</h3>
+            <div class="section scrollspy" id="members">
+                <div class="row">
+                    <div class="col s12 left-align settings-members-title orange-text text-lighten-2" id="settings-member-admin">
+                        <h3>Members</h3>
+                    </div>
                 </div>
-            </div>
 
-            <!--  ACTION MEMBER  -->
-            <div class="row">
-                <div class="col s12 white-text" id="settings-action-member">
-                    <form class="col s12" method="POST" action="{{ url_for('actionMember') }}">
+                <!--  ACTION MEMBER  -->
+                <div class="row">
+                    <div class="col s12 white-text" id="settings-action-member">
+                        <form class="col s12" method="POST" action="{{ url_for('actionMember') }}">
 
-                        <!--  NEW OR UPDATED  -->
-                        <div class="row">
-                            <div class="input-field col s12 settings_member_action">
-                                <div class="switch">
-                                    <label for="new_updated_member">
-                                        NEW
-                                        <input type="checkbox" id="new_updated_member" name="new_updated_member">
-                                        <span class="lever"></span>
-                                        UPDATE
-                                    </label>
+                            <!--  NEW OR UPDATED  -->
+                            <div class="row">
+                                <div class="input-field col s12 settings_member_action">
+                                    <div class="switch">
+                                        <label for="new_updated_member">
+                                            NEW
+                                            <input type="checkbox" id="new_updated_member" name="new_updated_member">
+                                            <span class="lever"></span>
+                                            UPDATE
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!--  ENTER USERNAME  -->
-                        <div class="row settings-member-user">
-                            <div class="input-field col s12">
-                                <i class="fas fa-user prefix"></i>
-                                <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
-                                <label for="username">USERNAME</label>
-                            </div>
-                        </div>
-
-                        <!--  ENTER PASSWORD  -->
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="fas fa-key prefix"></i>
-                                <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                <label for="password">PASSWORD</label>
-                            </div>
-                        </div>
-
-                        <!--  MEMBER TYPE SELECTION  -->
-                        <div class="row settings-member-type">
-                            <div class="input-field col s12 valign-wrapper">
-                                <div class="switch">
-                                    <label for="is_admin">
-                                        USER
-                                        <input type="checkbox" id="is_admin" name="is_admin">
-                                        <span class="lever"></span>
-                                        ADMIN
-                                    </label>
+                            <!--  ENTER USERNAME  -->
+                            <div class="row settings-member-user">
+                                <div class="input-field col s12">
+                                    <i class="fas fa-user prefix"></i>
+                                    <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                    <label for="username">USERNAME</label>
                                 </div>
                             </div>
-                        </div>
 
-                        <!--  SUBMIT MEMBER DATA  -->
-                        <div class="row settings-member-submit">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
-                                <i class="fas fa-database prefix"></i>
-                                SUBMIT
-                            </button>
-                        </div>
-                    </form>
+                            <!--  ENTER PASSWORD  -->
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="fas fa-key prefix"></i>
+                                    <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                    <label for="password">PASSWORD</label>
+                                </div>
+                            </div>
+
+                            <!--  MEMBER TYPE SELECTION  -->
+                            <div class="row settings-member-type">
+                                <div class="input-field col s12 valign-wrapper">
+                                    <div class="switch">
+                                        <label for="is_admin">
+                                            USER
+                                            <input type="checkbox" id="is_admin" name="is_admin">
+                                            <span class="lever"></span>
+                                            ADMIN
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  SUBMIT MEMBER DATA  -->
+                            <div class="row settings-member-submit">
+                                <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                                    <i class="fas fa-database prefix"></i>
+                                    SUBMIT
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <!--  /ACTION MEMBER  -->
+                <!--  /ACTION MEMBER  -->
 
+            </div>
         </div>
         <!--  /ADMINISTER MEMBERS  -->
 
         <!--  ADMINISTER CONTROLLERS  -->                
         <div class="row container-settings-contollers">
-            <div class="row">
-                <div class="col s12 left-align settings-members-title orange-text text-lighten-2" id="settings-controller-admin">
-                    <h3>Controllers</h3>
+            <div class="section scrollspy" id="contollers">
+                <div class="row">
+                    <div class="col s12 left-align settings-members-title orange-text text-lighten-2" id="settings-controller-admin">
+                        <h3>Controllers</h3>
+                    </div>
                 </div>
-            </div>
 
-            <!--  ACTION CONTROLLER  -->
-            <div class="row">
-                <div class="col s12 white-text" id="settings-action-contoller">
-                    <form class="col s12 method="POST" action="{{ url_for('actionController') }}">
+                <!--  ACTION CONTROLLER  -->
+                <div class="row">
+                    <div class="col s12 white-text">
+                        <form class="col s12 method="POST" action="{{ url_for('actionController') }}">
 
-                        <!--  NEW OR UPDATED  -->
-                        <div class="row">
-                            <div class="input-field col s12 settings-controller-action">
-                                <div class="switch">
-                                    <label for="new_updated_controller">
-                                        NEW
-                                        <input type="checkbox" id="new_updated_controller" name="new_updated_controller">
-                                        <span class="lever"></span>
-                                        UPDATE
-                                    </label>
+                            <!--  NEW OR UPDATED  -->
+                            <div class="row">
+                                <div class="input-field col s12 settings-controller-action">
+                                    <div class="switch">
+                                        <label for="new_updated_controller">
+                                            NEW
+                                            <input type="checkbox" id="new_updated_controller" name="new_updated_controller">
+                                            <span class="lever"></span>
+                                            UPDATE
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!--  ENTER CONTROLLER NAME  -->
-                        <div class="row settings-controller-name">
-                            <div class="input-field col s12">
-                                <i class="fas fa-hdd prefix"></i>
-                                <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
-                                <label for="name">NAME</label>
+                            <!--  ENTER CONTROLLER NAME  -->
+                            <div class="row settings-controller-name">
+                                <div class="input-field col s12">
+                                    <i class="fas fa-hdd prefix"></i>
+                                    <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                    <label for="name">NAME</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <!--  ENTER CONTROLLER ADDRESS  -->
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="fas fa-globe prefix"></i>
-                                <input id="address" name="address" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                <label for="address">ADDRESS</label>
+                            <!--  ENTER CONTROLLER ADDRESS  -->
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="fas fa-globe prefix"></i>
+                                    <input id="address" name="address" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                    <label for="address">ADDRESS</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <!--  SUBMIT CONTROLLER DATA  -->
-                        <div class="row settings-controller-submit">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
-                                <i class="fas fa-database prefix"></i>
-                                SUBMIT
-                            </button>
-                        </div>
-                    </form>
+                            <!--  SUBMIT CONTROLLER DATA  -->
+                            <div class="row settings-controller-submit">
+                                <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                                    <i class="fas fa-database prefix"></i>
+                                    SUBMIT
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <!--  /ACTION CONTROLLER  -->
+                <!--  /ACTION CONTROLLER  -->
 
+            </div> 
         </div> 
         <!--  /ADMINISTER CONTROLLERS  -->
 
         <!--  ADMINISTER HEATERS  -->                
         <div class="row container-settings-heaters">
-            <div class="row">
-                <div class="col s12 left-align settings-members-title orange-text text-lighten-2" id="settings-member-admin">
-                    <h3>Heaters</h3>
+            <div class="section scrollspy" id="heaters">
+                <div class="row">
+                    <div class="col s12 left-align settings-members-title orange-text text-lighten-2">
+                        <h3>Heaters</h3>
+                    </div>
                 </div>
-            </div>
 
-            <!--  ACTION HEATER  -->
-            <div class="row">
-                <div class="col s12 white-text" id="settings-action-heater">
-                    <form class="col s12 method="POST" action="{{ url_for('actionHeater') }}">
+                <!--  ACTION HEATER  -->
+                <div class="row">
+                    <div class="col s12 white-text" id="settings-action-heater">
+                        <form class="col s12 method="POST" action="{{ url_for('actionHeater') }}">
 
-                        <!--  NEW OR UPDATED  -->
-                        <div class="row">
-                            <div class="input-field col s12 settings-heater-action">
-                                <div class="switch">
-                                    <label for="new_updated_heater">
-                                        NEW
-                                        <input type="checkbox" id="new_updated_heater" name="new_updated_heater">
-                                        <span class="lever"></span>
-                                        UPDATE
-                                    </label>
+                            <!--  NEW OR UPDATED  -->
+                            <div class="row">
+                                <div class="input-field col s12 settings-heater-action">
+                                    <div class="switch">
+                                        <label for="new_updated_heater">
+                                            NEW
+                                            <input type="checkbox" id="new_updated_heater" name="new_updated_heater">
+                                            <span class="lever"></span>
+                                            UPDATE
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!--  ENTER HEATER NAME  -->
-                        <div class="row settings-heater-name">
-                            <div class="input-field col s12">
-                                <i class="fas fa-burn prefix"></i>
-                                <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
-                                <label for="name">NAME</label>
-                            </div>
-                        </div>
-
-                        <!--  ENTER HEATER LOCATION  -->
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="fas fa-map-marker-alt prefix"></i>
-                                <input id="location" name="location" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                <label for="location">LOCATION</label>
-                            </div>
-                        </div>
-
-                        <!--  SELECT CONTROLLER  -->
-                        <div class="row">
-                            <div class="input-field col s12 settings-heater-controller">
-                                <i class="fas fa-microchip prefix"></i>
-                                <select>
-                                    <option class="white-text" value="" disabled selected></option>
-                                    {% for controller in controllers %}
-                                        <option value="{{ controller.name }}">{{ controller.name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <label>CONTROLLER</label>
-                            </div>
-                        </div>
-
-                        <!--  SELECT RELAY  -->
-                        <div class="row">
-                            <div class="input-field col s12 settings-heater-relay">
-                                <i class="fas fa-car-battery prefix"></i>
-                                <select>
-                                    <option value="" disabled selected></option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                                <label>RELAY</label>
-                            </div>
-                        </div>
-
-                        <!--  ENABLED OR DISABLED  -->
-                        <div class="row settings-heater-enable">
-                            <div class="input-field col s12 valign-wrapper">
-                                <div class="switch">
-                                    <label for="is_enabled">
-                                        ENABLE
-                                        <input type="checkbox" id="is_enabled" name="is_enabled">
-                                        <span class="lever"></span>
-                                        DISABLE
-                                    </label>
+                            <!--  ENTER HEATER NAME  -->
+                            <div class="row settings-heater-name">
+                                <div class="input-field col s12">
+                                    <i class="fas fa-burn prefix"></i>
+                                    <input id="name" name="name" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                    <label for="name">NAME</label>
                                 </div>
                             </div>
-                        </div>
 
-                        <!--  ON OR OFF  -->
-                        <div class="row settings-heater-on">
-                            <div class="input-field col s12 valign-wrapper">
-                                <div class="switch">
-                                    <label for="is_on">
-                                        ON
-                                        <input type="checkbox" id="is_on" name="is_on">
-                                        <span class="lever"></span>
-                                        OFF
-                                    </label>
+                            <!--  ENTER HEATER LOCATION  -->
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="fas fa-map-marker-alt prefix"></i>
+                                    <input id="location" name="location" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                    <label for="location">LOCATION</label>
                                 </div>
                             </div>
-                        </div>
 
-                        <!--  SUBMIT HEATER DATA  -->
-                        <div class="row settings-heater-submit">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
-                                <i class="fas fa-database prefix"></i>
-                                SUBMIT
-                            </button>
-                        </div>
-                    </form>
+                            <!--  SELECT CONTROLLER  -->
+                            <div class="row">
+                                <div class="input-field col s12 settings-heater-controller">
+                                    <i class="fas fa-microchip prefix"></i>
+                                    <select>
+                                        <option class="white-text" value="" disabled selected></option>
+                                        {% for controller in controllers %}
+                                            <option value="{{ controller.name }}">{{ controller.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label>CONTROLLER</label>
+                                </div>
+                            </div>
+
+                            <!--  SELECT RELAY  -->
+                            <div class="row">
+                                <div class="input-field col s12 settings-heater-relay">
+                                    <i class="fas fa-car-battery prefix"></i>
+                                    <select>
+                                        <option value="" disabled selected></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                    <label>RELAY</label>
+                                </div>
+                            </div>
+
+                            <!--  ENABLED OR DISABLED  -->
+                            <div class="row settings-heater-enable">
+                                <div class="input-field col s12 valign-wrapper">
+                                    <div class="switch">
+                                        <label for="is_enabled">
+                                            ENABLE
+                                            <input type="checkbox" id="is_enabled" name="is_enabled">
+                                            <span class="lever"></span>
+                                            DISABLE
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  ON OR OFF  -->
+                            <div class="row settings-heater-on">
+                                <div class="input-field col s12 valign-wrapper">
+                                    <div class="switch">
+                                        <label for="is_on">
+                                            ON
+                                            <input type="checkbox" id="is_on" name="is_on">
+                                            <span class="lever"></span>
+                                            OFF
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  SUBMIT HEATER DATA  -->
+                            <div class="row settings-heater-submit">
+                                <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                                    <i class="fas fa-database prefix"></i>
+                                    SUBMIT
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <!--  /ACTION HEATER  -->
+                <!--  /ACTION HEATER  -->
 
+            </div>
         </div> 
         <!--  /ADMINISTER HEATERS  -->
 
         <!--  ADMINISTER HEATER GROUPS  -->                
         <div class="row container-settings-groups">
-            <div class="row">
-                <div class="col s12 left-align settings-groups-title orange-text text-lighten-2" id="settings-group-title">
-                    <h3>Heater Groups</h3>
+            <div class="section scrollspy" id="groups">
+                <div class="row">
+                    <div class="col s12 left-align settings-groups-title orange-text text-lighten-2">
+                        <h3>Heater Groups</h3>
+                    </div>
                 </div>
-            </div>
 
-            <!--  ACTION GROUP  -->
-            <div class="row">
-                <div class="col s12 white-text" id="settings-action-group">
-                    <form class="col s12 method="POST" action="{{ url_for('actionGroup') }}">
+                <!--  ACTION GROUP  -->
+                <div class="row">
+                    <div class="col s12 white-text" id="settings-action-group">
+                        <form class="col s12 method="POST" action="{{ url_for('actionGroup') }}">
 
-                        <!--  SELECT HEATER  -->
-                        <div class="row">
-                            <div class="input-field col s12 settings-group-heater">
-                                <i class="fas fa-burn prefix"></i>
-                                <select>
-                                    <option class="white-text" value="" disabled selected></option>
-                                    {% for heater in heaters %}
-                                        <option value="{{ heater.name }}">{{ heater.name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <label>HEATER</label>
+                            <!--  SELECT HEATER  -->
+                            <div class="row">
+                                <div class="input-field col s12 settings-group-heater">
+                                    <i class="fas fa-burn prefix"></i>
+                                    <select>
+                                        <option class="white-text" value="" disabled selected></option>
+                                        {% for heater in heaters %}
+                                            <option value="{{ heater.name }}">{{ heater.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label>HEATER</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <!--  SELECT USERNAME  -->
-                        <div class="row">
-                            <div class="input-field col s12 settings-group-username">
-                                <i class="fas fa-user prefix"></i>
-                                <select>
-                                    <option class="white-text" value="" disabled selected></option>
-                                    {% for member in members %}
-                                        <option value="{{ member.username }}">{{ member.username }}</option>
-                                    {% endfor %}
-                                </select>
-                                <label>USERNAME</label>
+                            <!--  SELECT USERNAME  -->
+                            <div class="row">
+                                <div class="input-field col s12 settings-group-username">
+                                    <i class="fas fa-user prefix"></i>
+                                    <select>
+                                        <option class="white-text" value="" disabled selected></option>
+                                        {% for member in members %}
+                                            <option value="{{ member.username }}">{{ member.username }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label>USERNAME</label>
+                                </div>
                             </div>
-                        </div>
 
-                        <!--  SUBMIT HEATER GROUP DATA  -->
-                        <div class="row settings-group-submit">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
-                                <i class="fas fa-database prefix"></i>
-                                SUBMIT
-                            </button>
-                        </div>
-                    </form>
+                            <!--  SUBMIT HEATER GROUP DATA  -->
+                            <div class="row settings-group-submit">
+                                <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                                    <i class="fas fa-database prefix"></i>
+                                    SUBMIT
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <!--  /ACTION GROUP  -->
+                <!--  /ACTION GROUP  -->
 
+            </div>
         </div> 
         <!--  /ADMINISTER HEATER GROUPS  -->
 
         <!--  DELETE ITEMS  -->                
         <div class="row container-settings-groups">
-            <div class="row">
-                <div class="col s12 left-align settings-groups-title orange-text text-lighten-2" id="settings-delete-items">
-                    <h3>Delete Items</h3>
+            <div class="section scrollspy" id="delete">
+                <div class="row">
+                    <div class="col s12 left-align settings-groups-title orange-text text-lighten-2">
+                        <h3>Delete Items</h3>
+                    </div>
                 </div>
-            </div>
-
-            <!--  ACTION ITEMS  -->
-            <div class="row">
-                <div class="col s12 white-text" id="settings-action-items">
-                    <form class="col s12 method="POST" action="{{ url_for('actionItems') }}">
-
-                        <!--  SELECT USERNAME  -->
-                        <div class="row">
-                            <div class="input-field col s12 settings-items-username">
-                                <i class="fas fa-user prefix"></i>
-                                <select>
-                                    <option class="white-text" value="" disabled selected></option>
-                                    {% for delete_member in delete_members %}
-                                        <option value="{{ delete_member.username }}">{{ delete_member.username }}</option>
-                                    {% endfor %}
-                                </select>
-                                <label>USERNAME</label>
-                            </div>
-                        </div>
-
-                        <!--  SELECT HEATER  -->
-                        <div class="row">
-                            <div class="input-field col s12 settings-items-heater">
-                                <i class="fas fa-burn prefix"></i>
-                                <select>
-                                    <option class="white-text" value="" disabled selected></option>
-                                    {% for delete_heater in delete_heaters %}
-                                        <option value="{{ delete_heater.name }}">{{ delete_heater.name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <label>HEATER</label>
-                            </div>
-                        </div>
-
-                        <!--  SELECT CONTROLLER  -->
-                        <div class="row">
-                            <div class="input-field col s12 settings-items-controller">
-                                <i class="fas fa-microchip prefix"></i>
-                                <select>
-                                    <option class="white-text" value="" disabled selected></option>
-                                    {% for delete_controller in delete_controllers %}
-                                        <option value="{{ delete_controller.name }}">{{ delete_controller.name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <label>HEATER</label>
-                            </div>
-                        </div>
-
-                        <!--  SUBMIT ITEM DATA  -->
-                        <div class="row settings-items-submit">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
-                                <i class="fas fa-database prefix"></i>
-                                SUBMIT
-                            </button>
-                        </div>
-                    </form>
+                <div class="row">
+                    <div class="col s12 left-align white-text settings-items-instructions">
+                        <h5>Enter the name of the item you would like to remove to confirm deletion.</h5>
+                    </div>
                 </div>
-            </div>
-            <!--  /ACTION ITEMS  -->
 
+                <!--  ACTION ITEMS  -->
+                <div class="row">
+                    <div class="col s12 white-text" id="settings-action-items">
+                        <form class="col s12 method="POST" action="{{ url_for('actionItems') }}">
+
+                            <!--  ENTER MEMBER NAME  -->
+                            <div class="row settings-items-username">
+                                <div class="input-field col s12">
+                                    <i class="fas fa-burn prefix"></i>
+                                    <input id="user" name="user" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                    <label for="user">USERNAME</label>
+                                </div>
+                            </div>
+
+                            <!--  ENTER HEATER NAME  -->
+                            <div class="row">
+                                <div class="input-field col s12 settings-items-heater">
+                                    <i class="fas fa-map-marker-alt prefix"></i>
+                                    <input id="heater" name="heater" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                    <label for="heater">HEATER</label>
+                                </div>
+                            </div>
+
+                            <!--  ENTER CONTROLLER NAME  -->
+                            <div class="row">
+                                <div class="input-field col s12 settings-items-controller">
+                                    <i class="fas fa-map-marker-alt prefix"></i>
+                                    <input id="controller" name="controller" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                    <label for="controller">CONTROLLER</label>
+                                </div>
+                            </div>
+
+                            <!--  SUBMIT ITEM DATA  -->
+                            <div class="row settings-items-submit">
+                                <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                                    <i class="fas fa-database prefix"></i>
+                                    SUBMIT
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--  /ACTION ITEMS  -->
+
+            </div>
         </div> 
         <!--  /DELETE ITEMS  -->
 
     </div>
+
+    <!--  SCROLLSPY  -->    
+    <div class="col hide-on-small-only m3 l2">
+        <ul class="section table-of-contents">
+          <li><a href="#settings">SETTINGS</a></li>
+          <li><a href="#members">MEMBERS</a></li>
+          <li><a href="#heaters">HEATERS</a></li>
+          <li><a href="#controllers">CONTROLLERS</a></li>
+          <li><a href="#groups">MEMBER GROUPS</a></li>
+          <li><a href="#delete">DELETE ITEMS</a></li>
+        </ul>
+    </div>
+    <!--  /SCROLLSPY  -->
+    
 </div>
 <!--  /SETTINGS CONTENT  -->
 
