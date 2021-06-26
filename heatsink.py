@@ -87,7 +87,6 @@ def settings():
 @app.route("/actionMember/", methods=["GET", "POST"])
 def actionMember():
     if request.method == "POST":
-
         # Initialise parameters
         is_update = True if request.form.get("new_updated_member") else False
         username = request.form.get("username").lower()
@@ -102,7 +101,6 @@ def actionMember():
         }
 
         if is_update:
-
             # Verify the member
             is_member = mongodb.db.members.find_one({"username": username})
 
@@ -110,31 +108,115 @@ def actionMember():
             mongodb.db.members.update(
                 {"username": is_member.username}, value_dictionary)
         else:
-
             # insert new document
             mongodb.db.members.insert_one(value_dictionary)
 
         # Check to see if it worked
         specified_user = mongodb.db.members.find_one(
             {"username": username})
-        if check_password_hash(
-            specified_user.password,
-                password) and specified_user.is_admin == is_admin:
-            flash("Member update successful!")
-            session["admin"] = is_admin
+        if specified_user:
+            if check_password_hash(
+                specified_user.password,
+                    password) and specified_user.is_admin == is_admin:
+                flash("Member update successful!")
+                session["admin"] = is_admin
+            else:
+                flash("Member update failed!")
+                return redirect(url_for("settings"))
         else:
-            flash("Member update failed!")
+            flash("Adding new member failed!")
+            return redirect(url_for("settings"))
 
     return render_template("settings.html")
 
 
 @app.route("/actionController/", methods=["GET", "POST"])
 def actionController():
+    if request.method == "POST":
+        # Initialise parameters
+        is_update = True if request.form.get("new_updated_member") else False
+        name = request.form.get("controller-name").lower()
+        address = request.form.get("controller-address")
+
+        # Set the criteria
+        value_dictionary = {
+            "name": name,
+            "address": address
+        }
+
+        if is_update:
+            # Verify the controller
+            is_controller = mongodb.db.controllers.find_one({"name": name})
+
+            if is_controller:
+                # Update existing document
+                mongodb.db.controllers.update(
+                    {"_id": ObjectId(is_controller._id)}, value_dictionary)
+            else:
+                flash("Invalid controller name!")
+                return redirect(url_for("settings"))
+
+        else:
+            # insert new document
+            mongodb.db.controllers.insert_one(value_dictionary)
+
+        # Check to see if it worked
+        specified_controller = mongodb.db.controllers.find_one({"name": name})
+        if specified_controller:
+            if specified_controller.address == address:
+                flash("Controller update successful!")
+            else:
+                flash("Controller update failed!")
+                return redirect(url_for("settings"))
+        else:
+            flash("Adding new controller failed!")
+            return redirect(url_for("settings"))
+
     return render_template("settings.html")
 
 
 @app.route("/actionHeater/", methods=["GET", "POST"])
 def actionHeater():
+    if request.method == "POST":
+        # Initialise parameters
+        is_update = True if request.form.get("new_updated_member") else False
+        name = request.form.get("controller-name").lower()
+        address = request.form.get("controller-address")
+
+        # Set the criteria
+        value_dictionary = {
+            "name": name,
+            "address": address
+        }
+
+        if is_update:
+            # Verify the controller
+            is_heater = mongodb.db.controllers.find_one({"name": name})
+
+            if is_controller:
+                # Update existing document
+                mongodb.db.controllers.update(
+                    {"_id": ObjectId(is_heater._id)}, value_dictionary)
+            else:
+                flash("Invalid controller name!")
+                return redirect(url_for("settings"))
+
+        else:
+            # insert new document
+            mongodb.db.controllers.insert_one(value_dictionary)
+
+        # Check to see if it worked
+        specified_controller = mongodb.db.controllers.find_one({"name": name})
+        if specified_controller:
+            if specified_controller.address == address:
+                flash("Controller update successful!")
+            else:
+                flash("Controller update failed!")
+                return redirect(url_for("settings"))
+        else:
+            flash("Adding new controller failed!")
+            return redirect(url_for("settings"))
+
     return render_template("settings.html")
 
 
