@@ -4,15 +4,8 @@
 
 
 $(document).ready(function(){
-    let instance = M.ScrollSpy.getInstance(elem);
-
     $('.sidenav').sidenav({draggable: true});
     $('select').formSelect();
-    $('.scrollspy').scrollSpy();
-
-    function(id) {
-        return 'a[href="#' + id + '"]';
-    }
       
       /*** This function was originally written by Tim Nelson, Code Institute and
          repurposed to aid in the function of Dropdown Selects ***/
@@ -44,4 +37,4 @@ $(document).ready(function(){
             }
         });
     }
-});window.onscroll = function() {stickyNavbar()};
+});
