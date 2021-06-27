@@ -35,6 +35,11 @@ def index():
                 else:
                     session["admin"] = False
 
+                # Reset heaters
+                session["populated"] = False
+
+                flash("Hello, " + session["member"] + ". Welcome back!")
+
                 return redirect(url_for("heaters"))
             else:
                 flash("Invalid username and/or password!")
@@ -51,6 +56,7 @@ def index():
 def logout():
     session.pop("member", None)
     session.pop("admin", None)
+    session.pop("populated", None)
     flash("You have been logged out...")
     return render_template("index.html")
 
@@ -59,28 +65,52 @@ def logout():
 def heaters():
 
     # Initialise parameters
-    my_heaters = {}
+    populate_heaters = []
 
     # Enumerate the heaters
-    heaters = mongodb.db.heaters.find().sort("name", 1)
+    heaters = list(mongodb.db.heaters.find().sort("name", 1))
 
     if heaters:
         for heater in heaters:
+
+            # Capture the elements of the current heater
+            current_heater = {
+                "name": heater["name"],
+                "controller": heater["controller"],
+                "relay": heater["relay"],
+                "location": heater["location"],
+                "is_enabled": heater["is_enabled"],
+                "is_on": heater["is_on"]
+            }
+
             for collection_name in mongodb.db.list_collection_names():
                 if (heater["name"] + "_member") in collection_name:
                     collection_specified = mongodb.db[collection_name]
-                    
+
                     # Check if member has access
                     has_access = collection_specified.find_one(
                         {"username": session["member"]})
 
                     if has_access:
-                        my_heaters.update(heater)
+                        populate_heaters.append(current_heater)
+
+        session["my_heaters"] = populate_heaters
+
     else:
         flash("No heaters found!")
         return redirect(url_for("heaters"))
 
-    return render_template("heaters.html", my_heaters=my_heaters)
+    return render_template("heaters.html")
+
+
+@app.route("/switchOn", methods=["GET", "POST"])
+def switchOn():
+    return render_template("heaters.html")
+
+
+@app.route("/switchOff", methods=["GET", "POST"])
+def switchOff():
+    return render_template("heaters.html")
 
 
 @app.route("/support", methods=["GET", "POST"])

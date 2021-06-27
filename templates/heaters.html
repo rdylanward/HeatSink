@@ -4,11 +4,80 @@
 <!--  HEATERS CONTENT  -->
 <div class="row container-heaters">
     <div class="row">
-        <div class="col s12 center-align white-text">
-            <p class="heaters-greeting">Hello, {{ session.member }}. Welcome back!</p>
+        <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 center-align white-text">
+            <p class="heaters-greeting">Logged in as: {{ session.member }}</p>
         </div>
     </div>
+
+    <!--  HEATERS FLASH  -->
+    <div class="row">
+        <div class="col red-text center-align id="settings-flash"">
+    
+            <!--  DISPLAY FLASHED MESSAGES  -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p class="center-align red-text flash-messages">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+    
+        </div>
+    </div>
+    <!--  /HEATERS FLASH  -->
+
+    <!--  DISPLAY HEATERS  -->
+    <div class="row">
+        {% for my_heater in session["my_heaters"] %}
+        <div class="col s10 m5">
+            <div class="card center-align heater-card">
+                <div class="card-content blue-grey-text text-darken-4">
+                    <div class="row">
+                        <div class="col center-align heater-card-name">
+                            <h3>{{ my_heater.name }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col center-align heater-card-location">
+                            <h3>{{ my_heater.location }}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col center-align heater-card-status">
+                            <h3>
+                                STATUS:&nbsp;&nbsp;
+                                {% if my_heater.is_on %}
+                                <span class="heater-card-on">ON</span>
+                                {% else %}
+                                <span class="heater-card-off">OFF</span>
+                                {% endif %}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action blue-grey-text text-darken-4">
+                    <div class="row">
+                        <i class="fas fa-toggle-off prefix"></i>
+                        <h5>SWITCH HEATER</h5>
+                    </div>
+                    <div class="row">
+                        <form class="col s5 center-align" method="POST" action="{{ url_for('switchOn', which_heater=my_heater.name, heater_status=my_heater.is_on) }}">
+                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat">ON</button>
+                        </form>
+                        <form class="col s5 center-align" method="POST" action="{{ url_for('switchOff', which_heater=my_heater.name, heater_status=my_heater.is_on) }}">
+                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat">OFF</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!--  /DISPLAY HEATERS  -->
+
 </div>
 <!--  /HEATERS CONTENT  -->
+
+<!--    -->
 
 {% endblock %}
