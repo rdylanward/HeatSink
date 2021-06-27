@@ -214,10 +214,14 @@ def actionHeater():
             # insert new document
             mongodb.db.controllers.insert_one(value_dictionary)
 
+            # Create the member group
+            collection_name = name + "_member"
+            mongodb.db.createCollection(collection_name)
+
         # Check to see if it worked
         specified_heater = mongodb.db.heaters.find_one({"name": name})
         if specified_heater:
-            if specified_heater.location == lcoation:
+            if specified_heater == value_dictionary:
                 flash("Heater update successful!")
             else:
                 flash("Heater update failed!")
@@ -231,6 +235,17 @@ def actionHeater():
 
 @app.route("/actionGroup/", methods=["GET", "POST"])
 def actionGroup():
+
+    # Initialise parameters
+    heater = request.form.get("group-heater")
+    username = request.form.get("group-member")
+
+    # Add member to the heater
+    for collection_name in mongodb.db.list_collection_names():
+        if (heater + "_member") in collection_name:
+            collection_specified = mongodb.db[collection_name]
+            collection_specified.insert_one({"username": username})
+
     return render_template("settings.html")
 
 
