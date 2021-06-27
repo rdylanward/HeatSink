@@ -22,17 +22,19 @@
         <!--  /SETTINGS TITLE  -->
 
         <!--  SETTINGS FLASH  -->
-        <div class="col red-text id="settings-flash"">
+        <div class="row">
+            <div class="col red-text center-align id="settings-flash"">
 
-            <!--  DISPLAY FLASHED MESSAGES  -->
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                    <p class="center-align red-text flash-messages">{{ message }}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
+                <!--  DISPLAY FLASHED MESSAGES  -->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p class="center-align red-text flash-messages">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
 
+            </div>
         </div>
         <!--  /SETTINGS FLASH  -->
 
