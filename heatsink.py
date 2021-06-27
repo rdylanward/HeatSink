@@ -58,17 +58,29 @@ def logout():
 @app.route("/heaters", methods=["GET", "POST"])
 def heaters():
 
-    # Populate the heaters
+    # Initialise parameters
+    my_heaters = {}
+
+    # Enumerate the heaters
     heaters = mongodb.db.heaters.find().sort("name", 1)
 
     if heaters:
         for heater in heaters:
             for collection_name in mongodb.db.list_collection_names():
-                if (heater.name + "_member") in collection_name:
+                if (heater["name"] + "_member") in collection_name:
                     collection_specified = mongodb.db[collection_name]
-                    collection_specified.insert_one({"username": session.member})
+                    
+                    # Check if member has access
+                    has_access = collection_specified.find_one(
+                        {"username": session["member"]})
 
-    return render_template("heaters.html")
+                    if has_access:
+                        my_heaters.update(heater)
+    else:
+        flash("No heaters found!")
+        return redirect(url_for("heaters"))
+
+    return render_template("heaters.html", my_heaters=my_heaters)
 
 
 @app.route("/support", methods=["GET", "POST"])
