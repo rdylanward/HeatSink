@@ -4,14 +4,14 @@
 <!--  HEATERS CONTENT  -->
 <div class="row container-heaters">
     <div class="row">
-        <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 center-align white-text">
+        <div class="col s10 offset-s1 m8 offset-m1 l4 offset-l4 center-align white-text">
             <p class="heaters-greeting">Logged in as: {{ session.member }}</p>
         </div>
     </div>
 
     <!--  HEATERS FLASH  -->
     <div class="row">
-        <div class="col red-text center-align id="settings-flash"">
+        <div class="col s10 offset-s1 m8 offset-m1 red-text center-align id="settings-flash"">
     
             <!--  DISPLAY FLASHED MESSAGES  -->
             {% with messages = get_flashed_messages() %}
@@ -29,44 +29,69 @@
     <!--  DISPLAY HEATERS  -->
     <div class="row">
         {% for my_heater in session["my_heaters"] %}
-        <div class="col s10 m5">
-            <div class="card center-align heater-card">
-                <div class="card-content blue-grey-text text-darken-4">
+
+        <div class="col s10 offset-s1 m8 offset-m1">
+            {% if my_heater.is_enabled %}
+                {% if my_heater.is_on %}
+                <div class="card blue-grey-text text-darken-4 heater-card heater-card-enabled-on">
+                {% else %}
+                <div class="card blue-grey-text text-darken-4 heater-card heater-card-enabled-off">
+                {% endif %}
+            {% else %}
+            <div class="card blue-grey-text text-lighten-4 heater-card heater-card-disabled">
+            {% endif %}
+                <div class="card-content">
                     <div class="row">
-                        <div class="col center-align heater-card-name">
+                        <div class="col left-align heater-card-label">
+                            <h6>NAME</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col left-align heater-card-item">
                             <h3>{{ my_heater.name }}</h3>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col center-align heater-card-location">
+                        <div class="col left-align heater-card-label">
+                            <h6>LOCATION</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col left-align heater-card-item">
                             <h3>{{ my_heater.location }}</h3>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col center-align heater-card-status">
-                            <h3>
-                                STATUS:&nbsp;&nbsp;
-                                {% if my_heater.is_on %}
-                                <span class="heater-card-on">ON</span>
-                                {% else %}
-                                <span class="heater-card-off">OFF</span>
-                                {% endif %}
-                            </h3>
+                        <div class="col left-align heater-card-label">
+                            <h6>CONTROLLER</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col left-align heater-card-item">
+                            <h3>{{ my_heater.controller }}</h3>
                         </div>
                     </div>
                 </div>
+                {% if my_heater.is_enabled %}
                 <div class="card-action blue-grey-text text-darken-4">
+                {% else %}
+                <div class="card-action blue-grey-text text-lighten-4">
+                {% endif %}
                     <div class="row">
-                        <i class="fas fa-toggle-off prefix"></i>
-                        <h5>SWITCH HEATER</h5>
-                    </div>
-                    <div class="row">
-                        <form class="col s5 center-align" method="POST" action="{{ url_for('switchOn', which_heater=my_heater.name, heater_status=my_heater.is_on) }}">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat">ON</button>
-                        </form>
-                        <form class="col s5 center-align" method="POST" action="{{ url_for('switchOff', which_heater=my_heater.name, heater_status=my_heater.is_on) }}">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat">OFF</button>
-                        </form>
+                        <div class="col left-align valign-wrapper heater-card-btn">
+                            <h4 class="col left-align">STATUS:&nbsp;&nbsp;</h4>
+                            {% if my_heater.is_enabled %}
+                                {% if my_heater.is_on %}
+                                <!-- button type="submit" class="col waves-effect waves-red center-align btn-flat heater-status heater-card-on">ON</button -->
+                                <a href="{{ url_for('heaterSwitch', name=my_heater.name, controller=my_heater.controller, relay=my_heater.relay, is_on=my_heater.is_on) }}" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-darken-4 heater-status heater-card-on">ON</a>
+                                {% else %}
+                                <!-- button type="submit" class="col waves-effect waves-red center-align btn-flat heater-status heater-card-off">OFF</button -->
+                                <a href="{{ url_for('heaterSwitch', name=my_heater.name, controller=my_heater.controller, relay=my_heater.relay, is_on=my_heater.is_on) }}" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-darken-4 heater-status heater-card-off">OFF</a>
+                                {% endif %}
+                            {% else %}
+                            <a href="#" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-lighten-4 heater-status heater-card-off-disabled">OFF</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -130,6 +130,10 @@ body {
     margin: 1.2rem 0rem 0.9rem 0rem;
 }
 
+.card-content .heater-card-item h3 {
+    margin-top: 0rem;
+}
+
 .flash-messages {
     font-size: 1.3rem;
 }
@@ -144,7 +148,7 @@ body {
 
 .card .card-action {
     border-top: 0rem;
-    padding: 0rem 2.4rem 1.6rem 2.4rem;
+    padding: 0rem auto 1.6rem auto;
 }
 
 .card-home-btn {
@@ -177,6 +181,62 @@ body {
 .heaters-greeting {
     font-size: 1.6rem;
     font-weight: 500;
+}
+
+.heater-card {
+    width: 25.2rem;
+    height: 28rem;
+}
+
+.heater-card-enabled-off {
+    background-color: #f2f0e5;
+    box-shadow: 0 4px 8px 0 rgba(244, 67, 54, 0.6), 0 6px 20px 0 rgba(244, 67, 54, 0.59);
+    margin: 3rem 0rem;
+}
+
+.heater-card-enabled-on {
+    background-color: #f2f0e5;
+    box-shadow: 0 4px 8px 0 rgba(76, 175, 80, 0.6), 0 6px 20px 0 rgba(76, 175, 80, 0.59);
+    margin: 3rem 0rem;
+}
+
+.heater-card-disabled {
+    background-color: #f2f0e5;
+    box-shadow: 0 4px 8px 0 rgba(96, 125, 139, 0.7), 0 6px 20px 0 rgba(96, 125, 139, 0.69);
+    margin: 3rem 0rem;
+}
+
+/* .heater-card .card .card-action {
+    width: 100%;
+    padding: 0rem 5.8rem 1.6rem 5.8rem;
+}*/
+
+.row .heater-card-btn {
+    width: 100%;
+    left: auto;
+    right: auto;
+    padding: 0rem;
+}
+
+.heater-status {
+    font-size: 1.8rem;
+    font-weight: 500;
+    border-radius: 0.6rem;
+    width: 6rem;
+    height: 3.7rem;
+    padding: 0.5rem;
+}
+
+.heater-card-off-disabled {
+    box-shadow: 0 4px 8px 0 rgba(96, 125, 139, 0.6), 0 6px 20px 0 rgba(96, 125, 139, 0.59);
+}
+
+.heater-card-off {
+    box-shadow: 0 4px 8px 0 rgba(244, 67, 54, 0.6), 0 6px 20px 0 rgba(244, 67, 54, 0.59);
+}
+
+.heater-card-on {
+    box-shadow: 0 4px 8px 0 rgba(76, 175, 80, 0.6), 0 6px 20px 0 rgba(76, 175, 80, 0.59);
 }
 
 
@@ -313,6 +373,22 @@ settings-heater-on,
 
     .container-home {
         margin: 7rem 0rem;
+    }
+
+    .card .card-action {
+        border-top: 0rem;
+        padding: 0rem 4rem 1.6rem 4rem;
+    }
+
+
+    /*****************/
+    /***  HEATERS  ***/
+    /*****************/
+
+
+    .heater-card {
+        width: 25.2rem;
+        height: 28rem;
     }
 
 }

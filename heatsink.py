@@ -1,4 +1,4 @@
-import os
+import os, paramiko
 from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -75,10 +75,10 @@ def heaters():
 
             # Capture the elements of the current heater
             current_heater = {
-                "name": heater["name"],
-                "controller": heater["controller"],
+                "name": heater["name"].title(),
+                "controller": heater["controller"].upper(),
                 "relay": heater["relay"],
-                "location": heater["location"],
+                "location": heater["location"].title(),
                 "is_enabled": heater["is_enabled"],
                 "is_on": heater["is_on"]
             }
@@ -103,19 +103,28 @@ def heaters():
     return render_template("heaters.html")
 
 
-@app.route("/switchOn", methods=["GET", "POST"])
-def switchOn():
+@app.route("/heaterSwitch/<name>&<controller>&<relay>&<is_on>", methods=[
+    "GET", "POST"])
+def heaterSwitch(name, controller, relay, is_on):
+
+    # Initialise parameters
+    power = 0 if is_on else 1
+
+    # Get the controller address
+    controller_details = mongodb.db.controllers.find_one({"name": controller})
+    address = controller_details.address
+
+    connection = paramiko.SSHClient()
+    connection.load_system_host_keys()
+    connection.connect(
+        address,
+        username=os.environ.get("HS_USER"),
+        password=os.environ.get("HS_PASS"))
+    connection.exec_command(
+        '/home/hsa16052021/pimoroni/automationhat/hsa/relay.py ' +
+        relay + ' ' + power)
+
     return render_template("heaters.html")
-
-
-@app.route("/switchOff", methods=["GET", "POST"])
-def switchOff():
-    return render_template("heaters.html")
-
-
-@app.route("/support", methods=["GET", "POST"])
-def support():
-    return render_template("support.html")
 
 
 @app.route("/settings", methods=["GET", "POST"])

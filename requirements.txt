@@ -1,3 +1,4 @@
+bcrypt==3.2.0
 click==8.0.1
 dnspython==2.1.0
 Flask==2.0.1
@@ -5,5 +6,7 @@ Flask-PyMongo==2.3.0
 itsdangerous==2.0.1
 Jinja2==3.0.1
 MarkupSafe==2.0.1
+paramiko==2.7.2
 pymongo==3.11.4
+PyNaCl==1.4.0
 Werkzeug==2.0.1
