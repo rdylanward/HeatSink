@@ -122,12 +122,12 @@
 
             <!--  ACTION CONTROLLER  -->
             <div class="row">
-                <div class="col s12 white-text" id="settings-action-contoller">
+                <div class="col s12 white-text">
                     <form class="col s12 method="POST" action="{{ url_for('actionController') }}">
 
                         <!--  NEW OR UPDATED  -->
                         <div class="row">
-                            <div class="input-field col s12 settings-controller-action">
+                            <div class="input-field col s12">
                                 <div class="switch">
                                     <label for="new_updated_controller">
                                         NEW
@@ -152,7 +152,7 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="fas fa-globe prefix"></i>
-                                <input id="controller-address" name="controller-address" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                <input id="controller-address" name="controller-address" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
                                 <label for="controller-address">ADDRESS</label>
                             </div>
                         </div>

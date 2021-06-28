@@ -105,7 +105,7 @@ body {
 
 .container-home {
     height: 100%;
-    margin: 12rem 0rem;
+    margin: 3rem 0rem;
 }
 
 .title-home h2 {
@@ -359,14 +359,6 @@ settings-heater-on,
     color: #fff;
 }
 
-.settings-scrollspy {
-    margin: 6rem 1.2rem;
-}
-
-.table-of-contents a {
-    font-size: 1.3rem;
-    font-weight: 400;
-}
 
 /**********************************************************************/
 /***                         Media Queries                          ***/
@@ -383,7 +375,7 @@ settings-heater-on,
 
 
     .container-home {
-        margin: 7rem 0rem;
+        margin: 0.8rem 0rem;
     }
 
     .card .card-action {

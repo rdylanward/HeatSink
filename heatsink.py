@@ -24,8 +24,8 @@ def index():
     if request.method == "POST":
         is_member = mongodb.db.members.find_one(
             {"username": request.form.get("username").lower()})
-        if is_member:
 
+        if is_member:
             # Check for the correct password
             if check_password_hash(is_member["password"], request.form.get(
                     "password")):
@@ -36,14 +36,16 @@ def index():
                     session["admin"] = False
 
                 # Reset heaters
-                session["populated"] = False
+                # session["populated"] = False
 
                 flash("Hello, " + session["member"] + ". Welcome back!")
 
                 return redirect(url_for("heaters"))
+
             else:
                 flash("Invalid username and/or password!")
                 return redirect(url_for("index"))
+
         else:
             # Incorrect username
             flash("Invalid username and/or password!")
@@ -56,7 +58,8 @@ def index():
 def logout():
     session.pop("member", None)
     session.pop("admin", None)
-    session.pop("populated", None)
+    # session.pop("populated", None)
+    session.pop("my_heaters", None)
     flash("You have been logged out...")
     return render_template("index.html")
 
@@ -148,41 +151,43 @@ def settings():
         controllers=controllers)
 
 
-@app.route("/actionMember/", methods=["GET", "POST"])
+@app.route("/settings", methods=["GET", "POST"])
 def actionMember():
     if request.method == "POST":
         # Initialise parameters
-        is_update = True if request.form.get("new_updated_member") else False
+        is_member_update = True if request.form.get(
+            "new_updated_member") else False
         username = request.form.get("member-username").lower()
         password = generate_password_hash(request.form.get("member-password"))
         is_admin = True if request.form.get("is_admin") else False
 
         # Set the criteria
-        value_dictionary = {
+        member_values = {
             "username": username,
             "password": password,
             "is_admin": is_admin
         }
 
-        if is_update:
+        if is_member_update:
             # Verify the member
             is_member = mongodb.db.members.find_one({"username": username})
 
             if is_member:
                 # Update existing document
                 mongodb.db.members.update(
-                    {"username": is_member["username"]}, value_dictionary)
+                    {"username": is_member["username"]}, member_values)
             else:
                 flash("Invalid member!")
                 return redirect(url_for("settings"))
 
         else:
             # insert new document
-            mongodb.db.members.insert_one(value_dictionary)
+            mongodb.db.members.insert_one(member_values)
 
         # Check to see if it worked
         specified_user = mongodb.db.members.find_one(
             {"username": username})
+
         if specified_user:
             if check_password_hash(specified_user[
                     "password"], request.form.get(
@@ -190,6 +195,7 @@ def actionMember():
                             "is_admin"] == is_admin:
                 flash("Member update/insert successful!")
                 session["admin"] = is_admin
+                return redirect(url_for("settings"))
             else:
                 flash("Member update/insert failed!")
                 return redirect(url_for("settings"))
@@ -200,44 +206,52 @@ def actionMember():
     return render_template("settings.html")
 
 
-@app.route("/actionController/", methods=["GET", "POST"])
+@app.route("/settings", methods=["GET", "POST"])
 def actionController():
     if request.method == "POST":
         # Initialise parameters
-        is_update = True if request.form.get(
+        is_controller_update = True if request.form.get(
             "new_updated_controller") else False
         name = request.form.get("controller-name").lower()
-        address = request.form.get("controller-address")
+        address = request.form.get("controller-address").lower()
 
         # Set the criteria
-        value_dictionary = {
+        controller_values = {
             "name": name,
             "address": address
         }
 
-        if is_update:
+        if is_controller_update:
             # Verify the controller
             is_controller = mongodb.db.controllers.find_one({"name": name})
 
             if is_controller:
                 # Update existing document
                 mongodb.db.controllers.update(
-                    {"_id": ObjectId(is_controller["_id"])}, value_dictionary)
+                    {"name": is_controller["name"]}, controller_values)
             else:
-                flash("Invalid controller name!")
+                flash("Invalid controller!")
                 return redirect(url_for("settings"))
 
         else:
-            # insert new document
-            mongodb.db.controllers.insert_one(value_dictionary)
+            # Check to see if the controller exists
+            is_existing = mongodb.db.controllers.find_one({"name": name})
+
+            if is_existing:
+                flash("Specified controller exists!")
+                return redirect(url_for("settings"))
+            else:
+                # insert new document
+                mongodb.db.controllers.insert_one(controller_values)
 
         # Check to see if it worked
         specified_controller = mongodb.db.controllers.find_one({"name": name})
+
         if specified_controller:
             if specified_controller["address"] == address:
-                flash("Controller update successful!")
+                flash("Controller update/insert successful!")
             else:
-                flash("Controller update failed!")
+                flash("Controller update/insert failed!")
                 return redirect(url_for("settings"))
         else:
             flash("Adding new controller failed!")
@@ -246,7 +260,7 @@ def actionController():
     return render_template("settings.html")
 
 
-@app.route("/actionHeater/", methods=["GET", "POST"])
+@app.route("/settings", methods=["GET", "POST"])
 def actionHeater():
     if request.method == "POST":
         # Initialise parameters
@@ -303,7 +317,7 @@ def actionHeater():
     return render_template("settings.html")
 
 
-@app.route("/actionGroup/", methods=["GET", "POST"])
+@app.route("/settings", methods=["GET", "POST"])
 def actionGroup():
 
     # Initialise parameters
@@ -319,7 +333,7 @@ def actionGroup():
     return render_template("settings.html")
 
 
-@app.route("/actionItems/", methods=["GET", "POST"])
+@app.route("/settings", methods=["GET", "POST"])
 def actionItems():
 
     # Initialise parameters
