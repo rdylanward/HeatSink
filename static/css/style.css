@@ -114,7 +114,7 @@ body {
 }
 
 .card .card-action:last-child {
-    border-radius: 0rem 0rem 0.5rem 0.5rem;
+    border-radius: 0.6rem;
 }
 
 .card-home {
@@ -123,6 +123,7 @@ body {
 }
 
 .card .card-content {
+    border-radius: 0.6rem;
     padding: 1.2rem 1.5rem;
 }
 
@@ -148,6 +149,7 @@ body {
 
 .card .card-action {
     border-top: 0rem;
+
     padding: 0rem auto 1.6rem auto;
 }
 
@@ -183,20 +185,15 @@ body {
     font-weight: 500;
 }
 
-.heater-card {
-    width: 25.2rem;
-    height: 28rem;
-}
-
 .heater-card-enabled-off {
     background-color: #f2f0e5;
-    box-shadow: 0 4px 8px 0 rgba(244, 67, 54, 0.6), 0 6px 20px 0 rgba(244, 67, 54, 0.59);
+    box-shadow: 0 4px 8px 0 rgba(244, 67, 54, 0.7), 0 6px 20px 0 rgba(244, 67, 54, 0.69);
     margin: 3rem 0rem;
 }
 
 .heater-card-enabled-on {
     background-color: #f2f0e5;
-    box-shadow: 0 4px 8px 0 rgba(76, 175, 80, 0.6), 0 6px 20px 0 rgba(76, 175, 80, 0.59);
+    box-shadow: 0 4px 8px 0 rgba(76, 175, 80, 0.7), 0 6px 20px 0 rgba(76, 175, 80, 0.69);
     margin: 3rem 0rem;
 }
 
@@ -279,6 +276,10 @@ body {
     margin-top: 2rem;
 }
 
+.settings-items-instructions h5 {
+    margin-bottom: 1.9rem;
+}
+
 .settings-member-user,
 .settings-member-type,
 .settings-member-submit,
@@ -299,8 +300,7 @@ settings-heater-on,
     margin-top: 0.9rem;
 }
 
-.settings-group-heater,
-.settings-items-username {
+.settings-group-heater {
     margin-top: 2.2rem;
 }
 
@@ -378,17 +378,6 @@ settings-heater-on,
     .card .card-action {
         border-top: 0rem;
         padding: 0rem 4rem 1.6rem 4rem;
-    }
-
-
-    /*****************/
-    /***  HEATERS  ***/
-    /*****************/
-
-
-    .heater-card {
-        width: 25.2rem;
-        height: 28rem;
     }
 
 }

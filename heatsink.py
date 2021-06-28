@@ -1,4 +1,4 @@
-import os, paramiko
+import os
 from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -103,28 +103,30 @@ def heaters():
     return render_template("heaters.html")
 
 
-@app.route("/heaterSwitch/<name>&<controller>&<relay>&<is_on>", methods=[
-    "GET", "POST"])
-def heaterSwitch(name, controller, relay, is_on):
+@app.route("/heaterSwitch/<name>", methods=["GET", "POST"])
+def heaterSwitch(name):
 
-    # Initialise parameters
-    power = 0 if is_on else 1
+    # Simulate control of the heater
+    heater = mongodb.db.heaters.find_one({"name": name.lower()})
 
-    # Get the controller address
-    controller_details = mongodb.db.controllers.find_one({"name": controller})
-    address = controller_details.address
+    # Check if the heater is on
+    new_status = False if heater["is_on"] else True
 
-    connection = paramiko.SSHClient()
-    connection.load_system_host_keys()
-    connection.connect(
-        address,
-        username=os.environ.get("HS_USER"),
-        password=os.environ.get("HS_PASS"))
-    connection.exec_command(
-        '/home/hsa16052021/pimoroni/automationhat/hsa/relay.py ' +
-        relay + ' ' + power)
+    # Set the criteria
+    value_dictionary = {
+        "name": heater["name"],
+        "location": heater["location"],
+        "controller": heater["controller"],
+        "relay": int(heater["relay"]),
+        "is_enabled": heater["is_enabled"],
+        "is_on": new_status
+    }
 
-    return render_template("heaters.html")
+    # Update existing document
+    mongodb.db.heaters.update(
+        {"name": heater["name"]}, value_dictionary)
+
+    return redirect(url_for("heaters"))
 
 
 @app.route("/settings", methods=["GET", "POST"])
@@ -151,8 +153,8 @@ def actionMember():
     if request.method == "POST":
         # Initialise parameters
         is_update = True if request.form.get("new_updated_member") else False
-        username = request.form.get("username").lower()
-        password = generate_password_hash(request.form.get("password"))
+        username = request.form.get("member-username").lower()
+        password = generate_password_hash(request.form.get("member-password"))
         is_admin = True if request.form.get("is_admin") else False
 
         # Set the criteria
@@ -166,9 +168,14 @@ def actionMember():
             # Verify the member
             is_member = mongodb.db.members.find_one({"username": username})
 
-            # Update existing document
-            mongodb.db.members.update(
-                {"username": is_member.username}, value_dictionary)
+            if is_member:
+                # Update existing document
+                mongodb.db.members.update(
+                    {"username": is_member.username}, value_dictionary)
+            else:
+                flash("Invalid member!")
+                return redirect(url_for("settings"))
+                
         else:
             # insert new document
             mongodb.db.members.insert_one(value_dictionary)
@@ -177,9 +184,10 @@ def actionMember():
         specified_user = mongodb.db.members.find_one(
             {"username": username})
         if specified_user:
-            if check_password_hash(
-                specified_user.password,
-                    password) and specified_user.is_admin == is_admin:
+            if check_password_hash(specified_user[
+                    "password"], request.form.get(
+                        "password")) and specified_user[
+                            "is_admin"] == is_admin:
                 flash("Member update successful!")
                 session["admin"] = is_admin
             else:
@@ -214,7 +222,7 @@ def actionController():
             if is_controller:
                 # Update existing document
                 mongodb.db.controllers.update(
-                    {"_id": ObjectId(is_controller._id)}, value_dictionary)
+                    {"_id": ObjectId(is_controller["_id"])}, value_dictionary)
             else:
                 flash("Invalid controller name!")
                 return redirect(url_for("settings"))
@@ -226,7 +234,7 @@ def actionController():
         # Check to see if it worked
         specified_controller = mongodb.db.controllers.find_one({"name": name})
         if specified_controller:
-            if specified_controller.address == address:
+            if specified_controller["address"] == address:
                 flash("Controller update successful!")
             else:
                 flash("Controller update failed!")
@@ -315,35 +323,39 @@ def actionGroup():
 def actionItems():
 
     # Initialise parameters
+    is_member_delete = True if request.form.get("delete-member") else False
     delete_member = request.form.get("delete-user")
+    is_heater_delete = True if request.form.get("delete-heaters") else False
     delete_heater = request.form.get("delete-heater")
+    is_controller_delete = True if request.form.get(
+        "delete-controllers") else False
     delete_controller = request.form.get("delete-controller")
 
     # Delete member
-    if delete_member:
+    if is_member_delete:
         # Find member
-        is_member = mongodb.db.find_one({"username": delete_member})
+        is_member = mongodb.db.members.find_one({"username": delete_member})
 
         # Remove member
         if is_member:
-            mongodb.db.delete_one({"_id": ObjectId(is_member._id)})
+            mongodb.db.members.delete_one({"username": is_member["username"]})
             flash("Member deleted!")
         else:
             flash("Invalid member!")
             return redirect(url_for("settings"))
 
     # Delete heater
-    elif delete_heater:
+    elif is_heater_delete:
         # Find heater
         is_heater = mongodb.db.heaters.find_one({"name": delete_heater})
 
         # Remove heater
         if is_heater:
-            mongodb.db.heaters.delete_one({"_id": ObjectId(is_heater._id)})
+            mongodb.db.heaters.remove({"_id": ObjectId(is_heater._id)})
 
             # Remove associated member group
             for collection_name in mongodb.db.list_collection_names():
-                if (is_heater.name + "_member") in collection_name:
+                if (is_heater["name"] + "_member") in collection_name:
                     collection_to_drop = mongodb.db[collection_name]
                     collection_to_drop.drop()
             flash("Heater deleted!")
@@ -352,7 +364,7 @@ def actionItems():
             return redirect(url_for("settings"))
 
     # Delete controller
-    elif delete_controller:
+    elif is_controller_delete:
         # Find controller
         is_controller = mongodb.db.controllers.find_one(
             {"name": delete_controller})

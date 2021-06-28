@@ -15,7 +15,7 @@
 
         <!--  SETTINGS TITLE  -->
         <div class="row id="settings-title">
-            <div class="col amber-text text-lighten-2">
+            <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 amber-text text-lighten-2">
                 <h2 class="left-align">SETTINGS</h2>
             </div>
         </div>
@@ -23,13 +23,13 @@
 
         <!--  SETTINGS FLASH  -->
         <div class="row">
-            <div class="col red-text center-align id="settings-flash"">
+            <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 red-text center-align id="settings-flash"">
 
                 <!--  DISPLAY FLASHED MESSAGES  -->
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
-                        <p class="center-align red-text flash-messages">{{ message }}</p>
+                        <h5 class="center-align red-text flash-messages">{{ message }}</h5>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
@@ -69,8 +69,8 @@
                         <div class="row settings-member-user">
                             <div class="input-field col s12">
                                 <i class="fas fa-user prefix"></i>
-                                <input id="username" name="username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
-                                <label for="username">USERNAME</label>
+                                <input id="member-username" name="member-username" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                <label for="member-username">USERNAME</label>
                             </div>
                         </div>
 
@@ -78,8 +78,8 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="fas fa-key prefix"></i>
-                                <input id="password" name="password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
-                                <label for="password">PASSWORD</label>
+                                <input id="member-password" name="member-password" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                <label for="member-password">PASSWORD</label>
                             </div>
                         </div>
 
@@ -362,12 +362,40 @@
                 <div class="col s12 white-text" id="settings-action-items">
                     <form class="col s12 method="POST" action="{{ url_for('actionItems') }}">
 
+                        <!--  DELETE MEMBER  -->
+                        <div class="row">
+                            <div class="input-field col s12 valign-wrapper">
+                                <div class="switch">
+                                    <label for="delete_member">
+                                        KEEP                                       
+                                        <input type="checkbox" id="delete_member" name="delete_member">
+                                        <span class="lever"></span>
+                                        DELETE
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
                         <!--  ENTER MEMBER NAME  -->
-                        <div class="row settings-items-username">
-                            <div class="input-field col s12">
+                        <div class="row">
+                            <div class="input-field col s12 settings-items-username">
                                 <i class="fas fa-user prefix"></i>
-                                <input id="delete-user" name="delete-user" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text" required>
+                                <input id="delete-user" name="delete-user" type="text" minlength="2" pattern="[a-zA-Z0-9.-_]{2,}" class="validate white-text">
                                 <label for="delete-user">USERNAME</label>
+                            </div>
+                        </div>
+
+                        <!--  DELETE HEATER  -->
+                        <div class="row">
+                            <div class="input-field col s12 valign-wrapper">
+                                <div class="switch">
+                                    <label for="delete_heaters">
+                                        KEEP                                       
+                                        <input type="checkbox" id="delete_heaters" name="delete_heaters">
+                                        <span class="lever"></span>
+                                        DELETE
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
@@ -375,8 +403,22 @@
                         <div class="row">
                             <div class="input-field col s12 settings-items-heater">
                                 <i class="fas fa-burn prefix"></i>
-                                <input id="delete-heater" name="delete-heater" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                <input id="delete-heater" name="delete-heater" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text">
                                 <label for="delete-heater">HEATER</label>
+                            </div>
+                        </div>
+
+                        <!--  DELETE CONTROLLER  -->
+                        <div class="row">
+                            <div class="input-field col s12 valign-wrapper">
+                                <div class="switch">
+                                    <label for="delete_controllers">
+                                        KEEP                                       
+                                        <input type="checkbox" id="delete_controllers" name="delete_controllers">
+                                        <span class="lever"></span>
+                                        DELETE
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
@@ -384,7 +426,7 @@
                         <div class="row">
                             <div class="input-field col s12 settings-items-controller">
                                 <i class="fas fa-microchip prefix"></i>
-                                <input id="delete-controller" name="delete-controller" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text" required>
+                                <input id="delete-controller" name="delete-controller" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text">
                                 <label for="delete-controller">CONTROLLER</label>
                             </div>
                         </div>

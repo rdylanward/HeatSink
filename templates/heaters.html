@@ -4,7 +4,7 @@
 <!--  HEATERS CONTENT  -->
 <div class="row container-heaters">
     <div class="row">
-        <div class="col s10 offset-s1 m8 offset-m1 l4 offset-l4 center-align white-text">
+        <div class="col s10 offset-s1 m8 offset-m2 l4 offset-l4 center-align white-text">
             <p class="heaters-greeting">Logged in as: {{ session.member }}</p>
         </div>
     </div>
@@ -17,7 +17,7 @@
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                    <p class="center-align red-text flash-messages">{{ message }}</p>
+                    <h5 class="center-align red-text flash-messages">{{ message }}</h5>
                     {% endfor %}
                 {% endif %}
             {% endwith %}
@@ -30,7 +30,7 @@
     <div class="row">
         {% for my_heater in session["my_heaters"] %}
 
-        <div class="col s10 offset-s1 m8 offset-m1">
+        <div class="col s10 offset-s1 m4 offset-m2">
             {% if my_heater.is_enabled %}
                 {% if my_heater.is_on %}
                 <div class="card blue-grey-text text-darken-4 heater-card heater-card-enabled-on">
@@ -83,10 +83,10 @@
                             {% if my_heater.is_enabled %}
                                 {% if my_heater.is_on %}
                                 <!-- button type="submit" class="col waves-effect waves-red center-align btn-flat heater-status heater-card-on">ON</button -->
-                                <a href="{{ url_for('heaterSwitch', name=my_heater.name, controller=my_heater.controller, relay=my_heater.relay, is_on=my_heater.is_on) }}" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-darken-4 heater-status heater-card-on">ON</a>
+                                <a href="{{ url_for('heaterSwitch', name=my_heater.name) }}" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-darken-4 heater-status heater-card-on">ON</a>
                                 {% else %}
                                 <!-- button type="submit" class="col waves-effect waves-red center-align btn-flat heater-status heater-card-off">OFF</button -->
-                                <a href="{{ url_for('heaterSwitch', name=my_heater.name, controller=my_heater.controller, relay=my_heater.relay, is_on=my_heater.is_on) }}" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-darken-4 heater-status heater-card-off">OFF</a>
+                                <a href="{{ url_for('heaterSwitch', name=my_heater.name) }}" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-darken-4 heater-status heater-card-off">OFF</a>
                                 {% endif %}
                             {% else %}
                             <a href="#" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-lighten-4 heater-status heater-card-off-disabled">OFF</a>
