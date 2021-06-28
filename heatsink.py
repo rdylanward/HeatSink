@@ -171,11 +171,11 @@ def actionMember():
             if is_member:
                 # Update existing document
                 mongodb.db.members.update(
-                    {"username": is_member.username}, value_dictionary)
+                    {"username": is_member["username"]}, value_dictionary)
             else:
                 flash("Invalid member!")
                 return redirect(url_for("settings"))
-                
+
         else:
             # insert new document
             mongodb.db.members.insert_one(value_dictionary)
@@ -186,12 +186,12 @@ def actionMember():
         if specified_user:
             if check_password_hash(specified_user[
                     "password"], request.form.get(
-                        "password")) and specified_user[
+                        "member-password")) and specified_user[
                             "is_admin"] == is_admin:
-                flash("Member update successful!")
+                flash("Member update/insert successful!")
                 session["admin"] = is_admin
             else:
-                flash("Member update failed!")
+                flash("Member update/insert failed!")
                 return redirect(url_for("settings"))
         else:
             flash("Adding new member failed!")
