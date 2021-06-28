@@ -30,14 +30,9 @@ def index():
             if check_password_hash(is_member["password"], request.form.get(
                     "password")):
                 session["member"] = is_member["username"].lower()
-                if is_member["is_admin"]:
-                    session["admin"] = True
-                else:
-                    session["admin"] = False
+                session["admin"] = True if is_member["is_admin"] else False
 
-                # Reset heaters
-                # session["populated"] = False
-
+                # Welcome the member
                 flash("Hello, " + session["member"] + ". Welcome back!")
 
                 return redirect(url_for("heaters"))
@@ -58,9 +53,8 @@ def index():
 def logout():
     session.pop("member", None)
     session.pop("admin", None)
-    # session.pop("populated", None)
     session.pop("my_heaters", None)
-    flash("You have been logged out...")
+    session.pop("_flashes", None)
     return render_template("index.html")
 
 
@@ -116,7 +110,7 @@ def heaterSwitch(name):
     new_status = False if heater["is_on"] else True
 
     # Set the criteria
-    value_dictionary = {
+    switch_values = {
         "name": heater["name"],
         "location": heater["location"],
         "controller": heater["controller"],
@@ -127,7 +121,7 @@ def heaterSwitch(name):
 
     # Update existing document
     mongodb.db.heaters.update(
-        {"name": heater["name"]}, value_dictionary)
+        {"name": heater["name"]}, switch_values)
 
     return redirect(url_for("heaters"))
 
@@ -190,8 +184,7 @@ def actionMember():
 
         if specified_user:
             if check_password_hash(specified_user[
-                    "password"], request.form.get(
-                        "member-password")) and specified_user[
+                    "password"], password) and specified_user[
                             "is_admin"] == is_admin:
                 flash("Member update/insert successful!")
                 session["admin"] = is_admin
@@ -264,16 +257,17 @@ def actionController():
 def actionHeater():
     if request.method == "POST":
         # Initialise parameters
-        is_update = True if request.form.get("new_updated_heater") else False
+        is_heater_update = True if request.form.get(
+            "new_updated_heater") else False
         name = request.form.get("heater-name").lower()
-        location = request.form.get("heater-location")
-        controller = request.form.get("heater-controller")
+        location = request.form.get("heater-location").lower()
+        controller = request.form.get("heater-controller").lower()
         relay = request.form.get("heater-relay")
         is_enabled = True if request.form.get("is_enabled") else False
         is_on = True if request.form.get("is_on") else False
 
         # Set the criteria
-        value_dictionary = {
+        heater_values = {
             "name": name,
             "location": location,
             "controller": controller,
@@ -282,21 +276,21 @@ def actionHeater():
             "is_on": is_on
         }
 
-        if is_update:
+        if is_heater_update:
             # Verify the controller
             is_heater = mongodb.db.heaters.find_one({"name": name})
 
             if is_heater:
                 # Update existing document
                 mongodb.db.controllers.update(
-                    {"_id": ObjectId(is_heater._id)}, value_dictionary)
+                    {"name": name}, heater_values)
             else:
-                flash("Invalid heaters name!")
+                flash("Invalid heater!")
                 return redirect(url_for("settings"))
 
         else:
             # insert new document
-            mongodb.db.controllers.insert_one(value_dictionary)
+            mongodb.db.controllers.insert_one(heater_values)
 
             # Create the member group
             collection_name = name + "_member"
@@ -305,7 +299,7 @@ def actionHeater():
         # Check to see if it worked
         specified_heater = mongodb.db.heaters.find_one({"name": name})
         if specified_heater:
-            if specified_heater == value_dictionary:
+            if specified_heater == heater_values:
                 flash("Heater update successful!")
             else:
                 flash("Heater update failed!")
