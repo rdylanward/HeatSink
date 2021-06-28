@@ -6,30 +6,30 @@
     <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 settings-objects">
 
         <!--  MEMBER ID  -->
-        <div class="row settings-member-id">
-            <div class="col white-text">
-                    <h5 class="">Logged in as: {{ session.member }}</h5>
+        <div class="row">
+            <div class="col s12 white-text settings-member-id">
+                <h5 class="">Logged in as: {{ session.member }}</h5>
             </div>
         </div>
         <!--  /MEMBER ID  -->
 
         <!--  SETTINGS TITLE  -->
-        <div class="row id="settings-title">
-            <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 amber-text text-lighten-2">
-                <h2 class="left-align">SETTINGS</h2>
+        <div class="row">
+            <div class="col s12 center-align amber-text text-lighten-2 settings-title">
+                <h2>SETTINGS</h2>
             </div>
         </div>
         <!--  /SETTINGS TITLE  -->
 
         <!--  SETTINGS FLASH  -->
         <div class="row">
-            <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 red-text center-align id="settings-flash"">
+            <div class="col red-text settings-flash">
 
                 <!--  DISPLAY FLASHED MESSAGES  -->
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
-                        <h4 class="center-align red-text flash-messages">{{ message }}</h4>
+                        <p class="center-align red-text flash-messages">{{ message }}</p>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
