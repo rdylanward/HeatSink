@@ -145,7 +145,7 @@ def settings():
         controllers=controllers)
 
 
-@app.route("/settings", methods=["GET", "POST"])
+@app.route("/actionMember", methods=["GET", "POST"])
 def actionMember():
     if request.method == "POST":
         # Initialise parameters
@@ -154,6 +154,7 @@ def actionMember():
         username = request.form.get("member-username").lower()
         password = generate_password_hash(request.form.get("member-password"))
         is_admin = True if request.form.get("is_admin") else False
+        verify_password = request.form.get("member-password")
 
         # Set the criteria
         member_values = {
@@ -168,8 +169,8 @@ def actionMember():
 
             if is_member:
                 # Update existing document
-                mongodb.db.members.update(
-                    {"username": is_member["username"]}, member_values)
+                mongodb.db.members.replace_one(
+                    {"_id": ObjectId(is_member["_id"])}, member_values)
             else:
                 flash("Invalid member!")
                 return redirect(url_for("settings"))
@@ -184,11 +185,10 @@ def actionMember():
 
         if specified_user:
             if check_password_hash(specified_user[
-                    "password"], password) and specified_user[
+                    "password"], verify_password) and specified_user[
                             "is_admin"] == is_admin:
                 flash("Member update/insert successful!")
                 session["admin"] = is_admin
-                return redirect(url_for("settings"))
             else:
                 flash("Member update/insert failed!")
                 return redirect(url_for("settings"))
@@ -199,7 +199,7 @@ def actionMember():
     return render_template("settings.html")
 
 
-@app.route("/settings", methods=["GET", "POST"])
+@app.route("/actionController", methods=["GET", "POST"])
 def actionController():
     if request.method == "POST":
         # Initialise parameters
@@ -220,8 +220,9 @@ def actionController():
 
             if is_controller:
                 # Update existing document
-                mongodb.db.controllers.update(
-                    {"name": is_controller["name"]}, controller_values)
+                mongodb.db.controllers.replace_one(
+                    {"_id": ObjectId(
+                        is_controller["_id"])}, controller_values)
             else:
                 flash("Invalid controller!")
                 return redirect(url_for("settings"))
@@ -253,7 +254,7 @@ def actionController():
     return render_template("settings.html")
 
 
-@app.route("/settings", methods=["GET", "POST"])
+@app.route("/actionHeater", methods=["GET", "POST"])
 def actionHeater():
     if request.method == "POST":
         # Initialise parameters
@@ -282,8 +283,8 @@ def actionHeater():
 
             if is_heater:
                 # Update existing document
-                mongodb.db.controllers.update(
-                    {"name": name}, heater_values)
+                mongodb.db.controllers.replace_one(
+                    {"_id": ObjectId(name)}, heater_values)
             else:
                 flash("Invalid heater!")
                 return redirect(url_for("settings"))
@@ -305,7 +306,7 @@ def actionHeater():
                 flash("Heater update failed!")
                 return redirect(url_for("settings"))
         else:
-            flash("Adding new controller failed!")
+            flash("Adding new heater failed!")
             return redirect(url_for("settings"))
 
     return render_template("settings.html")
