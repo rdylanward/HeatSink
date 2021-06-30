@@ -49,7 +49,7 @@
             <!--  ACTION MEMBER  -->
             <div class="row">
                 <div class="col s12 white-text" id="settings-action-member">
-                    <form class="col s12" method="POST" action="{{ url_for('actionMember') }}">
+                    <form class="col s12" method="POST" action="{{ url_for('settings') }}">
 
                         <!--  NEW OR UPDATED  -->
                         <div class="row">
@@ -99,7 +99,7 @@
 
                         <!--  SUBMIT MEMBER DATA  -->
                         <div class="row settings-member-submit">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                            <button type="submit" name="member-button" value="member-button" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                 <i class="fas fa-database prefix"></i>
                                 APPLY
                             </button>
@@ -123,7 +123,7 @@
             <!--  ACTION CONTROLLER  -->
             <div class="row">
                 <div class="col s12 white-text">
-                    <form class="col s12 method="POST" action="{{ url_for('actionController') }}">
+                    <form class="col s12" method="POST" action="{{ url_for('settings') }}">
 
                         <!--  NEW OR UPDATED  -->
                         <div class="row">
@@ -159,7 +159,7 @@
 
                         <!--  SUBMIT CONTROLLER DATA  -->
                         <div class="row settings-controller-submit">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                            <button type="submit" name="controller-button" value="controller-button" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                 <i class="fas fa-database prefix"></i>
                                 APPLY
                             </button>
@@ -183,7 +183,7 @@
             <!--  ACTION HEATER  -->
             <div class="row">
                 <div class="col s12 white-text" id="settings-action-heater">
-                    <form class="col s12 method="POST" action="{{ url_for('actionHeater') }}">
+                    <form class="col s12" method="POST" action="{{ url_for('settings') }}">
 
                         <!--  NEW OR UPDATED  -->
                         <div class="row">
@@ -275,7 +275,7 @@
 
                         <!--  SUBMIT HEATER DATA  -->
                         <div class="row settings-heater-submit">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                            <button type="submit" name="heater-button" value="heater-button" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                 <i class="fas fa-database prefix"></i>
                                 APPLY
                             </button>
@@ -299,7 +299,21 @@
             <!--  ACTION GROUP  -->
             <div class="row">
                 <div class="col s12 white-text" id="settings-action-group">
-                    <form class="col s12 method="POST" action="{{ url_for('actionGroup') }}">
+                    <form class="col s12" method="POST" action="{{ url_for('settings') }}">
+
+                        <!--  ADD OR REMOVE  -->
+                        <div class="row">
+                            <div class="input-field col s12 settings-group-action">
+                                <div class="switch">
+                                    <label for="add_remove_group">
+                                        ADD
+                                        <input type="checkbox" id="add_remove_group" name="add_remove_group">
+                                        <span class="lever"></span>
+                                        REMOVE
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
                         <!--  SELECT HEATER  -->
                         <div class="row">
@@ -319,7 +333,7 @@
                         <div class="row">
                             <div class="input-field col s12 settings-group-username">
                                 <i class="fas fa-user prefix"></i>
-                                <select id="group-member" name="group-member class="validate" required>
+                                <select id="group-member" name="group-member" class="validate" required>
                                     <option class="white-text" value="" disabled selected></option>
                                     {% for member in members %}
                                         <option value="{{ member.username }}">{{ member.username }}</option>
@@ -331,7 +345,7 @@
 
                         <!--  SUBMIT HEATER GROUP DATA  -->
                         <div class="row settings-group-submit">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                            <button type="submit" name="groups-button" value="groups-button" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                 <i class="fas fa-database prefix"></i>
                                 APPLY
                             </button>
@@ -360,7 +374,7 @@
             <!--  ACTION ITEMS  -->
             <div class="row">
                 <div class="col s12 white-text" id="settings-action-items">
-                    <form class="col s12 method="POST" action="{{ url_for('actionItems') }}">
+                    <form class="col s12" method="POST" action="{{ url_for('settings') }}">
 
                         <!--  DELETE MEMBER  -->
                         <div class="row">
@@ -403,7 +417,7 @@
                         <div class="row">
                             <div class="input-field col s12 settings-items-heater">
                                 <i class="fas fa-burn prefix"></i>
-                                <input id="delete-heater" name="delete-heater" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text">
+                                <input id="delete-heater" name="delete-heater" type="text" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text">
                                 <label for="delete-heater">HEATER</label>
                             </div>
                         </div>
@@ -426,14 +440,14 @@
                         <div class="row">
                             <div class="input-field col s12 settings-items-controller">
                                 <i class="fas fa-microchip prefix"></i>
-                                <input id="delete-controller" name="delete-controller" type="password" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text">
+                                <input id="delete-controller" name="delete-controller" type="text" minlength="9" pattern="[a-zA-Z0-9._%+-$@*^!#|~'{}[]=£&€]{9,}" class="validate white-text">
                                 <label for="delete-controller">CONTROLLER</label>
                             </div>
                         </div>
 
                         <!--  SUBMIT ITEM DATA  -->
                         <div class="row settings-items-submit">
-                            <button type="submit" class="col s12 waves-effect waves-red center-align btn-flat white-text">
+                            <button type="submit" name="items-button" value="items-button" class="col s12 waves-effect waves-red center-align btn-flat white-text">
                                 <i class="fas fa-database prefix"></i>
                                 APPLY
                             </button>

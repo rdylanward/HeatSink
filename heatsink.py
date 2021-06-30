@@ -129,6 +129,304 @@ def heaterSwitch(name):
 @app.route("/settings", methods=["GET", "POST"])
 def settings():
 
+    # Method POST button code provided by Andrew Clark(
+    # https://stackoverflow.com/questions/66618070/
+    # flask-differentiating-between-different-post-requests)
+    # and adjusted for my requirements
+
+    if request.method == "POST":
+
+        # Process member actions
+        if 'member-button' in request.form:
+
+            # Initialise parameters
+            is_member_update = True if request.form.get(
+                "new_updated_member") else False
+            username = request.form.get("member-username").lower()
+            password = generate_password_hash(
+                request.form.get("member-password"))
+            is_admin = True if request.form.get("is_admin") else False
+            verify_password = request.form.get("member-password")
+
+            # Set the criteria
+            member_values = {
+                "username": username,
+                "password": password,
+                "is_admin": is_admin
+            }
+
+            # Update the member document
+            if is_member_update:
+
+                # Verify the member
+                is_member = mongodb.db.members.find_one({"username": username})
+
+                if is_member:
+                    # Update existing document
+                    mongodb.db.members.replace_one(
+                        {"_id": ObjectId(is_member["_id"])}, member_values)
+                else:
+                    flash("Invalid member!")
+                    return redirect(url_for("settings"))
+
+            # Insert a new member document
+            else:
+
+                # Check to see if the controller exists
+                member_exists = mongodb.db.controllers.find_one(
+                    {"username": username})
+
+                if member_exists:
+                    flash("Specified member already exists!")
+                    return redirect(url_for("settings"))
+                else:
+                    # insert new document
+                    mongodb.db.members.insert_one(member_values)
+
+            # Check to see if it worked
+
+            specified_user = mongodb.db.members.find_one(
+                {"username": username})
+
+            if specified_user:
+                if check_password_hash(specified_user[
+                        "password"], verify_password) and specified_user[
+                                "is_admin"] == is_admin:
+                    flash("Member update/insert successful!")
+                    session["admin"] = is_admin
+                else:
+                    flash("Member update/insert failed!")
+                    return redirect(url_for("settings"))
+            else:
+                flash("Adding new member failed!")
+                return redirect(url_for("settings"))
+
+        # Process controller actions
+        elif 'controller-button' in request.form:
+
+            # Initialise parameters
+            is_controller_update = True if request.form.get(
+                "new_updated_controller") else False
+            controller_name = request.form.get("controller-name").lower()
+            controller_address = request.form.get("controller-address").lower()
+
+            # Set the criteria
+            controller_values = {
+                "name": controller_name,
+                "address": controller_address
+            }
+
+            if is_controller_update:
+
+                # Verify the controller
+                is_controller = mongodb.db.controllers.find_one(
+                    {"name": controller_name})
+
+                if is_controller:
+                    # Update existing document
+                    mongodb.db.controllers.replace_one(
+                        {"_id": ObjectId(
+                            is_controller["_id"])}, controller_values)
+                else:
+                    flash("Invalid controller!")
+                    return redirect(url_for("settings"))
+
+            else:
+
+                # Check to see if the controller exists
+                is_existing = mongodb.db.controllers.find_one(
+                    {"name": controller_name})
+
+                if is_existing:
+                    flash("Specified controller exists!")
+                    return redirect(url_for("settings"))
+                else:
+                    # insert new document
+                    mongodb.db.controllers.insert_one(controller_values)
+
+            # Check to see if it worked
+            specified_controller = mongodb.db.controllers.find_one(
+                {"name": controller_name})
+
+            if specified_controller:
+                if specified_controller["address"] == controller_address:
+                    flash("Controller update/insert successful!")
+                else:
+                    flash("Controller update/insert failed!")
+                    return redirect(url_for("settings"))
+            else:
+                flash("Adding new controller failed!")
+                return redirect(url_for("settings"))
+
+        # Process heater actions
+        elif 'heater-button' in request.form:
+
+            # Initialise parameters
+            is_heater_update = True if request.form.get(
+                "new_updated_heater") else False
+            heater_name = request.form.get("heater-name").lower()
+            heater_location = request.form.get("heater-location").lower()
+            heater_controller = request.form.get("heater-controller").lower()
+            heater_relay = request.form.get("heater-relay")
+            is_enabled = True if request.form.get("is_enabled") else False
+            is_on = True if request.form.get("is_on") else False
+
+            # Set the criteria
+            heater_values = {
+                "name": heater_name,
+                "location": heater_location,
+                "controller": heater_controller,
+                "relay": int(heater_relay),
+                "is_enabled": is_enabled,
+                "is_on": is_on
+            }
+
+            # Update the heater document
+            if is_heater_update:
+                # Verify the controller
+                is_heater = mongodb.db.heaters.find_one({"name": heater_name})
+
+                if is_heater:
+                    # Update existing document
+                    mongodb.db.heaters.replace_one(
+                        {"_id": ObjectId(heater_name)}, heater_values)
+                else:
+                    flash("Invalid heater!")
+                    return redirect(url_for("settings"))
+
+            # Insert a new heater document
+            else:
+                # Check to see if the heater exists
+                heater_exists = mongodb.db.heaters.find_one(
+                    {"name": heater_name})
+
+                if heater_exists:
+                    flash("Specified heater exists!")
+                    return redirect(url_for("settings"))
+                else:
+                    # insert new document
+                    mongodb.db.heaters.insert_one(heater_values)
+
+                    # Create the member group
+                    collection_name = heater_name + "_member"
+                    new_collection = mongodb.db[collection_name]
+                    new_collection.insert_one({"username": session["member"]})
+
+            # Check to see if it worked
+            specified_heater = mongodb.db.heaters.find_one(
+                {"name": heater_name})
+
+            if specified_heater:
+                if specified_heater == heater_values:
+                    flash("Heater update successful!")
+                else:
+                    flash("Heater update failed!")
+                    return redirect(url_for("settings"))
+
+            else:
+                flash("Adding new heater failed!")
+                return redirect(url_for("settings"))
+
+        # Process heater group actions
+        elif 'groups-button' in request.form:
+
+            # Initialise parameters
+            is_group_update = True if request.form.get(
+                "add_remove_group") else False
+            groups_heater = request.form.get("group-heater")
+            groups_username = request.form.get("group-member")
+
+            group_values = {
+                "username": groups_username
+            }
+
+            # Enumerate the collection
+            for collection_name in mongodb.db.list_collection_names():
+                if (groups_heater + "_members") in collection_name:
+                    collection_specified = mongodb.db[collection_name]
+
+                    if is_group_update:
+                        # Remove the member from the group
+                        collection_specified.delete_one(group_values)
+                    else:
+                        # Add the member to the group
+                        collection_specified.insert_one(group_values)
+
+            # Check to see if it worked
+            specified_group = collection_specified.find_one(
+                {"username": groups_username})
+
+            if specified_group:
+                flash("Member added to group!")
+            else:
+                flash("Member removed from group!")
+
+        # Process delete items actions
+        elif 'items-button' in request.form:
+
+            # Initialise parameters
+            is_member_delete = True if request.form.get(
+                "delete-member") else False
+            delete_member = request.form.get("delete-user")
+            is_heater_delete = True if request.form.get(
+                "delete-heaters") else False
+            delete_heater = request.form.get("delete-heater")
+            is_controller_delete = True if request.form.get(
+                "delete-controllers") else False
+            delete_controller = request.form.get("delete-controller")
+
+            # Delete member
+            if is_member_delete:
+                # Find member
+                is_member = mongodb.db.members.find_one(
+                    {"username": delete_member})
+
+                # Remove member
+                if is_member:
+                    mongodb.db.members.delete_one(
+                        {"username": is_member["username"]})
+                    flash("Member deleted!")
+                else:
+                    flash("Invalid member!")
+                    return redirect(url_for("settings"))
+
+            # Delete heater
+            elif is_heater_delete:
+                # Find heater
+                is_heater = mongodb.db.heaters.find_one(
+                    {"name": delete_heater})
+
+                # Remove heater
+                if is_heater:
+                    mongodb.db.heaters.remove_one(
+                        {"_id": ObjectId(is_heater._id)})
+
+                    # Remove associated member group
+                    for collection_name in mongodb.db.list_collection_names():
+                        if (is_heater["name"] + "_members") in collection_name:
+                            collection_to_drop = mongodb.db[collection_name]
+                            collection_to_drop.drop()
+                    flash("Heater deleted!")
+
+                else:
+                    flash("Invalid heater name!")
+                    return redirect(url_for("settings"))
+
+            # Delete controller
+            elif is_controller_delete:
+                # Find controller
+                is_controller = mongodb.db.controllers.find_one(
+                    {"name": delete_controller})
+
+                # Remove controller
+                if is_controller:
+                    mongodb.db.heaters.delete_one(
+                        {"_id": ObjectId(is_controller._id)})
+                    flash("Controller deleted!")
+                else:
+                    flash("Invalid controller name!")
+                    return redirect(url_for("settings"))
+
     # Retrieve member
     members = mongodb.db.members.find().sort("username", 1)
 
@@ -143,250 +441,6 @@ def settings():
         members=members,
         heaters=heaters,
         controllers=controllers)
-
-
-@app.route("/actionMember", methods=["GET", "POST"])
-def actionMember():
-    if request.method == "POST":
-        # Initialise parameters
-        is_member_update = True if request.form.get(
-            "new_updated_member") else False
-        username = request.form.get("member-username").lower()
-        password = generate_password_hash(request.form.get("member-password"))
-        is_admin = True if request.form.get("is_admin") else False
-        verify_password = request.form.get("member-password")
-
-        # Set the criteria
-        member_values = {
-            "username": username,
-            "password": password,
-            "is_admin": is_admin
-        }
-
-        if is_member_update:
-            # Verify the member
-            is_member = mongodb.db.members.find_one({"username": username})
-
-            if is_member:
-                # Update existing document
-                mongodb.db.members.replace_one(
-                    {"_id": ObjectId(is_member["_id"])}, member_values)
-            else:
-                flash("Invalid member!")
-                return redirect(url_for("settings"))
-
-        else:
-            # insert new document
-            mongodb.db.members.insert_one(member_values)
-
-        # Check to see if it worked
-        specified_user = mongodb.db.members.find_one(
-            {"username": username})
-
-        if specified_user:
-            if check_password_hash(specified_user[
-                    "password"], verify_password) and specified_user[
-                            "is_admin"] == is_admin:
-                flash("Member update/insert successful!")
-                session["admin"] = is_admin
-            else:
-                flash("Member update/insert failed!")
-                return redirect(url_for("settings"))
-        else:
-            flash("Adding new member failed!")
-            return redirect(url_for("settings"))
-
-    return render_template("settings.html")
-
-
-@app.route("/actionController", methods=["GET", "POST"])
-def actionController():
-    if request.method == "POST":
-        # Initialise parameters
-        is_controller_update = True if request.form.get(
-            "new_updated_controller") else False
-        name = request.form.get("controller-name").lower()
-        address = request.form.get("controller-address").lower()
-
-        # Set the criteria
-        controller_values = {
-            "name": name,
-            "address": address
-        }
-
-        if is_controller_update:
-            # Verify the controller
-            is_controller = mongodb.db.controllers.find_one({"name": name})
-
-            if is_controller:
-                # Update existing document
-                mongodb.db.controllers.replace_one(
-                    {"_id": ObjectId(
-                        is_controller["_id"])}, controller_values)
-            else:
-                flash("Invalid controller!")
-                return redirect(url_for("settings"))
-
-        else:
-            # Check to see if the controller exists
-            is_existing = mongodb.db.controllers.find_one({"name": name})
-
-            if is_existing:
-                flash("Specified controller exists!")
-                return redirect(url_for("settings"))
-            else:
-                # insert new document
-                mongodb.db.controllers.insert_one(controller_values)
-
-        # Check to see if it worked
-        specified_controller = mongodb.db.controllers.find_one({"name": name})
-
-        if specified_controller:
-            if specified_controller["address"] == address:
-                flash("Controller update/insert successful!")
-            else:
-                flash("Controller update/insert failed!")
-                return redirect(url_for("settings"))
-        else:
-            flash("Adding new controller failed!")
-            return redirect(url_for("settings"))
-
-    return render_template("settings.html")
-
-
-@app.route("/actionHeater", methods=["GET", "POST"])
-def actionHeater():
-    if request.method == "POST":
-        # Initialise parameters
-        is_heater_update = True if request.form.get(
-            "new_updated_heater") else False
-        name = request.form.get("heater-name").lower()
-        location = request.form.get("heater-location").lower()
-        controller = request.form.get("heater-controller").lower()
-        relay = request.form.get("heater-relay")
-        is_enabled = True if request.form.get("is_enabled") else False
-        is_on = True if request.form.get("is_on") else False
-
-        # Set the criteria
-        heater_values = {
-            "name": name,
-            "location": location,
-            "controller": controller,
-            "relay": int(relay),
-            "is_enabled": is_enabled,
-            "is_on": is_on
-        }
-
-        if is_heater_update:
-            # Verify the controller
-            is_heater = mongodb.db.heaters.find_one({"name": name})
-
-            if is_heater:
-                # Update existing document
-                mongodb.db.controllers.replace_one(
-                    {"_id": ObjectId(name)}, heater_values)
-            else:
-                flash("Invalid heater!")
-                return redirect(url_for("settings"))
-
-        else:
-            # insert new document
-            mongodb.db.controllers.insert_one(heater_values)
-
-            # Create the member group
-            collection_name = name + "_member"
-            mongodb.db.createCollection(collection_name)
-
-        # Check to see if it worked
-        specified_heater = mongodb.db.heaters.find_one({"name": name})
-        if specified_heater:
-            if specified_heater == heater_values:
-                flash("Heater update successful!")
-            else:
-                flash("Heater update failed!")
-                return redirect(url_for("settings"))
-        else:
-            flash("Adding new heater failed!")
-            return redirect(url_for("settings"))
-
-    return render_template("settings.html")
-
-
-@app.route("/settings", methods=["GET", "POST"])
-def actionGroup():
-
-    # Initialise parameters
-    heater = request.form.get("group-heater")
-    username = request.form.get("group-member")
-
-    # Add member to the heater
-    for collection_name in mongodb.db.list_collection_names():
-        if (heater + "_member") in collection_name:
-            collection_specified = mongodb.db[collection_name]
-            collection_specified.insert_one({"username": username})
-
-    return render_template("settings.html")
-
-
-@app.route("/settings", methods=["GET", "POST"])
-def actionItems():
-
-    # Initialise parameters
-    is_member_delete = True if request.form.get("delete-member") else False
-    delete_member = request.form.get("delete-user")
-    is_heater_delete = True if request.form.get("delete-heaters") else False
-    delete_heater = request.form.get("delete-heater")
-    is_controller_delete = True if request.form.get(
-        "delete-controllers") else False
-    delete_controller = request.form.get("delete-controller")
-
-    # Delete member
-    if is_member_delete:
-        # Find member
-        is_member = mongodb.db.members.find_one({"username": delete_member})
-
-        # Remove member
-        if is_member:
-            mongodb.db.members.delete_one({"username": is_member["username"]})
-            flash("Member deleted!")
-        else:
-            flash("Invalid member!")
-            return redirect(url_for("settings"))
-
-    # Delete heater
-    elif is_heater_delete:
-        # Find heater
-        is_heater = mongodb.db.heaters.find_one({"name": delete_heater})
-
-        # Remove heater
-        if is_heater:
-            mongodb.db.heaters.remove({"_id": ObjectId(is_heater._id)})
-
-            # Remove associated member group
-            for collection_name in mongodb.db.list_collection_names():
-                if (is_heater["name"] + "_member") in collection_name:
-                    collection_to_drop = mongodb.db[collection_name]
-                    collection_to_drop.drop()
-            flash("Heater deleted!")
-        else:
-            flash("Invalid heater name!")
-            return redirect(url_for("settings"))
-
-    # Delete controller
-    elif is_controller_delete:
-        # Find controller
-        is_controller = mongodb.db.controllers.find_one(
-            {"name": delete_controller})
-
-        # Remove controller
-        if is_controller:
-            mongodb.db.heaters.delete_one({"_id": ObjectId(is_controller._id)})
-            flash("Controller deleted!")
-        else:
-            flash("Invalid controller name!")
-            return redirect(url_for("settings"))
-
-    return render_template("settings.html")
 
 
 if __name__ == "__main__":
