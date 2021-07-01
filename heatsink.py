@@ -389,30 +389,46 @@ def settings():
 
                 # Remove member
                 if is_member:
-                    mongodb.db.members.remove_one(
+
+                    # Delete the member
+                    mongodb.db.members.delete_one(
                         {"_id": ObjectId(is_member["_id"])})
+
+                    # Remove the member from any groups
+                    for collection_name in mongodb.db.list_collection_names():
+                        collections = mongodb.db[collection_name]
+                        is_member_of = collections.find_one(
+                            {"username": delete_member})
+
+                        if is_member_of:
+                            collections.delete_one({"_id": ObjectId(
+                                is_member_of["_id"])})
+
                     flash("Member deleted!")
+
                 else:
                     flash("Invalid member!")
                     return redirect(url_for("settings"))
 
             # Delete heater
             elif is_heater_delete:
+
                 # Find heater
                 is_heater = mongodb.db.heaters.find_one(
                     {"name": delete_heater})
 
                 # Remove heater
                 if is_heater:
-                    mongodb.db.heaters.remove_one(
-                        {"_id": ObjectId(is_heater._id)})
+                    mongodb.db.heaters.delete_one(
+                        {"_id": ObjectId(is_heater["_id"])})
 
                     # Remove associated member group
                     for collection_name in mongodb.db.list_collection_names():
                         if (is_heater["name"] + "_members") in collection_name:
                             collection_to_drop = mongodb.db[collection_name]
                             collection_to_drop.drop()
-                    flash("Heater deleted!")
+
+                    flash("Heater & group deleted!")
 
                 else:
                     flash("Invalid heater name!")
@@ -426,8 +442,8 @@ def settings():
 
                 # Remove controller
                 if is_controller:
-                    mongodb.db.heaters.remove_one(
-                        {"_id": ObjectId(is_controller._id)})
+                    mongodb.db.heaters.delete_one(
+                        {"_id": ObjectId(is_controller["_id"])})
                     flash("Controller deleted!")
                 else:
                     flash("Invalid controller name!")
