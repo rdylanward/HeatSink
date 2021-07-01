@@ -366,8 +366,8 @@ def settings():
 
             # Initialise parameters
             is_member_delete = True if request.form.get(
-                "delete-member") else False
-            delete_member = request.form.get("delete-user")
+                "delete-members") else False
+            delete_member = request.form.get("delete-member")
             is_heater_delete = True if request.form.get(
                 "delete-heaters") else False
             delete_heater = request.form.get("delete-heater")
@@ -379,12 +379,12 @@ def settings():
             if is_member_delete:
                 # Find member
                 is_member = mongodb.db.members.find_one(
-                    {"username": delete_member})
+                    {"username": delete-member})
 
                 # Remove member
                 if is_member:
-                    mongodb.db.members.delete_one(
-                        {"username": is_member["username"]})
+                    mongodb.db.members.remove_one(
+                        {"_id": ObjectId(is_member["_id"])})
                     flash("Member deleted!")
                 else:
                     flash("Invalid member!")
@@ -420,7 +420,7 @@ def settings():
 
                 # Remove controller
                 if is_controller:
-                    mongodb.db.heaters.delete_one(
+                    mongodb.db.heaters.remove_one(
                         {"_id": ObjectId(is_controller._id)})
                     flash("Controller deleted!")
                 else:
