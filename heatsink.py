@@ -404,7 +404,16 @@ def settings():
                             collections.delete_one({"_id": ObjectId(
                                 is_member_of["_id"])})
 
-                    flash("Member deleted!")
+                    # Check to see if the member deleted
+                    member_deleted = mongodb.db. members.find_one(
+                        {"_id": ObjectId(is_member["_id"])})
+
+                    if member_deleted:
+                        flash("Member failed to delete!")
+                        return redirect(url_for("settings"))
+
+                    else:
+                        flash("Member deleted!")
 
                 else:
                     flash("Invalid member!")
@@ -428,7 +437,16 @@ def settings():
                             collection_to_drop = mongodb.db[collection_name]
                             collection_to_drop.drop()
 
-                    flash("Heater & group deleted!")
+                    # Check to see if the heater deleted
+                    heater_deleted = mongodb.db.heaters.find_one(
+                        {"_id": ObjectId(is_heater["_id"])})
+
+                    if heater_deleted:
+                        flash("Heater deletion failed!")
+                        return redirect(url_for("settings"))
+
+                    else:
+                        flash("Heater & group deleted!")
 
                 else:
                     flash("Invalid heater name!")
@@ -436,15 +454,27 @@ def settings():
 
             # Delete controller
             elif is_controller_delete:
+
                 # Find controller
                 is_controller = mongodb.db.controllers.find_one(
                     {"name": delete_controller})
 
                 # Remove controller
                 if is_controller:
-                    mongodb.db.heaters.delete_one(
+                    mongodb.db.controllers.delete_one(
                         {"_id": ObjectId(is_controller["_id"])})
-                    flash("Controller deleted!")
+
+                    # Check to see if it worked
+                    controller_deleted = mongodb.db.controllers.find_one(
+                        {"_id": ObjectId(is_controller["_id"])})
+
+                    if controller_deleted:
+                        flash("Controller deletion failed!")
+                        return redirect(url_for("settings"))
+
+                    else:
+                        flash("Controller deleted!")
+
                 else:
                     flash("Invalid controller name!")
                     return redirect(url_for("settings"))
