@@ -385,7 +385,7 @@ def settings():
             if is_member_delete:
                 # Find member
                 is_member = mongodb.db.members.find_one(
-                    {"username": delete-member})
+                    {"username": delete_member})
 
                 # Remove member
                 if is_member:
