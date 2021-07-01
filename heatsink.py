@@ -308,8 +308,8 @@ def settings():
                     mongodb.db.heaters.insert_one(heater_values)
 
                     # Create the member group
-                    collection_name = heater_name + "_member"
-                    new_collection = mongodb.db[collection_name]
+                    new_collection_name = heater_name + "_members"
+                    new_collection = mongodb.db[new_collection_name]
                     new_collection.insert_one({"username": session["member"]})
 
             # Check to see if it worked
@@ -318,9 +318,15 @@ def settings():
 
             if specified_heater:
                 if specified_heater == heater_values:
-                    flash("Heater update successful!")
+                    flash("Heater update/insert successful!")
+
+                    # Check for the heater group
+                    for collection_name in mongodb.db.list_collection_names():
+                        if new_collection_name in collection_name:
+                            flash("Heater group created!")
+
                 else:
-                    flash("Heater update failed!")
+                    flash("Heater update/insert failed!")
                     return redirect(url_for("settings"))
 
             else:
