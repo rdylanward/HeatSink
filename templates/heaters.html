@@ -40,7 +40,7 @@
             {% else %}
             <div class="card blue-grey-text text-lighten-4 heater-card-disabled">
             {% endif %}
-                <div class="card-content">
+                <div class="card-content heater-card-content">
                     <div class="row">
                         <div class="col left-align heater-card-label">
                             <h6>NAME</h6>
@@ -73,9 +73,9 @@
                     </div>
                 </div>
                 {% if my_heater.is_enabled %}
-                <div class="card-action blue-grey-text text-darken-4">
+                <div class="card-action blue-grey-text text-darken-4 heater-card-action">
                 {% else %}
-                <div class="card-action blue-grey-text text-lighten-4">
+                <div class="card-action blue-grey-text text-lighten-4 heater-card-action">
                 {% endif %}
                     <div class="row">
                         <div class="col left-align valign-wrapper heater-card-btn">
@@ -89,7 +89,7 @@
                                 <a href="{{ url_for('heaterSwitch', name=my_heater.name) }}" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-darken-4 heater-status heater-card-off">OFF</a>
                                 {% endif %}
                             {% else %}
-                            <a href="#" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-lighten-4 heater-status heater-card-off-disabled">OFF</a>
+                            <a href="javascript:void(0);" class="col waves-effect waves-red center-align btn-flat blue-grey-text text-lighten-4 heater-status heater-card-off-disabled">OFF</a>
                             {% endif %}
                         </div>
                     </div>
