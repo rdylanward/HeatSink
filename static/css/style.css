@@ -60,6 +60,10 @@ body {
     text-decoration: none;
 }
 
+input {
+    color: #fff;
+}
+
 .container-main {
     background: transparent;
     z-index: -1;
