@@ -30,7 +30,7 @@
     <div class="row heater-cards">
         {% for my_heater in session["my_heaters"] %}
 
-        <div class="col s10 m5 l3 xl2">
+        <div class="col s12 m6 l3 xl2">
             {% if my_heater.is_enabled %}
                 {% if my_heater.is_on %}
                 <div class="card blue-grey-text text-darken-4 heater-card-enabled-on">

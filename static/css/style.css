@@ -203,8 +203,8 @@ body {
     font-weight: 500;
 }
 
-.heater-cards .col.s10 {
-    width: 100%;
+.heater-cards .col {
+    padding: 0rem;
 }
 
 .heater-card-enabled-off {
@@ -235,13 +235,15 @@ body {
 
 .heater-card-action {
     background: transparent;
-    width: 19rem;
+    width: 15rem;
     margin: 0rem auto;
 }
 
+.heater-card-btn {
+    width: 17rem;
+}
+
 .col heater-card-btn {
-    left: auto;
-    right: auto;
     padding: 0rem;
 }
 
@@ -443,6 +445,16 @@ body {
 
     .navbar-brand {
         margin-left: 1.5rem;
+    }
+
+
+    /*****************/
+    /***  HEATERS  ***/
+    /*****************/
+
+
+    .container-heaters {
+        margin: 1.2rem 8rem 4rem 8rem !important;
     }
 
 }
