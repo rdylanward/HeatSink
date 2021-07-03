@@ -43,7 +43,7 @@ body {
 
 .container-main {
     background-color: #f2f0e5;
-    margin: 0rem 1.5rem;
+    margin: 0rem;
 }
 
 
@@ -63,6 +63,17 @@ body {
 .container-main {
     background: transparent;
     z-index: -1;
+}
+
+.container-flash {
+    width: 100%;
+}
+
+.flash-messages {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
 }
 
 
@@ -177,7 +188,7 @@ body {
 
 .container-heaters {
     height: 100%;
-    margin: 1.2rem 1.5rem;
+    margin: 1.2rem 2rem;
 }
 
 .heaters-greeting {
@@ -188,19 +199,19 @@ body {
 .heater-card-enabled-off {
     background-color: #f2f0e5;
     box-shadow: 0 4px 8px 0 rgba(244, 67, 54, 0.7), 0 6px 20px 0 rgba(244, 67, 54, 0.69);
-    margin: 3rem 0rem;
+    margin: 1.5rem;
 }
 
 .heater-card-enabled-on {
     background-color: #f2f0e5;
     box-shadow: 0 4px 8px 0 rgba(76, 175, 80, 0.7), 0 6px 20px 0 rgba(76, 175, 80, 0.69);
-    margin: 3rem 0rem;
+    margin: 1.5rem;
 }
 
 .heater-card-disabled {
     background-color: #f2f0e5;
     box-shadow: 0 4px 8px 0 rgba(96, 125, 139, 0.7), 0 6px 20px 0 rgba(96, 125, 139, 0.69);
-    margin: 3rem 0rem;
+    margin: 1.5rem;
 }
 
 /* .heater-card .card .card-action {
@@ -236,6 +247,14 @@ body {
     box-shadow: 0 4px 8px 0 rgba(76, 175, 80, 0.6), 0 6px 20px 0 rgba(76, 175, 80, 0.59);
 }
 
+.card .card-action {
+    padding: 1.6rem 5.4rem;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    margin-right: 0rem;
+}
+
 
 /**********************************************************************/
 /***                            SETTINGS                            ***/
@@ -258,17 +277,6 @@ body {
 
 #settings-title {
     margin-top: 2rem;
-}
-
-.settings-flash {
-    width: 100%;
-}
-
-.flash-messages {
-    font-size: 1.5rem;
-    font-weight: 500;
-    text-align: center;
-    width: 100%;
 }
 
 .settings-member-user,
@@ -364,12 +372,34 @@ body {
 
     .card .card-action {
         border-top: 0rem;
-        padding: 0rem 4rem 1.6rem 4rem;
+        padding: 0rem 3.2rem 1.6rem 3.2rem;
+    }
+    
+    .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+        margin-right: 0rem;
     }
 
 }
 
 /****  /screen and (max-height: 568px) and (max-width: 355px)  ****/
+
+
+/****  /screen and (min-width: 768px)  ****/
+
+@media screen and (min-width: 768px) {
+
+    /******************/
+    /****  NAVBAR  ****/
+    /******************/
+
+
+    .navbar-brand {
+        margin-left: 1.5rem;
+    }
+
+}
+
+/****  /screen and (min-width: 768px)  ****/
 
 
 /****  /screen and (min-width: 1024px)  ****/
