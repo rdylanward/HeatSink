@@ -188,12 +188,16 @@ body {
 
 .container-heaters {
     height: 100%;
-    margin: 1.2rem 2rem;
+    margin: 1.2rem 2.9rem !important;
 }
 
 .heaters-greeting {
     font-size: 1.6rem;
     font-weight: 500;
+}
+
+.heater-cards .col.s10 {
+    width: 100%;
 }
 
 .heater-card-enabled-off {
@@ -214,10 +218,9 @@ body {
     margin: 1.5rem;
 }
 
-/* .heater-card .card .card-action {
-    width: 100%;
-    padding: 0rem 5.8rem 1.6rem 5.8rem;
-}*/
+.heater-card-item h4 {
+    margin-top: 0rem;
+}
 
 .row .heater-card-btn {
     width: 100%;
@@ -370,13 +373,19 @@ body {
         margin: 0.8rem 0rem;
     }
 
+
+    /**************/
+    /***  HOME  ***/
+    /**************/
+
+
+    .container-heaters {
+        height: 100%;
+        margin: 1.2rem 1.6rem !important;
+    }
     .card .card-action {
         border-top: 0rem;
-        padding: 0rem 3.2rem 1.6rem 3.2rem;
-    }
-    
-    .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
-        margin-right: 0rem;
+        padding: 0rem 3.9rem 1.6rem 3.9rem;
     }
 
 }

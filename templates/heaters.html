@@ -27,18 +27,18 @@
     <!--  /HEATERS FLASH  -->
 
     <!--  DISPLAY HEATERS  -->
-    <div class="row">
+    <div class="row heater-cards">
         {% for my_heater in session["my_heaters"] %}
 
         <div class="col s10 m5 l3 xl2">
             {% if my_heater.is_enabled %}
                 {% if my_heater.is_on %}
-                <div class="card blue-grey-text text-darken-4 heater-card heater-card-enabled-on">
+                <div class="card blue-grey-text text-darken-4 heater-card-enabled-on">
                 {% else %}
-                <div class="card blue-grey-text text-darken-4 heater-card heater-card-enabled-off">
+                <div class="card blue-grey-text text-darken-4 heater-card-enabled-off">
                 {% endif %}
             {% else %}
-            <div class="card blue-grey-text text-lighten-4 heater-card heater-card-disabled">
+            <div class="card blue-grey-text text-lighten-4 heater-card-disabled">
             {% endif %}
                 <div class="card-content">
                     <div class="row">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="row">
                         <div class="col left-align heater-card-item">
-                            <h3>{{ my_heater.name }}</h3>
+                            <h4>{{ my_heater.name }}</h4>
                         </div>
                     </div>
                     <div class="row">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="row">
                         <div class="col left-align heater-card-item">
-                            <h3>{{ my_heater.location }}</h3>
+                            <h4>{{ my_heater.location }}</h4>
                         </div>
                     </div>
                     <div class="row">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="row">
                         <div class="col left-align heater-card-item">
-                            <h3>{{ my_heater.controller }}</h3>
+                            <h4>{{ my_heater.controller }}</h4>
                         </div>
                     </div>
                 </div>
