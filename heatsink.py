@@ -1,4 +1,5 @@
 import os
+import paramiko
 from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -103,25 +104,37 @@ def heaters():
 @app.route("/heaterSwitch/<name>", methods=["GET", "POST"])
 def heaterSwitch(name):
 
-    # Simulate control of the heater
+    # Capture the heater and controller information
     heater = mongodb.db.heaters.find_one({"name": name.lower()})
+    associated_controller = mongodb.db.controllers.find_one(
+        {"name": heater["controller"]})
+    host = associated_controller["address"]
+    relay = heater["relay"]
+    port = (":" + associated_controller[
+        "port"]) if associated_controller["port"] else ""
+    username = os.environ.get("HSA_USER")
+    password = os.environ.get("HSA_PASS")
 
-    # Check if the heater is on
-    new_status = False if heater["is_on"] else True
+    # Connect to the controller
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    if port == "":
+        ssh.connect(hostname=host, username=username, password=password)
+    else:
+        ssh.connect(
+            hostname=host, port=port, username=username, password=password)
 
-    # Set the criteria
-    switch_values = {
-        "name": heater["name"],
-        "location": heater["location"],
-        "controller": heater["controller"],
-        "relay": int(heater["relay"]),
-        "is_enabled": heater["is_enabled"],
-        "is_on": new_status
-    }
+    # Send the command
+    new_status = "0" if heater["is_admin"] else "1"
+    command = (
+        "/home/" +
+        username +
+        "/pimoroni/automationhat/hsa/relay.py " +
+        relay +
+        " " +
+        new_status)
 
-    # Update existing document
-    mongodb.db.heaters.update(
-        {"name": heater["name"]}, switch_values)
+    stdin, stdout, stderr = ssh.exec_command(command)
 
     return redirect(url_for("heaters"))
 
