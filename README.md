@@ -84,6 +84,7 @@ In our modern world, we tend to use our mobile phones for everything. I have des
 
 -   ### Interactive elements include:
     -   #### A fully operational login page
+    -   #### Menu elements visible depending upon user status (whether an admin or not).
     -   #### Heaters presented according to access permissions of the logged in user.
     -   #### Settings page gives admins the ability to add and remove users (members), controllers the heaters are associated with, the heaters, heater member groups and deletion of any asset configured on the system.
     -   #### A sidenav menu the slides out from the left on mobiles and tablets.
@@ -149,55 +150,53 @@ In our modern world, we tend to use our mobile phones for everything. I have des
 
 ### Testing User Stories from User Experience (UX) Section
 
--   #### First Time Visitor Goals
+-   #### Administration Goals
 
-    1. Introduce the site and welcome new users.
+    1. Login with the admin login details.
 
-        1. - New users are greeted with a welcoming header hero and motivational quote. -
-        2. - The very next section is a desription of the company and its owners. -
+        1. - Logged in with the admin details and was taken straight to the heaters page. -
+        2. - All relavent heaters were displayed when the heaters page was rendered. -
 
-    2. Describe to new users who the owners are and there ethos.
+    2. Add a new member to the database.
 
-        1. - Scroll down to the next section on the home page and the user will find a desription of the company and its owners. -
+        1. - Added two standard members, hsdemo and hsdemo2. -
 
-    3. Provide a basic description of the features.
-        1. - On the home page the user will find a link to the bookings page in the about us section. -
-        2. - The user will find a brief description and a link to the destinations page. -
+    3. Add a new controller to the system.
+        1. - Added the HS2 controller to the database. -
 
-    4. Provide new users with clear and concise navigation throughout the site.
-        1. - The user is provided with a well defined and easy to use menu. -
-        2. - Multiple links and buttons are provided to all pages. -
+    4. Add heaters to the controllers.
+        1. - Added multiple heaters across both controllers configured. -
+        2. - Heaters displayed upon logging in (perrmissions permitting). -
 
-    5. Get new users to try the map feature and explore new destinations and plan activities.
-        1. - The user is is enticed to follow the link to the destinations page in the section provided on the home page. -
-        2. - Once on the destinations page, the user can navigate the map to find destinations they are interested in. -
+    5. Add members to the heater groups to allow access.
+        1. - Added the created members to the member groups, spread across them to demonstrate permissions. -
+        2. - The heaters displayed correctly based on the groups the users were added to. -
 
-    6. Provide the opportunity for new users to book a holiday destination.
-        1. - Multiple links are provided to take the user to the bookings page. Once there, the user can complete the form to organise a booking. -
+-   #### Returning Administrator Goals
 
--   #### Returning Visitor Goals
+    1. Update details for members, controllers, heaters and member groups.
 
-    1. Steer returning clients to the destinations page to explore new destinations.
+        1. - Changed passwords on members and tested the logins. The members logged in with the new passwords. -
+        2. - Changed the address of the controllers. -
+        3. - Switched the heaters between enabled and disabled. Switched the heaters between controllers. Changed the location and name details of the controllers.-
+        3. - Switched the members between the various member groups.-
 
-        1. - Upon returning to the site, the user is provided with multiple links to the destinations page. Once there the user can explore any and all desired destinations. -
+    2. Remove members, controllers, heaters and member groups from database.
 
-    2. Enable clients to book further holidays.
+        1. - Created a new test member and removed it from the database. -
+        2. - Created a new test controller and removed it from the database. -
+        3. - Created a new test heater and removed it from the database. -
+        4. - Created a new test member, added it to a member group, removed it from the group and removed the test member from the database. -
 
-        1. - Once the user has explored the desired destinations, links are provided to the bookings page where they can complete the form and make a booking. -
+-   #### Member Goals
 
-    3. Enable users to sign-up for the company newsletter to receive holiday reviews, current deals, and company news.
+    1. Login to the application.
 
-        1. - In the footer section on all pages, an input is provided where the user can enter there email and get signed up to the newsletter. -
+        1. - Both users logged on, displayed the proper menu and displayed the relevant heaters. -
 
--   #### Frequent User Goals
+    2. Switch heaters on and off.
 
-    1. Enable clients to explore further holiday destinations.
-
-        1. - The map is always available on the destinations page to explore further destinations. -
-
-    2. Enable clients to book further holidays.
-
-        1. - Multiple links are available for returning users to get to the bookings page. If the user already has a destination in mind, they can go straight to the bookings page and complete the form. -
+        1. - Switched the heateers on and off multiple times. -
 
 ### Further Testing
 
