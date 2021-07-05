@@ -85,11 +85,11 @@ In our modern world, we tend to use our mobile phones for everything. I have des
         -   Standard Laptop and Desktop screen sizes
 
 -   ### Interactive elements include:
-    -   #### An interactive map that allows you to search for destinations
-    -   #### An autocomplete function for the search text box
-    -   #### Zooming into the destination brings up detailed information of local businesses, eateries and sites along with links to Street View if available.
-    -   #### A sticky menu that hides until you start to scroll the page
-    -   #### Modals that provide confirmation of the actions taken (i.e. Signing up for the newsletter, booking a holiday and contacting the company)
+    -   #### A fully operational login page
+    -   #### Heaters presented according to access permissions of the logged in user.
+    -   #### Settings page gives admins the ability to add and remove users (members), controllers the heaters are associated with, the heaters, heater member groups and deletion of any asset configured on the system.
+    -   #### A sidenav menu the slides out from the left on mobiles and tablets.
+    -   #### A responsive design that responds to all devices.
 
 ## Technologies Used
 
