@@ -44,24 +44,22 @@ In our modern world, we tend to use our mobile phones for everything. I have des
 
 -   ### User stories
 
-    -   #### First Time Visitor Goals
+    -   #### Administration Goals
 
-        1. - Introduce the site and welcome new users -
-        2. - Describe to new users who the owners are and there ethos -
-        3. - Provide a basic description of the features -
-        4. - Provide new users with clear and concise navigation throughout the site -
-        5. - Get new users to try the map feature and explore new destinations and plan activities -
-        6. - Provide the opportunity for new users to book a holiday destination -
+        1. - Login with the admin login details -
+        2. - Add a new member to the database -
+        3. - Add a new controller to the system -
+        4. - Add heaters to the controllers -
+        5. - Add members to the heater groups to allow access -
 
-    -   #### Returning Visitor Goals
+    -   #### Returning Administrator Goals
 
-        1. - Steer returning clients to the destinations page to explore new destinations -
-        2. - Ensure that returning clients can book further holidays -
-        3. - Enable users to sign-up for the company newsletter to receive holiday reviews, current deals, and company news -
+        1. - Update details for members, controllers, heaters and member groups -
+        2. - Remove members, controllers, heaters and member groups from database -
 
-    -   #### Frequent User Goals
-        1. - Enable clients to explore further holiday destinations -
-        2. - Enable clients to book further holidays -
+    -   #### Member Goals
+        1. - Login to the application -
+        2. - Switch heaters on and off -
 
 -   ### Design
     -   #### Colour Scheme
@@ -149,14 +147,6 @@ In our modern world, we tend to use our mobile phones for everything. I have des
 1. [Responsively:](https://responsively.app/)
     - Responsively provides an array of virtual devices to test a website's responsive design.
 
-## Testing
-
-The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
-
--   [W3C Markup Validator](https://validator.w3.org/) - [Results](https://github.com/rdylanward/HeatSink/tree/master/static/docs/validation/html5)
--   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://github.com/rdylanward/HeatSink/tree/master/static/docs/validation/css3)
--   [BeautifyTools JavaScript Validator](https://beautifytools.com/javascript-validator.php) - [Results](https://github.com/rdylanward/HeatSink/tree/master/static/docs/validation/jscript)
-
 ### Testing User Stories from User Experience (UX) Section
 
 -   #### First Time Visitor Goals
@@ -218,14 +208,13 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 ### Known Bugs
 
--   The map markers initially worked but stopped working after fixing a fault flagged by the validator. The code was restored to its original version, but the markers still do not work.
+-   The initial devices, previously configured have been deployed and are working. The test device configured identically is not switching the relays. To complete the project, I have configured the heater button to simulate the action of the relay using the database.
 
 ### Future Development
 
--   Create a members login to save bookings details.
--   Link the member login to Google Maps to save marker information of destinations searched.
--   Create a database to store all relevant details.
--   Fix the markers feature for the map.
+-   Resolve the issue with the switching the relays on the device and re-implement the remote access.
+-   Add a mechanism to create and update schedules on the controllers.
+-   Add a documentation page.
 
 ## Deployment
 
@@ -279,19 +268,13 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### Code
 
--   The Javascript for the modals was originally written by [W3Schools](https://www.w3schools.com/howto/howto_css_modals.asp) and repurposed to aid in the function of the modal.
-
--   The Javascript for the Map was originally written for and provided by the Google Maps Platform Maps JavaScript API Guide [Google Maps Platform](https://developers.google.com/maps) and repurposed to aid in the function and design of the map.
-
--   The Javascript for the Sticky Menu was originally written by [W3Schools](https://www.w3schools.com/howto/howto_js_navbar_sticky.asp) and repurposed to aid in the function of the sticky menu.
-
--   The Javascript for the Mobile Menu was originally written by [W3Schools](https://www.w3schools.com/howto/howto_js_mobile_navbar.asp) and repurposed to aid in the function of the mobile menu.
+-   Method POST button code provided by Andrew Clark(https://stackoverflow.com/questions/66618070/flask-differentiating-between-different-post-requests) and adjusted for my requirements.
 
 -   GitHub instructions provided in the Development section of this ReadMe was provided by [GitHub](https://github.com/) and [Code Institute](https://codeinstitute.net/) with links updated to this project.
 
 ### Content
 
--   All content was written and edited by Dylan Ward using the [Brackets](http://brackets.io/) editor.
+-   All content was written and edited by Dylan Ward using the [GitPod](https://www.gitpod.io/) editor.
 
 -   Colour pallettes were chosen with the aid of [Paletton](https://paletton.com/), [Flat UI Colors 2](https://flatuicolors.com/) and [0to255.com](https://www.0to255.com/).
 
@@ -299,7 +282,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 -   All images were provided, royalty free, by [Burst](https://burst.shopify.com/).
 
--   The screenshots for the virtual device views of the website at the beginning of this document were captured with the aid of Google Chrome developer tools.
+-   The screenshots for the virtual device views of the website at the beginning of this document were captured with the aid of the Microsoft Snip-it tool.
 
 -   Image manipulation was completed with the aid of [GIMP](https://www.gimp.org/) and [Tiny PNG](https://tinypng.com/).
 
