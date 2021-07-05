@@ -16,29 +16,29 @@ In our modern world, we tend to use our mobile phones for everything. I have des
 
     -   #### iPhone 6-7-8 (375 x 677)
 
+    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPhone_6-7-8_index.html.png"></h2>
     <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPhone_6-7-8_heaters.html.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPhone_6-7-8_heaters.html.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPhone_6-7-8_sidenav.html.png"></h2>
+    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPhone_6-7-8_sidenav.png"></h2>
 
     -   #### iPhone X (375 x 812)
 
-    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPhone X heaters.html.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPhone X settings.html.png"></h2>
+    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPhone_X_heaters.html.png"></h2>
+    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPhone_X_settings.html.png"></h2>
 
     -   #### iPad (768 x 1024)
 
-    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPad heaters.html.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPad settings.html.png"></h2>
+    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPad_heaters.html.png"></h2>
+    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/iPad_settings.html.png"></h2>
 
     -   #### MacBook Air (1440 x 990)
 
-    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/MacBook Air heaters.html.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/MacBook Air settings.html.png"></h2>
+    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/MacBook_Air_heaters.html.png"></h2>
+    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/MacBook_Air_settings.html.png"></h2>
 
     -   #### 24" Monitor (1920 x 1080)
 
-    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/Desktop index.html.png"></h2>
-    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/Desktop heaters.html.png"></h2>
+    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/Desktop_index.html.png"></h2>
+    <h2 align="center"><img src="https://github.com/rdylanward/HeatSink/blob/master/static/img/screenshots/Desktop_heaters.html.png"></h2>
 
 ## User Experience (UX)
 
