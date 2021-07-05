@@ -63,7 +63,7 @@ In our modern world, we tend to use our mobile phones for everything. I have des
 
 -   ### Design
     -   #### Colour Scheme
-        -   I chose red, green and grey accents for the heaters to indicate on, off and disabled states. Off-white was chosen for the background of the heater cards and the sidenav menu.
+        -   I chose red, green and grey accents for the heaters to indicate off, on and disabled states. Off-white was chosen for the background of the heater cards and the sidenav menu.
     -   #### Typography
         -   Montserrat was chosen for its clean design and easy to read style. Sans Serif was chosen as the back-up in the event the main font does not load. Future changes to typography possible.
     -   #### Imagery
