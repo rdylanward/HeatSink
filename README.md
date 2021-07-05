@@ -65,11 +65,11 @@ In our modern world, we tend to use our mobile phones for everything. I have des
 
 -   ### Design
     -   #### Colour Scheme
-        -   I chose  a light colour scheme based on a light blue (Peter River) to give a holiday kind of feel to the site with a bright colour scheme.
+        -   I chose red, green and grey accents for the heaters to indicate on, off and disabled states. Off-white was chosen for the background of the heater cards and the sidenav menu.
     -   #### Typography
-        -   Two fonts were chosen as for the project, Amatic SC and Architects Daughter. Both fonts are handwriting style fonts chosen to give a postcard feel to the site. Sans Serif was chosen as the back-up in the event the main font does not load. Future changes to typography possible.
+        -   Montserrat was chosen for its clean design and easy to read style. Sans Serif was chosen as the back-up in the event the main font does not load. Future changes to typography possible.
     -   #### Imagery
-        -   Multiple images based on travel were chosen with a combination of images based on maps and actual destinations. One of the images is of a traveller overlooking a valley chosen to represent one of the owners of the fictional company.
+        -   Implemented a fixed image related to the type of application this is. A dark filter is layered over the image to allow for the elements to stand out.
 
 *   ### Wireframes
 
