@@ -10,8 +10,6 @@ At the start, with a bit of education on turning the thermostats down and logica
 
 In our modern world, we tend to use our mobile phones for everything. I have designed this application targeting mobile phones. However, with the use of Materialize CSS, the application scales to larger devices (i.e. Tablets, Desktops, etc…) if a mobile phone is not available.
 
-When testing this application, you are controlling actual mock devices (the live test can be found [here](https://github.com/rdylanward/HeatSink/blob/master/static/docs/video/live_test.mp4)...). I have set up a controller (using DDNS) that is being accessed remotely by the application. I have set up three mock devices, the first two of which I would like to keep intact. When testing the admin functionality, I kindly request you only make changes to the third device named “demo”. The remaining two were set up solely to test the user functionality.
-
 
 
 -   ### Responsive Screenshots
