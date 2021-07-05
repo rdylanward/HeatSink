@@ -1,0 +1,100 @@
+Intialise the PI (On the Controller)
+	1. run raspi-config
+	
+Set a static IP Address (On the Controller)
+	1. sudo nano /etc/dhcpcd.conf
+	2. Add the following to the end of the file:
+		# wlan0 Static IP Address
+		interface wlan0
+		static ip_address=192.168.0.13x/23
+		static routers=192.168.1.1
+		static domain_name_servers=192.168.0.2 192.168.1.10
+	3. Ctrl + X
+	4. y + Enter
+	5. Enter
+	6. sudo reboot
+
+Update the PI (On the Controller)
+	1. sudo apt-get -y update
+	2. sudo apt-get -y upgrade
+	3. sudo apt-get -y dist-upgrade
+	4. sudo apt-get -y autoremove
+	5. sudo apt-get -y autoclean
+	
+Create a new admin user
+	1.  sudo adduser <ADMIN USERNAME>
+	2.  sudo usermod -aG sudo <ADMIN USERNAME>
+	3.  exit
+	4.  ssh <ADMIN USERNAME>@<IP ADDRESS OF DEVICE>
+	
+Disable the default Raspberry PI user
+	1.  sudo usermod --expiredate 1 pi
+	2.  sudo passwd -l pi
+	
+Add a standard user
+	1.  sudo adduser <STANDARD USERNAME>
+	
+Add the HeatSink group
+	1.  sudo groupadd -g 2000 heatsink
+
+Add the standard user to the heatsink group
+	1.  sudo usermod –a –G heatsink <STANDARD USER>
+	
+Install Python 3 (On the Controller)
+	1. sudo apt-get -y update
+	2. sudo apt-get -y install build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libffi-dev tar wget
+	3. wget https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz
+	4. sudo tar zxf Python-3.8.5.tgz
+	5. cd Python-3.8.5
+	6. sudo ./configure --enable-optimizations
+	7. sudo make -j 4
+	8. sudo make altinstall
+	9. echo "alias python=/usr/local/bin/python3.8" >> ~/.bashrc
+	10. source ~/.bashrc
+	
+Install Pip 3 (On the Controller)
+	1. sudo apt-get -y update
+	2. sudo apt-get -y install python3-venv python3-pip
+	3. nano ~/.bashrc
+	4. export PATH="$PATH:/home/$USER/.local/bin" (Add to the end of the file)
+	5. source ~/.bashrc
+	6. env | grep PATH (Run to verify that the path has been added)
+
+Install the Automation Hat code (on the controller)
+	1. curl https://get.pimoroni.com/automationhat | bash
+	
+Install Paramiko (On the Controller)
+	1. pip3 install paramiko
+	
+Install pigpio (On the Controller)
+	1. sudo apt-get -y update
+	2. sudo apt-get -y install pigpio python-pigpio python3-pigpio
+	3. sudo systemctl enable pigpiod
+	4. sudo pigpiod
+	
+Install FileZilla and Copy Script to Controller (On both the Controller and PC/Laptop)
+	1. Download and install FileZilla on PC/Laptop
+	2. Open FileZilla
+	3. On FileZilla:
+		a. Select the 'Site Manager'
+		b. Click the 'New Site' button
+		c. With the new site selected, click the 'Rename' button
+			i. Enter the name in the format of hcx, x being the next free number available (e.g. hc1, hc2, hc3, etc...)
+		d. On the General Tab, select 'SFTP - SSH File Transfer Protocol'
+		e. Enter the IP Address of the controller as 'Host'
+		f. Enter 'pi' as 'User'
+		g. Enter the 'Password' assigned when configuring the controller
+		h. Click the 'Advanced' tab
+		i. Under 'Default local directory', enter C:\Users\<YOUR WINDOWS USERNAME HERE>\Downloads
+	4. On the controller:
+		a. cd ~/
+		b. mkdir Downloads
+		c. mkdir /home/pi/Pimoroni/automationhat/Mallons
+	5. On FileZilla:
+		a. Enter /home/pi/Pimironi/automationhat/Mallons for the 'Default remote directory'
+		b. Click the 'Connect' button
+		c. On the left-hand side of Filezilla, locate the relay.py and relayStatus.py scripts
+		d. Select both scripts (relay.py & relayStatus.py)
+		d. Right-click the selected scripts and click 'Upload' to copy the scripts to the folder on the controller
+	6. On the Controller:
+		a. sudo reboot
