@@ -207,7 +207,7 @@ In our modern world, we tend to use our mobile phones for everything. I have des
 
 ### Known Bugs
 
--   The initial devices, previously configured have been deployed and are working. The test device configured identically is not switching the relays. To complete the project, I have configured the heater button to simulate the action of the relay using the database.
+-   The initial devices (setup for the company), previously configured, have been deployed and are working. The test device configured identically is not switching the relays. To complete the project, I have configured the heater button to simulate the action of the relay using the database. I have attached the code for the relays [here](https://github.com/rdylanward/HeatSink/blob/master/static/docs/relay.py).
 
 ### Future Development
 
